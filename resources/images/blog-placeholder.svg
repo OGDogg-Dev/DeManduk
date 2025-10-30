@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="blogTitle blogDesc">
+  <title id="blogTitle">Blog Placeholder</title>
+  <desc id="blogDesc">Placeholder gambar artikel Waduk Manduk</desc>
+  <rect width="800" height="600" fill="#0ea5e9"/>
+  <rect x="60" y="60" width="680" height="360" rx="32" fill="#f1f5f9" opacity="0.85"/>
+  <path d="M120 340 L260 220 L360 300 L480 180 L660 340" fill="none" stroke="#0ea5e9" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+  <circle cx="620" cy="210" r="48" fill="#f97316" opacity="0.9"/>
+  <rect x="120" y="450" width="360" height="32" rx="16" fill="#f8fafc" opacity="0.8"/>
+  <rect x="120" y="500" width="280" height="24" rx="12" fill="#f8fafc" opacity="0.6"/>
+</svg>

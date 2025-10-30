@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" role="img" aria-labelledby="heroTitle heroDesc">
+  <title id="heroTitle">Ilustrasi Waduk Manduk</title>
+  <desc id="heroDesc">Ilustrasi abstrak waduk dengan perahu dan pepohonan</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0369a1"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fde68a"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="900" fill="url(#sky)"/>
+  <circle cx="700" cy="220" r="90" fill="url(#sun)" opacity="0.9"/>
+  <ellipse cx="450" cy="620" rx="420" ry="260" fill="url(#water)" opacity="0.9"/>
+  <ellipse cx="300" cy="620" rx="240" ry="150" fill="#0ea5e9" opacity="0.8"/>
+  <path d="M120 540C220 480 320 500 420 560" fill="none" stroke="#bae6fd" stroke-width="12" stroke-linecap="round" opacity="0.7"/>
+  <path d="M470 570C560 520 690 520 780 580" fill="none" stroke="#bae6fd" stroke-width="12" stroke-linecap="round" opacity="0.7"/>
+  <path d="M380 630 Q450 580 520 630" fill="#f1f5f9"/>
+  <rect x="410" y="580" width="80" height="120" rx="18" fill="#facc15"/>
+  <polygon points="300,620 360,650 420,620 360,590" fill="#f97316"/>
+  <rect x="350" y="600" width="20" height="60" rx="5" fill="#fff"/>
+  <rect x="375" y="625" width="12" height="36" rx="3" fill="#1e293b"/>
+  <circle cx="360" cy="590" r="18" fill="#1e293b"/>
+  <g fill="#0f172a" opacity="0.7">
+    <ellipse cx="180" cy="500" rx="70" ry="110"/>
+    <ellipse cx="220" cy="480" rx="50" ry="80"/>
+    <ellipse cx="260" cy="510" rx="60" ry="100"/>
+  </g>
+  <g fill="#155e75" opacity="0.8">
+    <ellipse cx="680" cy="520" rx="80" ry="130"/>
+    <ellipse cx="730" cy="500" rx="60" ry="100"/>
+    <ellipse cx="780" cy="530" rx="70" ry="120"/>
+  </g>
+</svg>

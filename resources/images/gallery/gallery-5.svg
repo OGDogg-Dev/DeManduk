@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="gal5Title gal5Desc">
+  <title id="gal5Title">Zona Kuliner</title>
+  <desc id="gal5Desc">Placeholder area kuliner Waduk Manduk</desc>
+  <rect width="800" height="600" fill="#0ea5e9"/>
+  <rect x="0" y="320" width="800" height="280" fill="#f97316"/>
+  <rect x="140" y="220" width="520" height="140" rx="24" fill="#f1f5f9"/>
+  <rect x="120" y="360" width="200" height="120" rx="24" fill="#fef3c7"/>
+  <rect x="340" y="360" width="200" height="120" rx="24" fill="#fcd34d"/>
+  <rect x="560" y="360" width="120" height="120" rx="24" fill="#facc15"/>
+  <circle cx="220" cy="260" r="28" fill="#f97316"/>
+  <circle cx="400" cy="260" r="28" fill="#facc15"/>
+  <circle cx="580" cy="260" r="28" fill="#f97316"/>
+  <path d="M120 320 H680" stroke="#f97316" stroke-width="8" stroke-linecap="round" stroke-dasharray="24 16"/>
+</svg>

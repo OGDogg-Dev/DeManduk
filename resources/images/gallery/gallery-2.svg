@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="gal2Title gal2Desc">
+  <title id="gal2Title">Dermaga Perahu</title>
+  <desc id="gal2Desc">Placeholder dermaga perahu Waduk Manduk</desc>
+  <rect width="800" height="600" fill="#0ea5e9"/>
+  <rect x="0" y="320" width="800" height="280" fill="#0369a1"/>
+  <rect x="120" y="280" width="560" height="48" fill="#f59e0b"/>
+  <rect x="100" y="328" width="600" height="160" fill="#b45309"/>
+  <circle cx="680" cy="200" r="60" fill="#fde68a" opacity="0.9"/>
+  <path d="M120 420 Q220 380 320 420 T520 420 T720 420" fill="none" stroke="#bae6fd" stroke-width="16" stroke-linecap="round" opacity="0.6"/>
+  <polygon points="200,360 260,400 320,360 260,320" fill="#f97316"/>
+  <polygon points="480,360 540,400 600,360 540,320" fill="#f97316"/>
+</svg>

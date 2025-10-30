@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" role="img" aria-labelledby="qrisTitle qrisDesc">
+  <title id="qrisTitle">Poster QRIS Waduk Manduk</title>
+  <desc id="qrisDesc">Poster placeholder QRIS Waduk Manduk</desc>
+  <rect width="400" height="520" rx="24" fill="#0ea5e9"/>
+  <rect x="24" y="24" width="352" height="472" rx="18" fill="#f8fafc"/>
+  <text x="200" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#0ea5e9">
+    QRIS RESMI
+  </text>
+  <text x="200" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#0f172a">
+    Waduk Manduk
+  </text>
+  <rect x="90" y="140" width="220" height="220" fill="#0ea5e9" opacity="0.08"/>
+  <g fill="#0f172a">
+    <rect x="110" y="160" width="24" height="24"/>
+    <rect x="150" y="160" width="24" height="12"/>
+    <rect x="190" y="160" width="24" height="24"/>
+    <rect x="230" y="160" width="36" height="12"/>
+    <rect x="110" y="200" width="12" height="24"/>
+    <rect x="140" y="200" width="24" height="24"/>
+    <rect x="180" y="200" width="24" height="12"/>
+    <rect x="220" y="200" width="12" height="24"/>
+    <rect x="250" y="200" width="24" height="24"/>
+    <rect x="110" y="240" width="24" height="24"/>
+    <rect x="150" y="240" width="12" height="24"/>
+    <rect x="180" y="240" width="24" height="24"/>
+    <rect x="220" y="240" width="24" height="24"/>
+    <rect x="260" y="240" width="12" height="24"/>
+  </g>
+  <rect x="110" y="380" width="180" height="44" rx="12" fill="#0ea5e9" opacity="0.1"/>
+  <text x="200" y="408" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#0f172a">
+    Nama Merchant:
+  </text>
+  <text x="200" y="428" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#0f172a">
+    BUMDes Manduk Sejahtera
+  </text>
+  <text x="200" y="460" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#334155">
+    Tunjukkan bukti bayar ke petugas loket
+  </text>
+</svg>

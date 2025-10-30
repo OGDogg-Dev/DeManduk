@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="gal6Title gal6Desc">
+  <title id="gal6Title">Sky Deck</title>
+  <desc id="gal6Desc">Placeholder sky deck Waduk Manduk</desc>
+  <rect width="800" height="600" fill="#38bdf8"/>
+  <rect x="0" y="360" width="800" height="240" fill="#0369a1"/>
+  <rect x="160" y="320" width="480" height="40" fill="#f59e0b"/>
+  <rect x="140" y="360" width="520" height="160" fill="#fbbf24"/>
+  <polygon points="200,360 260,280 320,360" fill="#f97316"/>
+  <polygon points="320,360 380,260 440,360" fill="#f97316"/>
+  <polygon points="440,360 500,280 560,360" fill="#f97316"/>
+  <circle cx="640" cy="180" r="50" fill="#fef08a"/>
+  <path d="M200 440 C280 420 360 420 440 440 C520 460 600 460 680 440" fill="none" stroke="#fef08a" stroke-width="14" stroke-linecap="round" opacity="0.7"/>
+</svg>

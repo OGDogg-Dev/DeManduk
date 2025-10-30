@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="dermagaTitle dermagaDesc">
+  <title id="dermagaTitle">Dermaga Waduk Manduk</title>
+  <desc id="dermagaDesc">Ilustrasi dermaga kayu baru Waduk Manduk</desc>
+  <rect width="960" height="540" fill="#0ea5e9"/>
+  <rect x="0" y="280" width="960" height="260" fill="#0369a1"/>
+  <rect x="100" y="240" width="760" height="40" fill="#f59e0b"/>
+  <rect x="80" y="280" width="800" height="160" fill="#b45309"/>
+  <rect x="160" y="320" width="640" height="80" fill="#d97706"/>
+  <g fill="#374151">
+    <rect x="150" y="200" width="24" height="160" rx="8"/>
+    <rect x="786" y="200" width="24" height="160" rx="8"/>
+    <rect x="360" y="220" width="16" height="120" rx="6"/>
+    <rect x="584" y="220" width="16" height="120" rx="6"/>
+  </g>
+  <circle cx="760" cy="160" r="48" fill="#fde68a"/>
+  <circle cx="220" cy="150" r="26" fill="#f1f5f9" opacity="0.7"/>
+  <circle cx="260" cy="120" r="18" fill="#f1f5f9" opacity="0.5"/>
+  <path d="M80 420 C160 400 240 400 320 420 C400 440 480 440 560 420 C640 400 720 400 800 420" fill="none" stroke="#bae6fd" stroke-width="16" stroke-linecap="round" opacity="0.6"/>
+  <rect x="280" y="340" width="400" height="40" rx="12" fill="#1f2937" opacity="0.8"/>
+  <circle cx="480" cy="360" r="18" fill="#ffffff"/>
+</svg>

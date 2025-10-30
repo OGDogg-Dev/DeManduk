@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="gal1Title gal1Desc">
+  <title id="gal1Title">Panorama Senja</title>
+  <desc id="gal1Desc">Placeholder panorama senja Waduk Manduk</desc>
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g1)"/>
+  <circle cx="620" cy="160" r="80" fill="#fde68a" opacity="0.9"/>
+  <path d="M0 380 Q200 300 400 340 T800 360 L800 600 H0 Z" fill="#0369a1" opacity="0.8"/>
+  <path d="M0 420 Q220 360 440 420 T800 400 L800 600 H0 Z" fill="#0ea5e9" opacity="0.6"/>
+  <path d="M100 450 C180 430 260 430 340 450 C420 470 500 470 580 450 C660 430 740 430 820 450" fill="none" stroke="#bae6fd" stroke-width="14" stroke-linecap="round" opacity="0.6"/>
+</svg>
