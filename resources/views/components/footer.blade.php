@@ -1,19 +1,28 @@
+@php
+    $brandTitle = $siteTitle ?? "D'Manduk";
+    $brandLogo = \App\Support\Media::url($siteLogoPath ?? null);
+    $brandInitials = strtoupper(mb_substr($brandTitle, 0, 2));
+@endphp
+
 <footer class="border-t border-slate-200 bg-white">
     <div class="mx-auto flex max-w-6xl flex-col gap-16 px-4 py-16 sm:px-6 lg:px-8">
         <div class="grid gap-12 md:grid-cols-4">
             <div class="md:col-span-2">
                 <div class="flex items-center gap-3">
-                    <span class="flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 font-semibold text-white">
-                        WM
-                    </span>
+                    @if ($brandLogo)
+                        <img src="{{ $brandLogo }}" alt="{{ $brandTitle }}" class="h-12 w-12 rounded-full border border-blue-200 object-cover">
+                    @else
+                        <span class="flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 font-semibold text-white">
+                            {{ $brandInitials }}
+                        </span>
+                    @endif
                     <div>
                         <p class="text-sm font-semibold uppercase tracking-wide text-slate-500">Portal Resmi</p>
-                        <p class="text-xl font-bold text-slate-900">Waduk Manduk</p>
+                        <p class="text-xl font-bold text-slate-900">{{ $brandTitle }}</p>
                     </div>
                 </div>
                 <p class="mt-6 max-w-xl text-sm text-slate-600">
-                    Destinasi wisata alam di Lamongan dengan fasilitas keluarga, kuliner lokal, dan panorama waduk yang memukau.
-                    Situs ini menjadi sumber informasi terkurasi tentang agenda, berita, dan layanan Waduk Manduk.
+                    Destinasi wisata air yang menyuguhkan panorama waduk, ruang komunitas, serta ekosistem UMKM desa. Situs ini menyajikan informasi terbaru mengenai agenda, layanan, dan fasilitas D'Manduk.
                 </p>
             </div>
             <div>
@@ -21,7 +30,7 @@
                 <ul class="mt-4 space-y-2 text-sm text-slate-600">
                     <li>
                         <span class="font-semibold text-slate-800">Alamat:</span>
-                        Desa Manduk, Kecamatan Ngargoyoso, Kabupaten Karanganyar
+                        Dusun Manduk RT. 4 / RW. 5, Desa Jatirejo, Ngargoyoso, Karanganyar
                     </li>
                     <li>
                         <span class="font-semibold text-slate-800">Telepon:</span>
@@ -49,7 +58,7 @@
                 &copy; {{ now()->year }} Pemerintah Desa Manduk. Semua hak cipta dilindungi.
             </p>
             <div class="flex items-center gap-4 text-xs font-semibold text-slate-600">
-                <a href="{{ route('faq') }}" class="hover:text-blue-600">FAQ</a>
+                <a href="{{ route('sop') }}" class="hover:text-blue-600">SOP</a>
                 <a href="{{ route('kontak') }}" class="hover:text-blue-600">Hubungi Kami</a>
                 <a href="{{ route('qris') }}" class="hover:text-blue-600">Kebijakan Pembayaran</a>
             </div>

@@ -88,30 +88,28 @@
                 </div>
             </form>
             <div class="space-y-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-                <h3 class="text-base font-semibold text-slate-900">Informasi kontak resmi</h3>
-                <dl class="space-y-3 text-sm text-slate-600">
+                <h3 class="text-base font-semibold text-slate-900">Jaringan layanan D'Manduk</h3>
+                <div class="space-y-4 text-sm text-slate-600">
                     <div>
-                        <dt class="font-semibold text-slate-800">Alamat</dt>
-                        <dd>Balai Pengelola Waduk Manduk, Desa Manduk, Kecamatan Duduk Sampeyan, Kabupaten Gresik.</dd>
+                        <h4 class="font-semibold text-slate-800">Alamat Operasional</h4>
+                        <p>Dusun Manduk RT. 4 / RW. 5, Desa Jatirejo, Ngargoyoso, Karanganyar.</p>
                     </div>
-                    <div>
-                        <dt class="font-semibold text-slate-800">Telepon</dt>
-                        <dd><a href="tel:+62312999999" class="text-blue-600 hover:underline">+62 312 999 999</a></dd>
+                    <div class="space-y-2">
+                        <h4 class="font-semibold text-slate-800">Instansi pendukung</h4>
+                        <ul class="list-disc space-y-1 pl-5">
+                            <li><span class="font-semibold text-slate-900">Puskesmas:</span> layanan kesehatan dasar dan penanganan medis cepat.</li>
+                            <li><span class="font-semibold text-slate-900">Polsek:</span> koordinasi keamanan dan laporan kehilangan.</li>
+                            <li><span class="font-semibold text-slate-900">BUMDes:</span> pengelolaan operasional serta koordinasi UMKM.</li>
+                            <li><span class="font-semibold text-slate-900">KPW (Komunitas Peduli Waduk):</span> relawan kebersihan dan edukasi lingkungan.</li>
+                            <li><span class="font-semibold text-slate-900">Pos Keamanan Wisata:</span> pusat informasi, patroli area, dan respon darurat.</li>
+                        </ul>
                     </div>
-                    <div>
-                        <dt class="font-semibold text-slate-800">Email</dt>
-                        <dd><a href="mailto:halo@wadukmanduk.id" class="text-blue-600 hover:underline">halo@wadukmanduk.id</a></dd>
-                    </div>
-                    <div>
-                        <dt class="font-semibold text-slate-800">Jam layanan</dt>
-                        <dd>Senin sampai Jumat, 08.00 - 16.00 WIB</dd>
-                    </div>
-                </dl>
-                <x-alert variant="warning" title="Kebijakan respon">
-                    Tanggapan resmi akan dikirim melalui email. Mohon hindari menyertakan informasi sensitif pada form.
+                </div>
+                <x-alert variant="warning" title="Kanal komunikasi prioritas">
+                    Sampaikan kebutuhan spesifik Anda lewat form di samping atau langsung melalui instansi terkait sesuai keperluan.
                 </x-alert>
-                <x-alert variant="success" title="Butuh respon cepat?">
-                    Hubungi WhatsApp Center 0812-9999-0000 pada jam operasional untuk bantuan langsung.
+                <x-alert variant="success" title="Layanan cepat">
+                    Untuk kondisi darurat, hubungi Pos Keamanan Wisata di lokasi atau petugas Puskesmas terdekat.
                 </x-alert>
             </div>
         </div>

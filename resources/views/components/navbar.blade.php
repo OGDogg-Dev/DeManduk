@@ -6,7 +6,12 @@
         ['label' => 'Berita', 'route' => 'blog.index'],
         ['label' => 'Kontak', 'route' => 'kontak'],
         ['label' => 'QRIS', 'route' => 'qris'],
+        ['label' => 'SOP', 'route' => 'sop'],
     ];
+
+    $brandTitle = $siteTitle ?? "D'Manduk";
+    $brandLogo = \App\Support\Media::url($siteLogoPath ?? null);
+    $brandInitials = strtoupper(mb_substr($brandTitle, 0, 2));
 @endphp
 
 <!-- Skip to content untuk keyboard user -->
@@ -26,12 +31,16 @@
     <!-- Brand -->
     <div class="flex items-center gap-3">
       <a href="{{ route('home') }}" class="group flex items-center gap-3">
-        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 font-semibold text-white ring-1 ring-blue-500/30 dark:ring-blue-400/20">
-          WM
-        </span>
+        @if ($brandLogo)
+          <img src="{{ $brandLogo }}" alt="{{ $brandTitle }}" class="h-10 w-10 rounded-full border border-blue-200 object-cover">
+        @else
+          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 font-semibold text-white ring-1 ring-blue-500/30 dark:ring-blue-400/20">
+            {{ $brandInitials }}
+          </span>
+        @endif
         <div class="hidden flex-col sm:flex">
           <span class="text-[11px] font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Portal Resmi</span>
-          <span class="text-lg font-bold text-slate-900 dark:text-white">Waduk Manduk</span>
+          <span class="text-lg font-bold text-slate-900 dark:text-white">{{ $brandTitle }}</span>
         </div>
       </a>
     </div>
@@ -165,3 +174,4 @@
   })();
 </script>
 @endpush
+
