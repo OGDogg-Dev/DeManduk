@@ -63,6 +63,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->n
 
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::view('/', 'admin.dashboard')->name('dashboard');
+    Route::view('/styleguide', 'admin.styleguide')->name('styleguide');
     Route::resource('gallery', AdminGalleryController::class)
         ->parameters(['gallery' => 'galleryItem'])
         ->except('show');

@@ -10,71 +10,61 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('head')
 </head>
-<body class="min-h-screen bg-slate-100 text-slate-900 antialiased">
+<body class="admin-surface bg-slate-100 text-slate-900 antialiased">
 @php
     $brandTitle = $siteTitle ?? "D'Manduk";
     $brandLogo = \App\Support\Media::url($siteLogoPath ?? null);
     $brandInitials = strtoupper(mb_substr($brandTitle, 0, 2));
+    $menu = [
+        ['route' => 'admin.dashboard', 'label' => 'Dasbor', 'icon' => 'chart-bar', 'active' => ['admin.dashboard']],
+        ['route' => 'admin.home.index', 'label' => 'Konten Beranda', 'icon' => 'newspaper', 'active' => ['admin.home.*']],
+        ['route' => 'admin.gallery.index', 'label' => 'Galeri', 'icon' => 'photo', 'active' => ['admin.gallery.*']],
+        ['route' => 'admin.news.index', 'label' => 'Berita', 'icon' => 'newspaper', 'active' => ['admin.news.*']],
+        ['route' => 'admin.pages.contact.settings.edit', 'label' => 'Halaman Kontak', 'icon' => 'envelope-open', 'active' => ['admin.pages.contact.*']],
+        ['route' => 'admin.pages.qris.settings.edit', 'label' => 'Halaman QRIS', 'icon' => 'credit-card', 'active' => ['admin.pages.qris.*']],
+        ['route' => 'admin.pages.sop.settings.edit', 'label' => 'Halaman SOP', 'icon' => 'document-text', 'active' => ['admin.pages.sop.*']],
+        ['route' => 'admin.events.index', 'label' => 'Event', 'icon' => 'calendar', 'active' => ['admin.events.*']],
+        ['route' => 'admin.home.settings.edit', 'label' => 'Pengaturan Umum', 'icon' => 'adjustments-horizontal', 'active' => ['admin.home.settings.edit']],
+        ['route' => 'admin.styleguide', 'label' => 'Styleguide', 'icon' => 'sparkles', 'active' => ['admin.styleguide']],
+    ];
 @endphp
 
-    <div class="flex min-h-screen">
-        <aside id="admin-sidebar" class="hidden w-64 flex-shrink-0 border-r border-slate-200 bg-white lg:flex lg:flex-col">
-            <div class="px-6 py-5">
-                <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-2 text-lg font-bold text-slate-900">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside id="admin-sidebar" class="fixed inset-y-0 z-40 hidden w-72 flex-col bg-slate-900 text-slate-100 shadow-xl transition lg:static lg:flex">
+            <div class="flex h-16 items-center gap-3 border-b border-slate-800 px-6">
+                <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 font-semibold tracking-tight">
                     @if ($brandLogo)
-                        <img src="{{ $brandLogo }}" alt="{{ $brandTitle }}" class="h-9 w-9 rounded-full border border-blue-200 object-cover">
+                        <img src="{{ $brandLogo }}" alt="{{ $brandTitle }}" class="h-10 w-10 rounded-full border border-white/10 object-cover">
                     @else
-                        <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white">
+                        <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-indigo-500 text-sm font-semibold text-white">
                             {{ $brandInitials }}
                         </span>
                     @endif
-                    <span>{{ $brandTitle }}</span>
+                    <span class="text-lg text-black">{{ $brandTitle }}</span>
                 </a>
             </div>
-                        <nav class="flex-1 space-y-1 px-4 pb-6">
-                @php
-                    $menu = [
-                        ['route' => 'admin.dashboard', 'label' => 'Dasbor', 'icon' => 'chart-bar', 'active' => ['admin.dashboard']],
-                        ['route' => 'admin.home.index', 'label' => 'Konten Beranda', 'icon' => 'newspaper', 'active' => ['admin.home.*']],
-                        ['route' => 'admin.gallery.index', 'label' => 'Galeri', 'icon' => 'photo', 'active' => ['admin.gallery.*']],
-                        ['route' => 'admin.news.index', 'label' => 'Berita', 'icon' => 'newspaper', 'active' => ['admin.news.*']],
-                        ['route' => 'admin.pages.contact.settings.edit', 'label' => 'Halaman Kontak', 'icon' => 'newspaper', 'active' => ['admin.pages.contact.*']],
-                        ['route' => 'admin.pages.qris.settings.edit', 'label' => 'Halaman QRIS', 'icon' => 'newspaper', 'active' => ['admin.pages.qris.*']],
-                        ['route' => 'admin.pages.sop.settings.edit', 'label' => 'Halaman SOP', 'icon' => 'newspaper', 'active' => ['admin.pages.sop.*']],
-                        ['route' => 'admin.events.index', 'label' => 'Event', 'icon' => 'calendar', 'active' => ['admin.events.*']],
-                        ['route' => 'admin.home.settings.edit', 'label' => 'Pengaturan Umum', 'icon' => 'cog-6-tooth', 'active' => ['admin.home.settings.edit']],
-                    ];
-                @endphp
-
-                @foreach ($menu as $item)
-                    @php
-                        $patterns = $item['active'] ?? [$item['route']];
-                        $isActive = false;
-                        foreach ($patterns as $pattern) {
-                            if (request()->routeIs($pattern)) {
-                                $isActive = true;
-                                break;
-                            }
-                        }
-                    @endphp
-                    <a
-                        href="{{ route($item['route']) }}"
-                        class="flex items-center gap-3 rounded-xl px-3 py-2 text-sm font-medium transition {{ $isActive ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
-                        aria-controls="admin-sidebar"
-                        aria-expanded="false"
-                    >
-                        <x-admin.icon :name="$item['icon']" class="h-5 w-5" />
-                        <span>{{ $item['label'] }}</span>
-                    </a>
-                @endforeach
-            </nav>
-            <div class="px-4 pb-6">
+            <div class="flex-1 overflow-y-auto px-5 py-6">
+                <nav class="space-y-1 text-sm font-medium">
+                    @foreach ($menu as $item)
+                        @php
+                            $patterns = $item['active'] ?? [$item['route']];
+                            $isActive = collect($patterns)->contains(fn ($pattern) => request()->routeIs($pattern));
+                        @endphp
+                        <a
+                            href="{{ route($item['route']) }}"
+                            class="{{ $isActive ? 'bg-indigo-500 text-white shadow-md' : 'text-slate-300 hover:bg-slate-800/80 hover:text-white' }} flex items-center gap-3 rounded-xl px-3 py-2 transition"
+                        >
+                            <x-admin.icon :name="$item['icon']" class="h-5 w-5" />
+                            <span class="text-black">{{ $item['label'] }}</span>
+                        </a>
+                    @endforeach
+                </nav>
+            </div>
+            <div class="border-t border-slate-800 px-6 py-5">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button
-                        type="submit"
-                        class="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-sm font-medium text-slate-600 transition hover:border-red-300 hover:text-red-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    >
+                    <button type="submit" class="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-800 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:bg-slate-700">
                         <x-admin.icon name="arrow-left-on-rectangle" class="h-5 w-5" />
                         Keluar
                     </button>
@@ -82,53 +72,68 @@
             </div>
         </aside>
 
-        <div class="flex min-h-screen flex-1 flex-col">
-            <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
-                <div class="flex items-center justify-between px-6 py-4">
-                    <button
-                        type="button"
-                        class="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-sm font-medium text-slate-600 transition hover:border-blue-300 hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 lg:hidden"
-                        data-admin-toggle="sidebar"
-                    >
+        <!-- Main content -->
+        <div class="flex flex-1 flex-col overflow-hidden lg:ml-0">
+            <header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200 bg-white/90 px-4 shadow-sm backdrop-blur sm:px-6">
+                <div class="flex items-center gap-2 lg:hidden">
+                    <button type="button" data-admin-toggle="sidebar" class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-100">
                         <x-admin.icon name="bars-3" class="h-5 w-5" />
-                        Menu
+                        <span class="sr-only">Toggle sidebar</span>
                     </button>
-
-                    <div class="flex flex-1 items-center justify-end gap-3">
-                        <div class="relative hidden sm:block">
-                            <input
-                                type="search"
-                                placeholder="Cari data..."
-                                class="w-56 rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm text-slate-600 shadow-sm transition focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-200"
-                            >
-                        </div>
-                        <button
-                            type="button"
-                            class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white p-2 text-slate-600 shadow-sm transition hover:border-blue-300 hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                        >
-                            <x-admin.icon name="bell" class="h-5 w-5" />
-                        </button>
-                        <div class="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-2 py-1 text-sm font-medium text-slate-700 shadow-sm">
-                            <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-white">AD</span>
-                            <span class="hidden md:inline">Admin Desa</span>
-                        </div>
+                </div>
+                <div class="flex flex-1 items-center justify-end gap-3">
+                    <div class="hidden items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm shadow-sm sm:flex">
+                        <x-admin.icon name="magnifying-glass" class="h-4 w-4 text-slate-400" />
+                        <input type="search" placeholder="Cari data..." class="w-48 border-0 bg-transparent text-sm text-slate-600 focus:outline-none" />
+                    </div>
+                    <button type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-indigo-400 hover:text-indigo-500">
+                        <x-admin.icon name="bell" class="h-5 w-5" />
+                        <span class="sr-only">Notifikasi</span>
+                    </button>
+                    <div class="hidden items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-sm font-semibold text-slate-700 shadow-sm sm:flex">
+                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500 text-white">AD</span>
+                        <span>Admin Desa</span>
                     </div>
                 </div>
             </header>
 
-            <main class="flex-1 px-6 py-8">
-                @if(trim($__env->yieldContent('content')))
-                    @yield('content')
-                @else
-                    {{ $slot ?? '' }}
-                @endif
+            <main class="flex-1 overflow-y-auto bg-slate-50 px-4 py-8 sm:px-6 lg:px-8">
+                <div class="mx-auto max-w-7xl">
+                    @if(trim($__env->yieldContent('content')))
+                        @yield('content')
+                    @else
+                        {{ $slot ?? '' }}
+                    @endif
+                </div>
             </main>
         </div>
     </div>
 
     <x-admin.scripts />
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.getElementById('admin-sidebar');
+            const toggleBtn = document.querySelector('[data-admin-toggle="sidebar"]');
+            if (!sidebar || !toggleBtn) return;
+
+            const toggleSidebar = () => {
+                const isOpen = sidebar.classList.contains('flex');
+                if (isOpen) {
+                    sidebar.classList.replace('flex', 'hidden');
+                } else {
+                    sidebar.classList.replace('hidden', 'flex');
+                }
+            };
+
+            toggleBtn.addEventListener('click', toggleSidebar);
+            document.addEventListener('click', (event) => {
+                if (window.innerWidth >= 1024) return;
+                if (!sidebar.contains(event.target) && !toggleBtn.contains(event.target)) {
+                    sidebar.classList.replace('flex', 'hidden');
+                }
+            });
+        });
+    </script>
     @stack('scripts')
 </body>
 </html>
-
-
