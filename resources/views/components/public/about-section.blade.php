@@ -7,9 +7,9 @@
     'ctaUrl' => route('profile'),
 ])
 
-<x-section id="about" :title="$title" :subtitle="$subtitle">
-    <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-        <div class="space-y-5 text-slate-700">
+<x-section id="about" :title="$title" :subtitle="$subtitle" class="bg-transparent">
+    <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+        <div class="glass-card rounded-3xl p-8 shadow-xl space-y-5 text-slate-100">
             @forelse($paragraphs as $paragraph)
                 <p>{{ $paragraph }}</p>
             @empty
@@ -21,13 +21,13 @@
 
             <a
                 href="{{ $ctaUrl }}"
-                class="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition hover:text-blue-700"
+                class="inline-flex items-center gap-2 text-sm font-semibold text-amber-400 transition hover:text-amber-300"
             >
                 {{ $ctaLabel }}
             </a>
         </div>
         <div class="relative">
-            <div class="aspect-square overflow-hidden rounded-3xl border border-slate-200 shadow-xl">
+            <div class="aspect-square overflow-hidden rounded-3xl border border-white/15 shadow-[0_28px_70px_-30px_rgba(9,21,50,0.8)]">
                 @php($imageUrl = $image ?? Vite::asset('resources/images/gallery/gallery-6.svg'))
                 <img
                     src="{{ $imageUrl }}"

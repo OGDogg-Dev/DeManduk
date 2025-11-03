@@ -2,11 +2,12 @@
     $navItems = [
         ['label' => 'Beranda', 'route' => 'home'],
         ['label' => 'Galeri', 'route' => 'galeri'],
-        ['label' => 'Event', 'route' => 'event.index'],
-        ['label' => 'Berita', 'route' => 'blog.index'],
+        ['label' => 'Event', 'route' => 'event.index', 'active' => ['event.*']],
+        ['label' => 'Berita', 'route' => 'news.index', 'active' => ['news.*']],
         ['label' => 'Kontak', 'route' => 'kontak'],
         ['label' => 'QRIS', 'route' => 'qris'],
         ['label' => 'SOP', 'route' => 'sop'],
+    
     ];
 
     $brandTitle = $siteTitle ?? "D'Manduk";
@@ -15,32 +16,32 @@
 @endphp
 
 <!-- Skip to content untuk keyboard user -->
-<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-blue-600 focus:px-3 focus:py-2 focus:text-white">
+<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-amber-400 focus:px-3 focus:py-2 focus:text-[#021024]">
   Loncat ke konten
 </a>
 
 <!-- Header: fixed agar tidak membuat jarak -->
 <header
   data-header
-  class="fixed inset-x-0 top-0 z-40 border-b border-slate-200/70 bg-white/85 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:border-slate-800/60 dark:bg-slate-950/70"
+  class="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-gradient-to-r from-[#010b1f]/95 via-[#041b3c]/95 to-[#010b1f]/95 backdrop-blur"
 >
   <nav
-    class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-3 sm:px-6 lg:px-8 lg:justify-start"
+    class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8 lg:justify-start"
     aria-label="Navigasi utama"
   >
     <!-- Brand -->
     <div class="flex items-center gap-3">
       <a href="{{ route('home') }}" class="group flex items-center gap-3">
         @if ($brandLogo)
-          <img src="{{ $brandLogo }}" alt="{{ $brandTitle }}" class="h-10 w-10 rounded-full border border-blue-200 object-cover">
+          <img src="{{ $brandLogo }}" alt="{{ $brandTitle }}" class="h-11 w-11 rounded-full bg-white/10 object-cover ring-1 ring-white/20">
         @else
-          <span class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 font-semibold text-white ring-1 ring-blue-500/30 dark:ring-blue-400/20">
+          <span class="flex h-11 w-11 items-center justify-center rounded-full bg-[#0f2c53] font-semibold text-white ring-1 ring-white/15">
             {{ $brandInitials }}
           </span>
         @endif
         <div class="hidden flex-col sm:flex">
-          <span class="text-[11px] font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Portal Resmi</span>
-          <span class="text-lg font-bold text-slate-900 dark:text-white">{{ $brandTitle }}</span>
+          <span class="text-[11px] font-semibold uppercase tracking-[0.4em] text-white/50">Portal Resmi</span>
+          <span class="text-lg font-bold text-white">{{ $brandTitle }}</span>
         </div>
       </a>
     </div>
@@ -48,7 +49,7 @@
     <!-- Toggle (mobile) -->
     <button
       type="button"
-      class="ml-auto inline-flex items-center justify-center rounded-lg border border-slate-200 p-2 text-slate-700 transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:border-slate-800 dark:text-slate-200 dark:hover:bg-slate-900 lg:hidden"
+      class="ml-auto inline-flex items-center justify-center rounded-lg border border-white/20 p-2 text-white transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020f24] lg:hidden"
       data-nav-toggle
       aria-expanded="false"
       aria-controls="primary-navigation"
@@ -63,32 +64,43 @@
     <div
       id="primary-navigation"
       data-nav-menu
-      class="hidden w-full flex-1 -translate-y-2 flex-col gap-6 rounded-2xl border border-slate-200 bg-white p-6 opacity-0 shadow-lg transition duration-200 will-change-transform dark:border-slate-800 dark:bg-slate-950
-             lg:ml-16 xl:ml-24 2xl:ml-28 lg:flex lg:w-auto lg:translate-y-0 lg:flex-row lg:items-center lg:gap-8 lg:border-none lg:bg-transparent lg:p-0 lg:opacity-100 lg:shadow-none"
+      class="hidden w-full flex-1 -translate-y-2 flex-col gap-6 rounded-2xl border border-white/15 bg-[#020b1f]/95 p-6 opacity-0 shadow-[0_24px_70px_-30px_rgba(5,25,58,0.9)] transition duration-200 will-change-transform
+             lg:ml-16 xl:ml-24 2xl:ml-28 lg:flex lg:w-auto lg:translate-y-0 lg:flex-row lg:items-center lg:gap-10 lg:border-none lg:bg-transparent lg:p-0 lg:opacity-100 lg:shadow-none"
       aria-hidden="true"
     >
-      <ul class="flex flex-col items-start gap-4 text-[15px] font-semibold text-slate-700 dark:text-slate-200 lg:flex-row lg:items-center lg:gap-6">
+      <ul class="flex flex-col items-start gap-4 text-[15px] font-semibold uppercase tracking-[0.2em] text-white/70 lg:flex-row lg:items-center lg:gap-8">
         @foreach ($navItems as $item)
           @php
-            $active = request()->routeIs($item['route']) || request()->routeIs($item['route'].'.*');
+            $patterns = array_merge(
+                [$item['route']],
+                $item['active'] ?? [],
+                [$item['route'] . '.*']
+            );
+            $active = false;
+            foreach ($patterns as $pattern) {
+                if (request()->routeIs($pattern)) {
+                    $active = true;
+                    break;
+                }
+            }
           @endphp
           <li class="w-full lg:w-auto">
             <a
-              href="{{ Route::has($item['route']) ? route($item['route']) : '#' }}"
-              @class([
-                'group inline-flex items-center gap-2 rounded-lg px-3 py-2 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
-                'text-slate-700 hover:text-slate-900 hover:bg-slate-100/70 dark:text-slate-200 dark:hover:text-white dark:hover:bg-slate-900/60 lg:hover:bg-transparent' => ! $active,
-                'bg-blue-600 text-white shadow-sm hover:bg-blue-700' => $active,
-              ])
-              {{ $active ? 'aria-current=page' : '' }}
-              data-close-on-click
+                href="{{ Route::has($item['route']) ? route($item['route']) : '#' }}"
+                @class([
+                    'group inline-flex items-center gap-2 rounded-lg px-3 py-2 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020f24]',
+                    'text-white/70 hover:text-white hover:bg-white/5 lg:hover:bg-transparent' => ! $active,
+                    'text-amber-400 lg:border-b-2 lg:border-amber-400 lg:pb-3' => $active,
+                ])
+                {{ $active ? 'aria-current=page' : '' }}
+                data-close-on-click
             >
-              <span class="relative">
-                {{ $item['label'] }}
-                @unless($active)
-                  <span class="pointer-events-none absolute -bottom-1 left-0 block h-0.5 w-0 rounded bg-slate-300 transition-all duration-200 group-hover:w-full dark:bg-slate-600"></span>
-                @endunless
-              </span>
+                <span class="relative">
+                    {{ mb_strtoupper($item['label']) }}
+                    @unless($active)
+                        <span class="pointer-events-none absolute -bottom-1 left-0 block h-0.5 w-0 rounded bg-amber-500/50 transition-all duration-200 group-hover:w-full"></span>
+                    @endunless
+                </span>
             </a>
           </li>
         @endforeach

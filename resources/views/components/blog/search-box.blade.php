@@ -1,6 +1,7 @@
 @props([
     'action' => '#',
     'placeholder' => 'Cari artikel atau topik...',
+    'value' => null,
 ])
 
 <form action="{{ $action }}" method="GET" class="relative">
@@ -10,11 +11,12 @@
         name="q"
         type="search"
         placeholder="{{ $placeholder }}"
-        class="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm transition placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+        value="{{ $value }}"
+        class="w-full rounded-xl border border-white/15 bg-[#041f45] px-4 py-3 text-sm text-slate-100 shadow-sm transition placeholder:text-slate-400 focus:border-amber-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020f24]"
     >
     <button
         type="submit"
-        class="absolute inset-y-1 right-1 inline-flex items-center justify-center rounded-lg bg-blue-600 px-3 text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+        class="absolute inset-y-1 right-1 inline-flex items-center justify-center rounded-lg bg-amber-400 px-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#021024] transition hover:bg-amber-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020f24]"
     >
         Cari
     </button>

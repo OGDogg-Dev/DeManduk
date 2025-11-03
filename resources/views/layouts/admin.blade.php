@@ -10,7 +10,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('head')
 </head>
-<body class="min-h-screen bg-slate-100 text-slate-900 antialiased">\n@php
+<body class="min-h-screen bg-slate-100 text-slate-900 antialiased">
+@php
     $brandTitle = $siteTitle ?? "D'Manduk";
     $brandLogo = \App\Support\Media::url($siteLogoPath ?? null);
     $brandInitials = strtoupper(mb_substr($brandTitle, 0, 2));
@@ -35,6 +36,11 @@
                     $menu = [
                         ['route' => 'admin.dashboard', 'label' => 'Dasbor', 'icon' => 'chart-bar', 'active' => ['admin.dashboard']],
                         ['route' => 'admin.home.index', 'label' => 'Konten Beranda', 'icon' => 'newspaper', 'active' => ['admin.home.*']],
+                        ['route' => 'admin.gallery.index', 'label' => 'Galeri', 'icon' => 'photo', 'active' => ['admin.gallery.*']],
+                        ['route' => 'admin.news.index', 'label' => 'Berita', 'icon' => 'newspaper', 'active' => ['admin.news.*']],
+                        ['route' => 'admin.pages.contact.settings.edit', 'label' => 'Halaman Kontak', 'icon' => 'newspaper', 'active' => ['admin.pages.contact.*']],
+                        ['route' => 'admin.pages.qris.settings.edit', 'label' => 'Halaman QRIS', 'icon' => 'newspaper', 'active' => ['admin.pages.qris.*']],
+                        ['route' => 'admin.pages.sop.settings.edit', 'label' => 'Halaman SOP', 'icon' => 'newspaper', 'active' => ['admin.pages.sop.*']],
                         ['route' => 'admin.events.index', 'label' => 'Event', 'icon' => 'calendar', 'active' => ['admin.events.*']],
                         ['route' => 'admin.home.settings.edit', 'label' => 'Pengaturan Umum', 'icon' => 'cog-6-tooth', 'active' => ['admin.home.settings.edit']],
                     ];

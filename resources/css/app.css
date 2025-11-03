@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap');
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -7,16 +8,25 @@
 
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-serif: 'Playfair Display', 'Times New Roman', serif;
 }
 
 @layer base {
     html {
         scroll-behavior: smooth;
+        background-color: #010d22;
     }
 
     body {
-        @apply bg-slate-50 text-slate-900 antialiased;
         font-family: var(--font-sans);
+        background-image: linear-gradient(180deg, #010d22 0%, #041736 45%, #020b1c 100%);
+        color: #e2e8f0;
+        min-height: 100vh;
+    }
+
+    ::selection {
+        background-color: rgba(255, 149, 0, 0.35);
+        color: #ffffff;
     }
 
     h1,
@@ -25,34 +35,52 @@
     h4,
     h5,
     h6 {
-        @apply text-slate-900 font-semibold tracking-tight;
+        color: #f8fafc;
+        letter-spacing: -0.01em;
     }
 
     p {
-        @apply leading-relaxed;
+        line-height: 1.8;
     }
 
     a {
-        @apply transition-colors;
+        transition: color 150ms ease, background-color 150ms ease, opacity 150ms ease;
     }
 }
 
 @layer components {
     .wysiwyg ul {
-        @apply list-disc space-y-2 pl-5;
+        @apply list-disc space-y-2 pl-5 text-slate-100;
     }
 
     .wysiwyg ol {
-        @apply list-decimal space-y-2 pl-5;
+        @apply list-decimal space-y-2 pl-5 text-slate-100;
     }
 
     .wysiwyg blockquote {
-        @apply border-l-4 border-blue-500 bg-blue-50 p-4;
+        background: linear-gradient(135deg, rgba(15, 43, 82, 0.7), rgba(9, 29, 56, 0.9));
+        border-left: 4px solid #f59e0b;
+        padding: 1.25rem 1.5rem;
+        border-radius: 0.75rem;
+        color: #f8fafc;
     }
 }
 
 @layer utilities {
     .text-balance {
         text-wrap: balance;
+    }
+
+    .glass-card {
+        background: linear-gradient(160deg, rgba(9, 27, 54, 0.8), rgba(4, 19, 42, 0.95));
+        border: 1px solid rgba(67, 111, 169, 0.2);
+        box-shadow: 0 26px 40px -22px rgba(0, 20, 56, 0.6);
+        backdrop-filter: blur(14px);
+    }
+
+    .navy-divider {
+        background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(78, 110, 170, 0.45), rgba(255, 255, 255, 0));
+        height: 1px;
+        width: 100%;
     }
 }

@@ -1,7 +1,7 @@
 <button
     type="button"
     data-backtotop
-    class="fixed bottom-5 right-5 z-40 hidden rounded-full border border-slate-200 bg-white/90 p-3 text-slate-700 shadow-md backdrop-blur transition hover:bg-white/100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+    class="fixed bottom-5 right-5 z-40 hidden rounded-full border border-white/20 bg-[#041734]/90 p-3 text-white shadow-lg backdrop-blur transition hover:bg-[#052547] focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#020f24]"
     aria-label="Kembali ke atas"
 >
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">

@@ -4,29 +4,29 @@
     'caption' => null,
 ])
 
-<div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+<div class="glass-card overflow-hidden rounded-2xl">
     <div class="overflow-x-auto">
         <table class="min-w-full border-collapse">
             @if ($caption)
-                <caption class="bg-slate-100 px-4 py-3 text-left text-sm font-semibold text-slate-600">
+                <caption class="bg-white/5 px-4 py-3 text-left text-sm font-semibold uppercase tracking-[0.2em] text-amber-300">
                     {{ $caption }}
                 </caption>
             @endif
             @if (! empty($headers))
-                <thead class="bg-slate-100 text-left text-sm font-semibold uppercase tracking-widest text-slate-600">
+                <thead class="bg-white/10 text-left text-xs font-semibold uppercase tracking-[0.3em] text-slate-200">
                     <tr>
                         @foreach ($headers as $header)
-                            <th scope="col" class="px-4 py-3">
+                            <th scope="col" class="px-4 py-4">
                                 {{ $header }}
                             </th>
                         @endforeach
                     </tr>
                 </thead>
             @endif
-            <tbody class="divide-y divide-slate-200 text-sm text-slate-700">
+            <tbody class="divide-y divide-white/10 text-sm text-slate-200">
                 @if (! empty($rows))
                     @foreach ($rows as $row)
-                        <tr class="hover:bg-slate-50 transition">
+                        <tr class="transition hover:bg-white/5">
                             @foreach ($row as $cell)
                                 <td class="px-4 py-3 align-top">
                                     {!! $cell !!}

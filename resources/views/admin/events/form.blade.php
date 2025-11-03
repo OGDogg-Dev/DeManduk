@@ -17,10 +17,16 @@
         <div>
             <label class="mb-1 block text-sm font-semibold text-slate-700">Judul <span class="text-rose-600">*</span></label>
             <input type="text" name="title" value="{{ old('title', $event->title ?? '') }}" required class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200">
+            @error('title')
+                <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+            @enderror
         </div>
         <div>
             <label class="mb-1 block text-sm font-semibold text-slate-700">Slug</label>
             <input type="text" name="slug" value="{{ old('slug', $event->slug ?? '') }}" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" placeholder="opsional, gunakan huruf tanpa spasi">
+            @error('slug')
+                <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+            @enderror
         </div>
     </div>
 
@@ -28,14 +34,23 @@
         <div>
             <label class="mb-1 block text-sm font-semibold text-slate-700">Tanggal acara</label>
             <input type="date" name="event_date" value="{{ $eventDate }}" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200">
+            @error('event_date')
+                <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+            @enderror
         </div>
         <div>
             <label class="mb-1 block text-sm font-semibold text-slate-700">Jam mulai</label>
             <input type="time" name="start_time" value="{{ $startTime }}" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200">
+            @error('start_time')
+                <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+            @enderror
         </div>
         <div>
             <label class="mb-1 block text-sm font-semibold text-slate-700">Jam selesai</label>
             <input type="time" name="end_time" value="{{ $endTime }}" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200">
+            @error('end_time')
+                <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+            @enderror
         </div>
     </div>
 
@@ -63,8 +78,18 @@
     <div class="space-y-2">
         <label class="block text-sm font-semibold text-slate-700">Gambar sampul</label>
         <input type="file" name="cover_image" accept="image/*" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200">
+        @error('cover_image')
+            <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+        @enderror
         @if ($event && $event->cover_image)
-            <img src="{{ \App\Support\Media::url($event->cover_image) }}" alt="{{ $event->title }}" class="h-32 w-auto rounded-lg border border-slate-200 object-cover">
+            <div class="space-y-2 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Pratinjau saat ini</p>
+                <img src="{{ \App\Support\Media::url($event->cover_image) }}" alt="{{ $event->title }}" class="h-32 w-full rounded-lg object-cover">
+                <label class="inline-flex items-center gap-2 text-xs text-rose-600">
+                    <input type="checkbox" name="remove_cover_image" value="1" {{ old('remove_cover_image') ? 'checked' : '' }}>
+                    Hapus gambar
+                </label>
+            </div>
         @endif
     </div>
 

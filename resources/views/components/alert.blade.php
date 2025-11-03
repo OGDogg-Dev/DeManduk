@@ -5,19 +5,19 @@
 
 @php
     $styles = [
-        'info' => ['bg' => 'bg-blue-50', 'border' => 'border-blue-200', 'text' => 'text-blue-800', 'icon' => '[i]'],
-        'success' => ['bg' => 'bg-emerald-50', 'border' => 'border-emerald-200', 'text' => 'text-emerald-800', 'icon' => '[ok]'],
-        'warning' => ['bg' => 'bg-amber-50', 'border' => 'border-amber-200', 'text' => 'text-amber-800', 'icon' => '[!]'],
-        'danger' => ['bg' => 'bg-rose-50', 'border' => 'border-rose-200', 'text' => 'text-rose-800', 'icon' => '[x]'],
+        'info' => ['bg' => 'bg-white/5', 'border' => 'border-white/20', 'text' => 'text-slate-100', 'icon' => 'ℹ'],
+        'success' => ['bg' => 'bg-emerald-500/10', 'border' => 'border-emerald-300/40', 'text' => 'text-emerald-200', 'icon' => '✔'],
+        'warning' => ['bg' => 'bg-amber-500/10', 'border' => 'border-amber-300/50', 'text' => 'text-amber-200', 'icon' => '⚠'],
+        'danger' => ['bg' => 'bg-rose-500/10', 'border' => 'border-rose-300/40', 'text' => 'text-rose-200', 'icon' => '✕'],
     ];
 
     $selected = $styles[$variant] ?? $styles['info'];
 @endphp
 
 <div {{ $attributes->class([
-    "flex gap-3 rounded-2xl border p-4 text-sm {$selected['bg']} {$selected['border']} {$selected['text']}",
+    "glass-card flex gap-3 rounded-2xl border p-5 text-sm {$selected['bg']} {$selected['border']} {$selected['text']}",
 ]) }}>
-    <span class="text-sm font-semibold leading-none" aria-hidden="true">{{ $selected['icon'] }}</span>
+    <span class="text-base font-semibold leading-none" aria-hidden="true">{{ $selected['icon'] }}</span>
     <div class="space-y-1">
         @if ($title)
             <p class="font-semibold">{{ $title }}</p>

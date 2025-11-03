@@ -51,15 +51,15 @@
         <div class="grid gap-6 md:grid-cols-3">
             <x-card title="Pagi (05.30 - 09.00)">
                 <x-slot:icon>PG</x-slot:icon>
-                <p class="text-sm text-slate-600">Nikmati sunrise, olahraga ringan, dan suasana sejuk dengan antrean minim.</p>
+                <p class="text-sm text-slate-200">Nikmati sunrise, olahraga ringan, dan suasana sejuk dengan antrean minim.</p>
             </x-card>
             <x-card title="Siang (11.00 - 15.00)">
                 <x-slot:icon>SG</x-slot:icon>
-                <p class="text-sm text-slate-600">Waktu terbaik untuk kuliner dan aktivitas edukasi di studio kreatif indoor.</p>
+                <p class="text-sm text-slate-200">Waktu terbaik untuk kuliner dan aktivitas edukasi di studio kreatif indoor.</p>
             </x-card>
             <x-card title="Sore - malam (15.00 - 18.30)">
                 <x-slot:icon>SM</x-slot:icon>
-                <p class="text-sm text-slate-600">Cocok untuk jelajah wahana air dan menikmati lampion night market di akhir pekan.</p>
+                <p class="text-sm text-slate-200">Cocok untuk jelajah wahana air dan menikmati lampion night market di akhir pekan.</p>
             </x-card>
         </div>
     </x-section>

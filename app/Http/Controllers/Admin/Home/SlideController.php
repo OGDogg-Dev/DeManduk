@@ -30,10 +30,9 @@ class SlideController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $data = $this->validatedData($request);
-        $data['image_path'] = $this->storeUploadedFile($request, 'image', 'home/slides');
-
-        HomeSlide::create($data);
+        $data = $this->validatedData($request, false);
+        $slide = new HomeSlide();
+        $this->persistSlide($slide, $data, $request);
 
         return redirect()->route('admin.home.slides.index')
             ->with('status', 'Slide berhasil ditambahkan.');
@@ -46,10 +45,8 @@ class SlideController extends Controller
 
     public function update(Request $request, HomeSlide $slide): RedirectResponse
     {
-        $data = $this->validatedData($request);
-        $data['image_path'] = $this->storeUploadedFile($request, 'image', 'home/slides', $slide->image_path);
-
-        $slide->update($data);
+        $data = $this->validatedData($request, true);
+        $this->persistSlide($slide, $data, $request);
 
         return redirect()->route('admin.home.slides.index')
             ->with('status', 'Slide berhasil diperbarui.');
@@ -64,24 +61,46 @@ class SlideController extends Controller
             ->with('status', 'Slide berhasil dihapus.');
     }
 
-    private function validatedData(Request $request): array
+    private function validatedData(Request $request, bool $isUpdate): array
     {
-        $data = $request->validate([
+        return $request->validate([
             'eyebrow' => ['nullable', 'string', 'max:255'],
             'title' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'cta_label' => ['nullable', 'string', 'max:255'],
             'cta_url' => ['nullable', 'string', 'max:2048'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
-            'image' => ['nullable', 'image', 'max:4096'],
+            'image' => [$isUpdate ? 'nullable' : 'required', 'image', 'max:4096'],
+            'remove_image' => ['nullable', 'boolean'],
         ]);
+    }
+
+    private function persistSlide(HomeSlide $slide, array $data, Request $request): void
+    {
+        $removeImage = ! empty($data['remove_image']);
+        unset($data['remove_image']);
+
+        $imagePath = $slide->image_path;
+        if ($removeImage && $imagePath) {
+            $this->deleteStoredFile($imagePath);
+            $imagePath = null;
+        }
+
+        if ($request->hasFile('image')) {
+            $imagePath = $this->storeUploadedFile($request, 'image', 'home/slides', $slide->image_path);
+        }
 
         unset($data['image']);
 
-        if (! isset($data['sort_order']) || $data['sort_order'] === null) {
-            $data['sort_order'] = 0;
-        }
+        $data['sort_order'] = isset($data['sort_order']) && $data['sort_order'] !== null
+            ? (int) $data['sort_order']
+            : 0;
 
-        return $data;
+        $slide->fill(array_merge(
+            $data,
+            ['image_path' => $imagePath]
+        ));
+
+        $slide->save();
     }
 }

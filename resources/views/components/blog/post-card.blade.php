@@ -10,29 +10,29 @@
     'tags' => [],
 ])
 
-<article class="flex flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-    <div class="aspect-[16/9] bg-slate-200">
+<article class="group flex flex-col overflow-hidden rounded-3xl border border-white/15 bg-[#031838]/80 shadow-[0_26px_60px_-28px_rgba(5,23,63,0.8)] backdrop-blur transition hover:-translate-y-1 hover:shadow-2xl">
+    <div class="aspect-[16/9] bg-[#041f45]">
         <img
             src="{{ $image }}"
             alt="{{ $title }}"
             loading="lazy"
-            class="h-full w-full object-cover transition group-hover:scale-105"
+            class="h-full w-full object-cover transition duration-500 group-hover:scale-105 group-hover:opacity-90"
         >
     </div>
     <div class="flex flex-1 flex-col gap-4 p-6">
-        <div class="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
+        <div class="flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em] text-slate-300">
             @if ($category)
                 <x-blog.category-chip :label="$category" :href="$href" />
             @endif
             <x-blog.post-meta :date="$date" :read-time="$readTime" :author="$author" />
         </div>
-        <h3 class="text-2xl font-semibold text-slate-900">
-            <a href="{{ $href }}" class="hover:text-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+        <h3 class="text-2xl font-semibold text-white">
+            <a href="{{ $href }}" class="hover:text-amber-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#031838]">
                 {{ $title }}
             </a>
         </h3>
         @if ($excerpt)
-            <p class="text-sm leading-relaxed text-slate-600">
+            <p class="text-sm leading-relaxed text-slate-300">
                 {{ $excerpt }}
             </p>
         @endif
@@ -46,7 +46,7 @@
         <div class="mt-auto pt-4">
             <a
                 href="{{ $href }}"
-                class="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition hover:text-blue-700"
+                class="inline-flex items-center gap-2 text-sm font-semibold text-amber-300 transition hover:text-amber-200"
             >
                 Baca selengkapnya
                 <span aria-hidden="true">-></span>

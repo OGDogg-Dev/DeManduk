@@ -30,10 +30,9 @@ class ProjectController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $data = $this->validatedData($request);
-        $data['image_path'] = $this->storeUploadedFile($request, 'image', 'home/projects');
-
-        HomeProject::create($data);
+        $data = $this->validatedData($request, false);
+        $project = new HomeProject();
+        $this->persistProject($project, $data, $request);
 
         return redirect()->route('admin.home.projects.index')
             ->with('status', 'Agenda beranda berhasil ditambahkan.');
@@ -46,10 +45,8 @@ class ProjectController extends Controller
 
     public function update(Request $request, HomeProject $project): RedirectResponse
     {
-        $data = $this->validatedData($request);
-        $data['image_path'] = $this->storeUploadedFile($request, 'image', 'home/projects', $project->image_path);
-
-        $project->update($data);
+        $data = $this->validatedData($request, true);
+        $this->persistProject($project, $data, $request);
 
         return redirect()->route('admin.home.projects.index')
             ->with('status', 'Agenda beranda berhasil diperbarui.');
@@ -64,21 +61,43 @@ class ProjectController extends Controller
             ->with('status', 'Agenda beranda berhasil dihapus.');
     }
 
-    private function validatedData(Request $request): array
+    private function validatedData(Request $request, bool $isUpdate): array
     {
-        $data = $request->validate([
+        return $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
-            'image' => ['nullable', 'image', 'max:4096'],
+            'image' => [$isUpdate ? 'nullable' : 'required', 'image', 'max:4096'],
+            'remove_image' => ['nullable', 'boolean'],
         ]);
+    }
+
+    private function persistProject(HomeProject $project, array $data, Request $request): void
+    {
+        $removeImage = ! empty($data['remove_image']);
+        unset($data['remove_image']);
+
+        $imagePath = $project->image_path;
+        if ($removeImage && $imagePath) {
+            $this->deleteStoredFile($imagePath);
+            $imagePath = null;
+        }
+
+        if ($request->hasFile('image')) {
+            $imagePath = $this->storeUploadedFile($request, 'image', 'home/projects', $project->image_path);
+        }
 
         unset($data['image']);
 
-        if (! isset($data['sort_order']) || $data['sort_order'] === null) {
-            $data['sort_order'] = 0;
-        }
+        $data['sort_order'] = isset($data['sort_order']) && $data['sort_order'] !== null
+            ? (int) $data['sort_order']
+            : 0;
 
-        return $data;
+        $project->fill(array_merge(
+            $data,
+            ['image_path' => $imagePath]
+        ));
+
+        $project->save();
     }
 }

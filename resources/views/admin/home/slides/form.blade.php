@@ -39,11 +39,20 @@
     </div>
 
     <div class="space-y-2">
-        <label class="block text-sm font-semibold text-slate-700">Gambar</label>
-        <input type="file" name="image" accept="image/*" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200">
+        <label class="block text-sm font-semibold text-slate-700">Gambar <span class="text-rose-600">*</span></label>
+        <input type="file" name="image" accept="image/*" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" {{ $slide ? '' : 'required' }}>
+        @error('image')
+            <p class="text-xs text-rose-600">{{ $message }}</p>
+        @enderror
         @if ($slide && $slide->image_path)
-            <p class="text-xs text-slate-500">Gambar saat ini:</p>
-            <img src="{{ \App\Support\Media::url($slide->image_path) }}" alt="{{ $slide->title }}" class="h-32 w-auto rounded-lg border border-slate-200 object-cover">
+            <div class="space-y-2 rounded-xl border border-slate-200 bg-slate-50 p-3">
+                <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Pratinjau saat ini</p>
+                <img src="{{ \App\Support\Media::url($slide->image_path) }}" alt="{{ $slide->title }}" class="h-32 w-full rounded-lg object-cover">
+                <label class="inline-flex items-center gap-2 text-xs text-rose-600">
+                    <input type="checkbox" name="remove_image" value="1" {{ old('remove_image') ? 'checked' : '' }}>
+                    Hapus gambar
+                </label>
+            </div>
         @endif
     </div>
 

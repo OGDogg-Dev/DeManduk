@@ -8,11 +8,11 @@
 
 @php
     $background = [
-        'default' => 'bg-white',
-        'muted' => 'bg-slate-100',
-        'accent' => 'bg-blue-50',
-        'dark' => 'bg-slate-900 text-white',
-    ][$variant] ?? 'bg-white';
+        'default' => 'bg-transparent text-slate-100',
+        'muted' => 'bg-[#081d3c] text-slate-100',
+        'accent' => 'bg-[#0f305d] text-slate-100',
+        'dark' => 'bg-[#010d22] text-white',
+    ][$variant] ?? 'bg-transparent text-slate-100';
 
     $textAlignment = [
         'start' => 'text-left',
@@ -28,9 +28,8 @@
                 @if ($title)
                     <h2
                         @class([
-                            'text-3xl font-bold tracking-tight drop-shadow-sm',
-                            'text-slate-900' => $variant !== 'dark',
-                            'text-white drop-shadow-none' => $variant === 'dark',
+                            'text-3xl font-semibold tracking-tight drop-shadow-sm font-serif text-white',
+                            'text-white drop-shadow-none' => true,
                         ])
                     >
                         {{ $title }}
@@ -39,9 +38,7 @@
                 @if ($subtitle)
                     <p
                         @class([
-                            'text-base',
-                            'text-slate-600' => $variant !== 'dark',
-                            'text-slate-200' => $variant === 'dark',
+                            'text-base text-slate-200',
                         ])
                     >
                         {{ $subtitle }}

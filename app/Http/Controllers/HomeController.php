@@ -34,6 +34,7 @@ class HomeController extends Controller
                     ]),
                 ];
             })
+            ->values()
             ->all();
 
         $projects = HomeProject::query()
@@ -47,6 +48,7 @@ class HomeController extends Controller
                     'image' => Media::url($project->image_path),
                 ];
             })
+            ->values()
             ->all();
 
         $features = HomeFeature::query()
@@ -59,6 +61,7 @@ class HomeController extends Controller
                     'description' => $feature->description,
                 ];
             })
+            ->values()
             ->all();
 
         $pricing = HomePricingRow::query()
@@ -74,7 +77,7 @@ class HomeController extends Controller
                         $row->price,
                         $row->description,
                     ];
-                })->all();
+                })->values()->all();
             });
 
         $openingRows = HomeOpeningHour::query()
@@ -88,6 +91,7 @@ class HomeController extends Controller
                     $row->note,
                 ];
             })
+            ->values()
             ->all();
 
         $stats = HomeStat::query()
@@ -100,6 +104,7 @@ class HomeController extends Controller
                     'value' => $stat->value,
                 ];
             })
+            ->values()
             ->all();
 
         $procedures = HomeProcedure::query()
@@ -112,6 +117,7 @@ class HomeController extends Controller
                     'description' => $procedure->description,
                 ];
             })
+            ->values()
             ->all();
 
         $guides = HomeGuide::query()
@@ -130,6 +136,7 @@ class HomeController extends Controller
                     'items' => array_values($items),
                 ];
             })
+            ->values()
             ->all();
 
         $aboutParagraphs = json_decode(
@@ -169,6 +176,17 @@ class HomeController extends Controller
             $institutions = [];
         }
 
+        $institutions = collect($institutions)
+            ->map(function ($item) {
+                return [
+                    'title' => $item['title'] ?? '',
+                    'description' => $item['description'] ?? '',
+                ];
+            })
+            ->filter(fn ($item) => $item['title'] !== '' || $item['description'] !== '')
+            ->values()
+            ->all();
+
         $sections = [
             ['#about', 'Tentang'],
             ['#project', 'Agenda'],
@@ -184,8 +202,8 @@ class HomeController extends Controller
             'slides' => $slides,
             'projects' => $projects,
             'features' => $features,
-            'ticketRows' => $pricing->get('ticket', []),
-            'facilityRows' => $pricing->get('facility', []),
+            'ticketRows' => $pricing->get('ticket', []) ?? [],
+            'facilityRows' => $pricing->get('facility', []) ?? [],
             'openingRows' => $openingRows,
             'stats' => $stats,
             'procedures' => $procedures,

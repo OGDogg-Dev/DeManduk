@@ -104,7 +104,7 @@
                         <p class="text-sm text-slate-500">Pantau halaman publik yang akan ditampilkan ke pengunjung.</p>
                     </div>
                     <a
-                        href="{{ route('admin.content') }}"
+                        href="{{ route('admin.home.index') }}"
                         class="inline-flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-sm font-medium text-blue-600 transition hover:border-blue-300 hover:bg-blue-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                     >
                         Kelola konten

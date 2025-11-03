@@ -4,7 +4,7 @@
     <div class="flex gap-6 overflow-x-auto pb-4 [scroll-snap-type:x_mandatory]">
         @foreach ($projects as $project)
             <div class="w-80 flex-shrink-0 snap-center">
-                <div class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+                <div class="glass-card overflow-hidden rounded-3xl transition hover:-translate-y-1 hover:shadow-2xl">
                     <img
                         src="{{ $project['image'] }}"
                         alt="{{ $project['title'] }}"
@@ -12,8 +12,8 @@
                         loading="lazy"
                     >
                     <div class="space-y-3 p-6">
-                        <h3 class="text-lg font-semibold text-slate-900">{{ $project['title'] }}</h3>
-                        <p class="text-sm text-slate-600">{{ $project['description'] }}</p>
+                        <h3 class="text-lg font-semibold text-white">{{ $project['title'] }}</h3>
+                        <p class="text-sm text-slate-200">{{ $project['description'] }}</p>
                     </div>
                 </div>
             </div>

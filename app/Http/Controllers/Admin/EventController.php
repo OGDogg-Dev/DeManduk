@@ -31,10 +31,9 @@ class EventController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        $data = $this->validatedData($request);
-        $data['cover_image'] = $this->storeUploadedFile($request, 'cover_image', 'events');
-
-        Event::create($data);
+        $event = new Event();
+        $data = $this->validatedData($request, $event);
+        $this->persistEvent($event, $data, $request);
 
         return redirect()->route('admin.events.index')
             ->with('status', 'Event berhasil ditambahkan.');
@@ -48,9 +47,7 @@ class EventController extends Controller
     public function update(Request $request, Event $event): RedirectResponse
     {
         $data = $this->validatedData($request, $event);
-        $data['cover_image'] = $this->storeUploadedFile($request, 'cover_image', 'events', $event->cover_image);
-
-        $event->update($data);
+        $this->persistEvent($event, $data, $request);
 
         return redirect()->route('admin.events.index')
             ->with('status', 'Event berhasil diperbarui.');
@@ -79,12 +76,13 @@ class EventController extends Controller
             'body' => ['nullable', 'string'],
             'published_toggle' => ['nullable', 'boolean'],
             'cover_image' => ['nullable', 'image', 'max:4096'],
+            'remove_cover_image' => ['nullable', 'boolean'],
         ]);
 
         $data['slug'] = $data['slug'] ?: ($event?->slug ?? Str::slug($data['title']));
 
         $slugQuery = Event::where('slug', $data['slug']);
-        if ($event) {
+        if ($event?->exists) {
             $slugQuery->where('id', '!=', $event->id);
         }
         if ($slugQuery->exists()) {
@@ -107,8 +105,30 @@ class EventController extends Controller
             $data['published_at'] = null;
         }
 
-        unset($data['published_toggle'], $data['cover_image']);
+        $data['remove_cover_image'] = ! empty($data['remove_cover_image']);
+
+        unset($data['published_toggle']);
 
         return $data;
+    }
+
+    private function persistEvent(Event $event, array $data, Request $request): void
+    {
+        $coverImagePath = $event->cover_image;
+
+        if ($data['remove_cover_image'] && $coverImagePath) {
+            $this->deleteStoredFile($coverImagePath);
+            $coverImagePath = null;
+        }
+
+        if ($request->hasFile('cover_image')) {
+            $coverImagePath = $this->storeUploadedFile($request, 'cover_image', 'events', $event->cover_image);
+        }
+
+        unset($data['cover_image'], $data['remove_cover_image']);
+
+        $event->fill($data + ['cover_image' => $coverImagePath]);
+
+        $event->save();
     }
 }

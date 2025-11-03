@@ -32,7 +32,7 @@
             caption="Tarif fasilitas tambahan dan penyewaan ruang."
         />
         <x-alert variant="info" title="Pemesanan rombongan">
-            Rombongan 30 orang ke atas dapat menghubungi <a href="mailto:event@wadukmanduk.id" class="font-semibold text-blue-600">event@wadukmanduk.id</a>
+            Rombongan 30 orang ke atas dapat menghubungi <a href="mailto:event@wadukmanduk.id" class="font-semibold text-amber-300">event@wadukmanduk.id</a>
             untuk mendapatkan jadwal khusus, pemandu wisata, serta paket konsumsi.
         </x-alert>
     </x-section>
@@ -45,27 +45,27 @@
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <x-card title="Toilet dan ruang bilas">
                 <x-slot:icon>TB</x-slot:icon>
-                <p class="text-sm text-slate-600">Tersedia enam blok toilet bersih dengan petugas kebersihan terjadwal dan akses kursi roda.</p>
+                <p class="text-sm text-slate-200">Tersedia enam blok toilet bersih dengan petugas kebersihan terjadwal dan akses kursi roda.</p>
             </x-card>
             <x-card title="Ruang laktasi dan klinik">
                 <x-slot:icon>RK</x-slot:icon>
-                <p class="text-sm text-slate-600">Ruang laktasi nyaman, klinik kecil dengan petugas medis siaga, serta mitra ambulans.</p>
+                <p class="text-sm text-slate-200">Ruang laktasi nyaman, klinik kecil dengan petugas medis siaga, serta mitra ambulans.</p>
             </x-card>
             <x-card title="Mushola dan area ibadah">
                 <x-slot:icon>MI</x-slot:icon>
-                <p class="text-sm text-slate-600">Mushola terapung dengan sajadah bersih dan informasi jadwal salat otomatis.</p>
+                <p class="text-sm text-slate-200">Mushola terapung dengan sajadah bersih dan informasi jadwal salat otomatis.</p>
             </x-card>
             <x-card title="Wi-Fi publik dan charging">
                 <x-slot:icon>WF</x-slot:icon>
-                <p class="text-sm text-slate-600">Akses internet gratis dua jam per perangkat dan titik pengisian daya di sudut kuliner.</p>
+                <p class="text-sm text-slate-200">Akses internet gratis dua jam per perangkat dan titik pengisian daya di sudut kuliner.</p>
             </x-card>
             <x-card title="Loker penyimpanan">
                 <x-slot:icon>LK</x-slot:icon>
-                <p class="text-sm text-slate-600">Loker digital untuk menyimpan barang berharga selama bermain wahana air.</p>
+                <p class="text-sm text-slate-200">Loker digital untuk menyimpan barang berharga selama bermain wahana air.</p>
             </x-card>
             <x-card title="Penjagaan 24 jam">
                 <x-slot:icon>PJ</x-slot:icon>
-                <p class="text-sm text-slate-600">Satgas keamanan bersinergi dengan kepolisian setempat dan sistem tombol darurat.</p>
+                <p class="text-sm text-slate-200">Satgas keamanan bersinergi dengan kepolisian setempat dan sistem tombol darurat.</p>
             </x-card>
         </div>
     </x-section>
@@ -74,7 +74,7 @@
         <div class="grid gap-6 md:grid-cols-2">
             <x-card title="Protokol keselamatan">
                 <x-slot:icon>KS</x-slot:icon>
-                <ul class="list-disc space-y-2 pl-5 text-sm text-slate-600">
+                <ul class="list-disc space-y-2 pl-5 text-sm text-slate-200">
                     <li>Gunakan rompi pelampung saat naik perahu atau kano.</li>
                     <li>Dilarang berenang di luar area yang diawasi petugas.</li>
                     <li>Ikuti arahan evakuasi saat sirine peringatan berbunyi.</li>
@@ -82,7 +82,7 @@
             </x-card>
             <x-card title="Etika dan kenyamanan">
                 <x-slot:icon>EK</x-slot:icon>
-                <ul class="list-disc space-y-2 pl-5 text-sm text-slate-600">
+                <ul class="list-disc space-y-2 pl-5 text-sm text-slate-200">
                     <li>Jaga kebersihan, gunakan tempat sampah terpilah organik dan anorganik.</li>
                     <li>Dilarang membawa hewan peliharaan kecuali hewan pendamping bersertifikat.</li>
                     <li>Merokok hanya diperbolehkan di zona yang bertanda khusus.</li>
