@@ -15,9 +15,7 @@
     @stack('head')
 </head>
 <body class="min-h-screen flex flex-col text-slate-100">
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 inline-flex items-center gap-2 rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition focus:outline-none focus:ring-2 focus:ring-blue-500">
-        Lewati ke konten utama
-    </a>
+    
     <x-navbar />
     <main id="main-content" class="flex-1">
         @hasSection('hero')
@@ -27,7 +25,8 @@
         @endif
 
         @if (trim($__env->yieldContent('content')))
-            <div class="pb-24">
+            <div class="pt-8 pb-24">
+                
                 @yield('content')
             </div>
         @else

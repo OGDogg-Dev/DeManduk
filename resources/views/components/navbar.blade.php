@@ -6,7 +6,6 @@
         ['label' => 'Berita', 'route' => 'news.index', 'active' => ['news.*']],
         ['label' => 'Kontak', 'route' => 'kontak'],
         ['label' => 'QRIS', 'route' => 'qris'],
-        ['label' => 'SOP', 'route' => 'sop'],
     
     ];
 
