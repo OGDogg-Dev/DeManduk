@@ -1,76 +1,184 @@
 @props(['slides' => []])
 
 @if (count($slides))
-<div class="relative overflow-hidden bg-[#010a1f] text-white">
-    <div class="relative max-w-none px-0">
-        <section class="py-0" role="region" aria-label="Sorotan Waduk Manduk">
-            <div class="group relative" data-carousel data-autoplay="true" data-interval="3000">
-                <div
-                    class="relative overflow-x-auto scroll-smooth [scroll-snap-type:x_mandatory] [-ms-overflow-style:none] [scrollbar-width:none]"
-                    data-viewport aria-roledescription="carousel" aria-label="Daftar slide"
-                >
-                    <style>.group [data-viewport]::-webkit-scrollbar{display:none}</style>
+<section class="-mx-4 sm:-mx-6 lg:-mx-8" role="region" aria-label="Sorotan Waduk Manduk">
+  <div class="relative bg-[var(--color-bg)] text-white" data-carousel data-autoplay="true" data-interval="4000">
+    {{-- Viewport --}}
+    <div
+      class="relative overflow-x-auto scroll-smooth [scroll-snap-type:x_mandatory] [-ms-overflow-style:none] [scrollbar-width:none]"
+      data-viewport aria-roledescription="carousel" aria-label="Daftar slide"
+    >
+      <style>.group [data-viewport]::-webkit-scrollbar{display:none}</style>
 
-                    <div class="flex gap-0" data-slides>
-                        @foreach ($slides as $i => $slide)
-                            @php($image = $slide['image'] ?? null)
-                            @if (! $image)
-                                @php($image = Vite::asset('resources/images/gallery/1.JPG'))
-                            @endif
+      <div class="flex gap-0" data-slides>
+        @foreach ($slides as $i => $slide)
+          @php($image = $slide['image'] ?? Vite::asset('resources/images/gallery/1.JPG'))
+          <article
+            class="relative flex w-full min-w-full snap-center flex-col justify-end md:min-h-[28rem] lg:min-h-[34rem] xl:min-h-[40rem]"
+            data-slide data-index="{{ $i }}" aria-roledescription="slide"
+            aria-label="Slide {{ $i + 1 }} dari {{ count($slides) }}"
+            {{ $i === 0 ? 'aria-current=true' : '' }}
+          >
+            <img
+              src="{{ $image }}"
+              alt="{{ $slide['title'] ?? 'Panorama Waduk Manduk' }}"
+              class="absolute inset-0 h-full w-full object-cover"
+              loading="{{ $i === 0 ? 'eager' : 'lazy' }}"
+              decoding="async"
+              fetchpriority="{{ $i === 0 ? 'high' : 'low' }}"
+            />
+            {{-- Gradient untuk keterbacaan teks --}}
+            <span class="absolute inset-0 bg-gradient-to-t from-[rgba(2,6,23,.75)] via-[rgba(2,6,23,.35)] to-transparent"></span>
 
-                            <article
-                                class="relative flex w-full min-w-full snap-center flex-col justify-end md:min-h-[28rem] lg:min-h-[34rem] xl:min-h-[40rem]"
-                                data-slide aria-roledescription="slide"
-                                aria-label="Slide {{ $i + 1 }} dari {{ count($slides) }}"
-                                {{ $i === 0 ? 'aria-current=true' : '' }}
-                            >
-                                <div class="absolute inset-0">
-                                    <img
-                                        src="{{ $image }}"
-                                        alt="{{ $slide['title'] }}"
-                                        class="h-full w-full object-cover"
-                                        loading="{{ $i === 0 ? 'eager' : 'lazy' }}"
-                                        decoding="async"
-                                        fetchpriority="{{ $i === 0 ? 'high' : 'low' }}"
-                                    >
-                                </div>
+            <div class="relative px-4 pb-8 pt-10 sm:px-6 lg:px-8">
+              <div class="mx-auto max-w-6xl space-y-4">
+                @if (!empty($slide['eyebrow']))
+                  <p class="text-xs uppercase tracking-[0.35em] text-[var(--color-primary-100)]">
+                    {{ $slide['eyebrow'] }}
+                  </p>
+                @endif
 
-                                <span class="absolute inset-0 bg-gradient-to-t from-[#010714] via-[#010714]/40 to-transparent"></span>
+                <h1 class="font-serif text-3xl font-semibold tracking-tight sm:text-5xl lg:text-6xl text-[var(--color-bg)]">
+                  {{ $slide['title'] ?? '' }}
+                </h1>
 
-                                <div class="relative space-y-4 p-6 sm:p-10 lg:p-16">
-                                    @if (!empty($slide['eyebrow']))
-                                        <p class="text-xs uppercase tracking-[0.45em] text-amber-400/90">
-                                            {{ $slide['eyebrow'] }}
-                                        </p>
-                                    @endif
+                @if (!empty($slide['description']))
+                  <p class="max-w-2xl text-sm text-[var(--color-bg)]/80 sm:text-lg">
+                    {{ $slide['description'] }}
+                  </p>
+                @endif
 
-                                    <h1 class="font-serif text-3xl font-semibold tracking-wide text-white sm:text-5xl lg:text-6xl">
-                                        {{ $slide['title'] }}
-                                    </h1>
-
-                                    @if (!empty($slide['description']))
-                                        <p class="max-w-2xl text-sm text-white/85 sm:text-lg">
-                                            {{ $slide['description'] }}
-                                        </p>
-                                    @endif
-
-                                    @if (!empty($slide['cta']))
-                                        <div>
-                                            <a
-                                                href="{{ $slide['cta']['href'] ?? '#' }}"
-                                                class="inline-flex items-center gap-2 rounded-full bg-amber-400 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-[#021024] transition hover:bg-amber-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-200 focus-visible:ring-offset-2 focus-visible:ring-offset-[#010a1f]"
-                                            >
-                                                {{ $slide['cta']['label'] ?? 'Jelajahi' }}
-                                            </a>
-                                        </div>
-                                    @endif
-                                </div>
-                            </article>
-                        @endforeach
-                    </div>
-                </div>
+                @if (!empty($slide['cta']))
+                  <div class="pt-1">
+                    <a href="{{ $slide['cta']['href'] ?? '#' }}" class="btn-primary rounded-full px-6 py-3">
+                      {{ $slide['cta']['label'] ?? 'Jelajahi' }}
+                    </a>
+                  </div>
+                @endif
+              </div>
             </div>
-        </section>
+          </article>
+        @endforeach
+      </div>
     </div>
-</div>
+
+    {{-- Controls --}}
+    <div class="pointer-events-none absolute inset-0 flex items-center justify-between px-2 sm:px-4">
+      <button
+        type="button"
+        class="pointer-events-auto inline-flex size-10 items-center justify-center rounded-full bg-white/90 text-slate-800 shadow hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300"
+        data-prev aria-label="Sebelumnya"
+      >
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button
+        type="button"
+        class="pointer-events-auto inline-flex size-10 items-center justify-center rounded-full bg-white/90 text-slate-800 shadow hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300"
+        data-next aria-label="Berikutnya"
+      >
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+
+    {{-- Indicators --}}
+    <div class="absolute inset-x-0 bottom-3 sm:bottom-5">
+      <ol class="mx-auto flex max-w-6xl items-center gap-2 px-4 sm:px-6 lg:px-8" data-indicators>
+        @for ($i = 0; $i < count($slides); $i++)
+          <li>
+            <button
+              type="button"
+              class="h-1.5 w-6 rounded-full bg-white/40 transition data-[active=true]:w-8 data-[active=true]:bg-white"
+              data-goto="{{ $i }}"
+              aria-label="Ke slide {{ $i + 1 }}"
+            ></button>
+          </li>
+        @endfor
+      </ol>
+    </div>
+  </div>
+</section>
+
+@once
+@push('scripts')
+<script>
+(() => {
+  const root = document.querySelector('[data-carousel]');
+  if (!root) return;
+
+  const viewport = root.querySelector('[data-viewport]');
+  const slidesEl = root.querySelector('[data-slides]');
+  const slides = Array.from(root.querySelectorAll('[data-slide]'));
+  const prevBtn = root.querySelector('[data-prev]');
+  const nextBtn = root.querySelector('[data-next]');
+  const dots = Array.from(root.querySelectorAll('[data-goto]'));
+  const autoplay = root.getAttribute('data-autoplay') === 'true';
+  const interval = Number(root.getAttribute('data-interval') || 4000);
+
+  let idx = 0, timer;
+
+  const goTo = (i) => {
+    idx = (i + slides.length) % slides.length;
+    const target = slides[idx];
+    // Scroll the viewport (not the page) to the target slide
+    if (target) {
+        viewport.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
+    }
+    updateAria();
+  };
+
+  const updateAria = () => {
+    slides.forEach((s, i) => s.setAttribute('aria-current', String(i === idx)));
+    dots.forEach((d, i) => d.setAttribute('data-active', String(i === idx)));
+  };
+
+  const next = () => goTo(idx + 1);
+  const prev = () => goTo(idx - 1);
+
+  // Observe active slide (robust saat user swipe manual)
+  // Only update index if the carousel is in view to prevent page scrolling interference
+  const io = new IntersectionObserver((entries) => {
+    // Check if carousel is in viewport before updating index
+    const carouselRect = root.getBoundingClientRect();
+    const inViewport = carouselRect.top < window.innerHeight && carouselRect.bottom >= 0;
+    
+    if (inViewport) {
+      entries.forEach((e) => {
+        if (e.isIntersecting && e.intersectionRatio > 0.6) {
+          const n = Number(e.target.getAttribute('data-index') || 0);
+          if (n !== idx) { 
+            idx = n; 
+            updateAria();
+          }
+        }
+      });
+    }
+  }, { root: viewport, threshold: [0.6] });
+  slides.forEach(s => io.observe(s));
+
+  // Controls
+  prevBtn?.addEventListener('click', prev);
+  nextBtn?.addEventListener('click', next);
+  dots.forEach(d => d.addEventListener('click', () => goTo(Number(d.getAttribute('data-goto')))));
+
+  // Keyboard
+  root.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft')  prev();
+  });
+
+  // Autoplay
+  const start = () => { if (!autoplay) return; stop(); timer = setInterval(next, interval); };
+  const stop  = () => { if (timer) clearInterval(timer); };
+  root.addEventListener('mouseenter', stop);
+  root.addEventListener('mouseleave', start);
+  root.addEventListener('focusin', stop);
+  root.addEventListener('focusout', start);
+
+  // Init
+  updateAria();
+  start();
+})();
+</script>
+@endpush
+@endonce
 @endif

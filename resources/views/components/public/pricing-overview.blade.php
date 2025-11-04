@@ -1,18 +1,43 @@
 @props([
-    'ticketRows' => [],
+    'ticketRows'   => [],
     'facilityRows' => [],
+    'title'        => 'Fasilitas & Harga',
+    'subtitle'     => 'Harga tiket dan fasilitas Waduk Manduk. Semua tarif mengikuti Perdes No. 04/2024 dan dapat berubah sesuai kebijakan pengelola.',
 ])
 
-<x-section
-    id="pricing"
-    title="Fasilitas & Harga"
-    subtitle="Harga tiket dan fasilitas Waduk Manduk. Semua tarif mengikuti Perdes No. 04/2024 dan dapat berubah sesuai kebijakan pengelola."
->
-    <x-table :headers="['Jenis', 'Tarif', 'Keterangan']" :rows="$ticketRows" caption="Daftar tarif tiket dan layanan dasar." />
-    <x-table :headers="['Fasilitas', 'Tarif', 'Detail layanan']" :rows="$facilityRows" caption="Tarif fasilitas tambahan dan penyewaan ruang." />
+@php
+  $tickets = !empty($ticketRows) ? $ticketRows : [
+    ['Tiket masuk',        'Rp5.000 / orang',         'Dewasa & anak usia ≥3 tahun'],
+    ['Parkir motor',       'Rp2.000 / unit',          'Sekali masuk'],
+    ['Parkir mobil',       'Rp5.000 / unit',          'Sekali masuk'],
+    ['Sewa perahu',        'Mulai Rp15.000',          'Durasi ±15–20 menit'],
+  ];
+
+  $facilities = !empty($facilityRows) ? $facilityRows : [
+    ['Gazebo keluarga',    'Rp20.000 / jam',          'Maks 6–8 orang'],
+    ['Amphitheater',       'Hubungi pengelola',       'Kegiatan komunitas / rombongan'],
+    ['Sesi foto',          'Mulai Rp25.000',          'Aturan properti & area tertentu berlaku'],
+  ];
+@endphp
+
+<x-section id="pricing" :title="$title" :subtitle="$subtitle">
+  <div class="space-y-6">
+    <x-table
+      :headers="['Jenis', 'Tarif', 'Keterangan']"
+      :rows="$tickets"
+      caption="Daftar tarif tiket dan layanan dasar."
+    />
+
+    <x-table
+      :headers="['Fasilitas', 'Tarif', 'Detail layanan']"
+      :rows="$facilities"
+      caption="Tarif fasilitas tambahan dan penyewaan ruang."
+    />
+
     <x-alert variant="info" title="Pemesanan rombongan">
-        Rombongan 30 orang ke atas dapat menghubungi
-        <a href="mailto:event@wadukmanduk.id" class="font-semibold text-blue-600">event@wadukmanduk.id</a>
-        untuk mendapatkan jadwal khusus, pemandu wisata, serta paket konsumsi.
+      Rombongan 30 orang ke atas dapat menghubungi
+      <a href="mailto:event@wadukmanduk.id" class="font-medium text-[var(--color-primary)] hover:underline">event@wadukmanduk.id</a>
+      untuk mendapatkan jadwal khusus, pemandu wisata, serta paket konsumsi.
     </x-alert>
+  </div>
 </x-section>

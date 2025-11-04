@@ -167,25 +167,18 @@ class HomeController extends Controller
             ),
         ];
 
-        $institutions = json_decode(
-            SiteSetting::getValue('home.supporting_institutions', '[]'),
-            true
-        );
+        // Get institutions from ContactSupport model instead of SiteSetting
+        $contactSupports = \App\Models\ContactSupport::query()
+            ->orderBy('sort_order')
+            ->orderBy('id')
+            ->get();
 
-        if (! is_array($institutions)) {
-            $institutions = [];
-        }
-
-        $institutions = collect($institutions)
-            ->map(function ($item) {
-                return [
-                    'title' => $item['title'] ?? '',
-                    'description' => $item['description'] ?? '',
-                ];
-            })
-            ->filter(fn ($item) => $item['title'] !== '' || $item['description'] !== '')
-            ->values()
-            ->all();
+        $institutions = $contactSupports->map(function ($support) {
+            return [
+                'title' => $support->title,
+                'description' => $support->description,
+            ];
+        })->values()->all();
 
         $sections = [
             ['#about', 'Tentang'],

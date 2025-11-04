@@ -23,6 +23,14 @@
     </div>
 
     <div class="space-y-2">
+        <label class="block text-sm font-semibold text-slate-700">Nomor Telepon</label>
+        <input type="text" name="phone" value="{{ old('phone', $support->phone ?? '') }}" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200" placeholder="+62 812 3456 7890">
+        @error('phone')
+            <p class="text-xs text-rose-600">{{ $message }}</p>
+        @enderror
+    </div>
+
+    <div class="space-y-2">
         <label class="block text-sm font-semibold text-slate-700">Urutan tampil</label>
         <input type="number" name="sort_order" value="{{ old('sort_order', $support->sort_order ?? 0) }}" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200">
         @error('sort_order')

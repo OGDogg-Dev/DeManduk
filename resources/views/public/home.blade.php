@@ -24,11 +24,13 @@
 
     <x-public.pricing-overview :ticket-rows="$ticketRows" :facility-rows="$facilityRows" />
     <x-public.hours-summary :opening-rows="$openingRows" />
-    <x-public.map-section
-        :maps-url="$map['mapsUrl'] ?? null"
-        :link-label="$map['linkLabel'] ?? null"
-        :directions-url="$map['directionsUrl'] ?? null"
-    />
+    <x-section id="map">
+        <x-public.map-section
+            :maps-url="$map['mapsUrl'] ?? null"
+            :link-label="$map['linkLabel'] ?? null"
+            :directions-url="$map['directionsUrl'] ?? null"
+        />
+    </x-section>
 
     <x-public.impact-overview :stats="$stats" :procedures="$procedures" />
 

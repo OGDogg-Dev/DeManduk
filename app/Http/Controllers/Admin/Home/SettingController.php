@@ -24,7 +24,7 @@ class SettingController extends Controller
             'mapEmbedUrl' => SiteSetting::getValue('home.map_embed_url'),
             'mapLinkLabel' => SiteSetting::getValue('home.map_link_label'),
             'mapDirectionsUrl' => SiteSetting::getValue('home.map_directions_url'),
-            'institutions' => SiteSetting::getValue('home.supporting_institutions', '[]'),
+
         ]);
     }
 
@@ -40,7 +40,7 @@ class SettingController extends Controller
             'map_embed_url' => ['nullable', 'string', 'max:2048'],
             'map_link_label' => ['nullable', 'string', 'max:255'],
             'map_directions_url' => ['nullable', 'string', 'max:2048'],
-            'institutions_text' => ['nullable', 'string'],
+
         ]);
 
         SiteSetting::setValue('site.title', $data['site_title']);
@@ -82,26 +82,7 @@ class SettingController extends Controller
         SiteSetting::setValue('home.map_link_label', $data['map_link_label'] ?? null);
         SiteSetting::setValue('home.map_directions_url', $data['map_directions_url'] ?? null);
 
-        $institutions = Collection::make(preg_split("/\r?\n/", $data['institutions_text'] ?? ''))
-            ->map(function ($line) {
-                $parts = array_map('trim', explode('|', $line, 2));
-                if (empty($parts[0])) {
-                    return null;
-                }
 
-                return [
-                    'title' => $parts[0],
-                    'description' => $parts[1] ?? '',
-                ];
-            })
-            ->filter()
-            ->values()
-            ->all();
-
-        SiteSetting::setValue(
-            'home.supporting_institutions',
-            json_encode($institutions, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)
-        );
 
         return redirect()->route('admin.home.settings.edit')
             ->with('status', 'Pengaturan beranda berhasil diperbarui.');

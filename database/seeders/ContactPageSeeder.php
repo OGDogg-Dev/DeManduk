@@ -20,11 +20,11 @@ class ContactPageSeeder extends Seeder
         SiteSetting::setValue('contact.email', 'halo@wadukmanduk.id');
 
         $supports = [
-            ['title' => 'Puskesmas', 'description' => 'Layanan kesehatan dasar dan penanganan medis cepat.', 'sort_order' => 1],
-            ['title' => 'Polsek', 'description' => 'Koordinasi keamanan dan laporan kehilangan.', 'sort_order' => 2],
-            ['title' => 'BUMDes', 'description' => 'Pengelolaan operasional serta koordinasi UMKM.', 'sort_order' => 3],
-            ['title' => 'KPW (Komunitas Peduli Waduk)', 'description' => 'Relawan kebersihan dan edukasi lingkungan.', 'sort_order' => 4],
-            ['title' => 'Pos Keamanan Wisata', 'description' => 'Pusat informasi, patroli area, dan respon darurat.', 'sort_order' => 5],
+            ['title' => 'Puskesmas', 'description' => 'Layanan kesehatan dasar dan penanganan medis cepat.', 'phone' => '+62 812-3456-7890', 'sort_order' => 1],
+            ['title' => 'Polsek', 'description' => 'Koordinasi keamanan dan laporan kehilangan.', 'phone' => '+62 812-3456-7891', 'sort_order' => 2],
+            ['title' => 'BUMDes', 'description' => 'Pengelolaan operasional serta koordinasi UMKM.', 'phone' => '+62 812-3456-7892', 'sort_order' => 3],
+            ['title' => 'KPW (Komunitas Peduli Waduk)', 'description' => 'Relawan kebersihan dan edukasi lingkungan.', 'phone' => '+62 812-3456-7893', 'sort_order' => 4],
+            ['title' => 'Pos Keamanan Wisata', 'description' => 'Pusat informasi, patroli area, dan respon darurat.', 'phone' => '+62 812-3456-7894', 'sort_order' => 5],
         ];
 
         foreach ($supports as $support) {
@@ -49,6 +49,12 @@ class ContactPageSeeder extends Seeder
         foreach ($alerts as $alert) {
             ContactAlert::create($alert);
         }
+        
+        // Social media settings (if not already set)
+        \App\Models\SiteSetting::setValue('social.facebook', \App\Models\SiteSetting::getValue('social.facebook', 'https://facebook.com/wadukmanduk'));
+        \App\Models\SiteSetting::setValue('social.instagram', \App\Models\SiteSetting::getValue('social.instagram', 'https://instagram.com/wadukmanduk'));
+        \App\Models\SiteSetting::setValue('social.twitter', \App\Models\SiteSetting::getValue('social.twitter', 'https://twitter.com/wadukmanduk'));
+        \App\Models\SiteSetting::setValue('social.youtube', \App\Models\SiteSetting::getValue('social.youtube', 'https://youtube.com/wadukmanduk'));
     }
 }
 

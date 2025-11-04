@@ -1,16 +1,34 @@
 @props([
     'label',
-    'href' => '#',
+    'href'   => '#',
     'active' => false,
+    'size'   => 'sm',   // xs | sm | md
+    'icon'   => null,   // optional SVG/emoji
 ])
 
+@php
+  $sizes = [
+    'xs' => 'px-2.5 py-1 text-[10px]',
+    'sm' => 'px-3.5 py-1.5 text-[11px]',
+    'md' => 'px-4 py-2 text-xs',
+  ];
+  $sizeClass = $sizes[$size] ?? $sizes['sm'];
+
+  $base = "inline-flex items-center gap-2 rounded-full border transition
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-300
+           focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-surface)] $sizeClass";
+
+  $on   = "bg-[var(--color-primary)] border-[var(--color-primary)] text-white";
+  $off  = "bg-white border-[var(--color-border)] text-[var(--color-ink)] hover:bg-slate-100";
+@endphp
+
 <a
-    href="{{ $href }}"
-    @class([
-        'inline-flex items-center gap-2 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.25em] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#031838]',
-        'bg-amber-400 text-[#021024]' => $active,
-        'bg-white/10 text-slate-200 hover:bg-amber-400 hover:text-[#021024]' => ! $active,
-    ])
+  href="{{ $href }}"
+  {{ $attributes->merge(['class' => $base.' '.($active ? $on : $off)]) }}
+  {{ $active ? 'aria-current=page' : '' }}
 >
-    {{ $label }}
+  @if ($icon)
+    <span class="inline-grid size-3.5 place-content-center" aria-hidden="true">{!! $icon !!}</span>
+  @endif
+  <span class="uppercase tracking-[0.25em]">{{ $label }}</span>
 </a>

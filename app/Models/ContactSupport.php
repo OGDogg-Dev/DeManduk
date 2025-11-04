@@ -9,6 +9,7 @@ class ContactSupport extends Model
     protected $fillable = [
         'title',
         'description',
+        'phone',
         'sort_order',
     ];
 }

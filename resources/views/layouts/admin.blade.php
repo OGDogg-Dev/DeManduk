@@ -17,15 +17,7 @@
     $brandInitials = strtoupper(mb_substr($brandTitle, 0, 2));
     $menu = [
         ['route' => 'admin.dashboard', 'label' => 'Dasbor', 'icon' => 'chart-bar', 'active' => ['admin.dashboard']],
-        ['route' => 'admin.home.index', 'label' => 'Konten Beranda', 'icon' => 'newspaper', 'active' => ['admin.home.*']],
-        ['route' => 'admin.gallery.index', 'label' => 'Galeri', 'icon' => 'photo', 'active' => ['admin.gallery.*']],
-        ['route' => 'admin.news.index', 'label' => 'Berita', 'icon' => 'newspaper', 'active' => ['admin.news.*']],
-        ['route' => 'admin.pages.contact.settings.edit', 'label' => 'Halaman Kontak', 'icon' => 'envelope-open', 'active' => ['admin.pages.contact.*']],
-        ['route' => 'admin.pages.qris.settings.edit', 'label' => 'Halaman QRIS', 'icon' => 'credit-card', 'active' => ['admin.pages.qris.*']],
-        ['route' => 'admin.pages.sop.settings.edit', 'label' => 'Halaman SOP', 'icon' => 'document-text', 'active' => ['admin.pages.sop.*']],
-        ['route' => 'admin.events.index', 'label' => 'Event', 'icon' => 'calendar', 'active' => ['admin.events.*']],
-        ['route' => 'admin.home.settings.edit', 'label' => 'Pengaturan Umum', 'icon' => 'adjustments-horizontal', 'active' => ['admin.home.settings.edit']],
-        ['route' => 'admin.styleguide', 'label' => 'Styleguide', 'icon' => 'sparkles', 'active' => ['admin.styleguide']],
+        ['route' => 'admin.home.index', 'label' => 'Kelola Halaman', 'icon' => 'cog-6-tooth', 'active' => ['admin.home.*', 'admin.gallery.*', 'admin.news.*', 'admin.events.*', 'admin.pages.*']],
     ];
 @endphp
 

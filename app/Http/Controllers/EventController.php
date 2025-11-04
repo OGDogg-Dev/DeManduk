@@ -11,8 +11,8 @@ class EventController extends Controller
     {
         $events = Event::query()
             ->published()
-            ->orderBy('event_date')
-            ->orderBy('start_time')
+            ->orderBy('event_date', 'asc')
+            ->orderBy('start_time', 'asc')
             ->paginate(12)
             ->withQueryString();
 

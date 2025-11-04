@@ -1,53 +1,67 @@
 @props([
-    'title' => null,
+    'title'    => null,
     'subtitle' => null,
-    'id' => null,
-    'variant' => 'default',
-    'align' => 'center',
+    'id'       => null,
+    'variant'  => 'default', // default|muted|accent|dark
+    'align'    => 'center',  // start|center|end
 ])
 
 @php
-    $background = [
-        'default' => 'bg-transparent text-slate-100',
-        'muted' => 'bg-[#081d3c] text-slate-100',
-        'accent' => 'bg-[#0f305d] text-slate-100',
-        'dark' => 'bg-[#010d22] text-white',
-    ][$variant] ?? 'bg-transparent text-slate-100';
+    // Background & warna teks mengikuti design tokens (app.css)
+    $bg = [
+        'default' => 'bg-transparent',
+        'muted'   => 'bg-slate-50',
+        'accent'  => 'bg-[var(--color-primary-100)]',
+        'dark'    => 'bg-slate-900', // sengaja gelap untuk kontras yang baik lintas tema
+    ][$variant] ?? 'bg-transparent';
+
+    $headingColor = [
+        'default' => 'text-[var(--color-ink)]',
+        'muted'   => 'text-[var(--color-ink)]',
+        'accent'  => 'text-[var(--color-ink)]',
+        'dark'    => 'text-white',
+    ][$variant] ?? 'text-[var(--color-ink)]';
+
+    $subtitleColor = [
+        'default' => 'text-[var(--color-muted)]',
+        'muted'   => 'text-[var(--color-muted)]',
+        'accent'  => 'text-[var(--color-muted)]',
+        'dark'    => 'text-slate-300',
+    ][$variant] ?? 'text-[var(--color-muted)]';
 
     $textAlignment = [
-        'start' => 'text-left',
+        'start'  => 'text-left',
         'center' => 'text-center',
-        'end' => 'text-right',
+        'end'    => 'text-right',
     ][$align] ?? 'text-center';
+
+    $headingId = $id ? $id.'-title' : null;
 @endphp
 
-<section @if ($id) id="{{ $id }}" @endif {{ $attributes->class(["py-16 sm:py-20 {$background}"]) }}>
-    <div class="mx-auto flex max-w-6xl flex-col gap-12 px-4 sm:px-6 lg:px-8">
-        @if ($title || $subtitle)
-            <div class="{{ $textAlignment }} space-y-4">
-                @if ($title)
-                    <h2
-                        @class([
-                            'text-3xl font-semibold tracking-tight drop-shadow-sm font-serif text-white',
-                            'text-white drop-shadow-none' => true,
-                        ])
-                    >
-                        {{ $title }}
-                    </h2>
-                @endif
-                @if ($subtitle)
-                    <p
-                        @class([
-                            'text-base text-slate-200',
-                        ])
-                    >
-                        {{ $subtitle }}
-                    </p>
-                @endif
-            </div>
+<section
+  @if ($id) id="{{ $id }}" @endif
+  aria-labelledby="{{ $headingId }}"
+  {{ $attributes->class(["py-16 sm:py-20 $bg"]) }}
+>
+  <div class="container-app flex flex-col gap-12">
+    @if ($title || $subtitle)
+      <div class="{{ $textAlignment }} space-y-3">
+        @if ($title)
+          <h2 id="{{ $headingId }}" class="text-3xl sm:text-4xl font-semibold tracking-tight {{ $headingColor }}">
+            {{ $title }}
+          </h2>
         @endif
-        <div class="space-y-8">
-            {{ $slot }}
-        </div>
+
+        @if ($subtitle)
+          <p class="text-base sm:text-[15px] leading-7 {{ $subtitleColor }}">
+            {{ $subtitle }}
+          </p>
+        @endif
+      </div>
+    @endif
+
+    <div class="space-y-8">
+      {{ $slot }}
     </div>
+  </div>
 </section>

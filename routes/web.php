@@ -30,6 +30,7 @@ use App\Http\Controllers\Admin\Pages\SopObjectiveController;
 use App\Http\Controllers\Admin\Pages\SopPartnerController;
 use App\Http\Controllers\Admin\Pages\SopSettingsController;
 use App\Http\Controllers\Admin\Pages\SopStepController;
+use App\Http\Controllers\Admin\Pages\SocialMediaSettingsController;
 use App\Http\Controllers\QrisController;
 use App\Http\Controllers\SopController;
 use App\Models\NewsPost;
@@ -110,6 +111,11 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
             Route::resource('partners', SopPartnerController::class)
                 ->parameters(['partners' => 'partner'])
                 ->except('show');
+        });
+
+        Route::prefix('social-media')->name('social-media.')->group(function () {
+            Route::get('/', [SocialMediaSettingsController::class, 'edit'])->name('settings.edit');
+            Route::put('/', [SocialMediaSettingsController::class, 'update'])->name('settings.update');
         });
     });
 

@@ -39,12 +39,18 @@ class HomeContentSeeder extends Seeder
         SiteSetting::setValue('home.map_link_label', 'Buka di Google Maps');
         SiteSetting::setValue('home.map_directions_url', 'https://maps.app.goo.gl/ktGvAEF1vqdjDKXQ7');
         SiteSetting::setValue('home.supporting_institutions', json_encode([
-            ['title' => 'Puskesmas', 'description' => 'Layanan kesehatan dasar dan penanganan medis cepat.'],
-            ['title' => 'Polsek', 'description' => 'Koordinasi keamanan dan penanganan laporan kehilangan.'],
-            ['title' => 'BUMDes', 'description' => 'Pengelolaan operasional wisata dan kemitraan UMKM.'],
-            ['title' => 'KPW (Komunitas Peduli Waduk)', 'description' => 'Relawan kebersihan dan edukasi lingkungan.'],
-            ['title' => 'Pos Keamanan Wisata', 'description' => 'Pusat informasi, patroli area, dan respon darurat.'],
+            ['title' => 'Puskesmas', 'description' => 'Layanan kesehatan dasar dan penanganan medis cepat.', 'phone' => '+62 812-3456-7890'],
+            ['title' => 'Polsek', 'description' => 'Koordinasi keamanan dan penanganan laporan kehilangan.', 'phone' => '+62 812-3456-7891'],
+            ['title' => 'BUMDes', 'description' => 'Pengelolaan operasional wisata dan kemitraan UMKM.', 'phone' => '+62 812-3456-7892'],
+            ['title' => 'KPW (Komunitas Peduli Waduk)', 'description' => 'Relawan kebersihan dan edukasi lingkungan.', 'phone' => '+62 812-3456-7893'],
+            ['title' => 'Pos Keamanan Wisata', 'description' => 'Pusat informasi, patroli area, dan respon darurat.', 'phone' => '+62 812-3456-7894'],
         ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+        
+        // Social media settings
+        SiteSetting::setValue('social.facebook', 'https://facebook.com/wadukmanduk');
+        SiteSetting::setValue('social.instagram', 'https://instagram.com/wadukmanduk');
+        SiteSetting::setValue('social.twitter', 'https://twitter.com/wadukmanduk');
+        SiteSetting::setValue('social.youtube', 'https://youtube.com/wadukmanduk');
 
         $slides = [
             [

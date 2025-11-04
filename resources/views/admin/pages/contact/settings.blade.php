@@ -61,7 +61,7 @@
 
     <div class="mt-8">
         <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500">Kelola konten terkait</h2>
-        <div class="mt-3 grid gap-4 md:grid-cols-2">
+        <div class="mt-3 grid gap-4 md:grid-cols-3">
             <a href="{{ route('admin.pages.contact.supports.index') }}" class="flex h-full flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-blue-300 hover:shadow-md">
                 <div>
                     <h3 class="text-base font-semibold text-slate-900">Instansi Pendukung</h3>
@@ -75,6 +75,13 @@
                     <p class="mt-2 text-sm text-slate-600">Atur pesan prioritas seperti kanal komunikasi cepat atau himbauan darurat.</p>
                 </div>
                 <span class="mt-4 text-sm font-semibold text-blue-600">Kelola peringatan -></span>
+            </a>
+            <a href="{{ route('admin.pages.social-media.settings.edit') }}" class="flex h-full flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-blue-300 hover:shadow-md">
+                <div>
+                    <h3 class="text-base font-semibold text-slate-900">Media Sosial</h3>
+                    <p class="mt-2 text-sm text-slate-600">Atur tautan media sosial yang tampil pada footer halaman publik.</p>
+                </div>
+                <span class="mt-4 text-sm font-semibold text-blue-600">Kelola sosial -></span>
             </a>
         </div>
     </div>
