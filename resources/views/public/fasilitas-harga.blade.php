@@ -57,11 +57,7 @@
           :caption="'Tarif fasilitas tambahan dan penyewaan ruang — ' . $updatedCaption"
       />
 
-      <x-alert variant="info" title="Pemesanan rombongan">
-          Rombongan 30 orang ke atas dapat menghubungi
-          <a href="mailto:event@wadukmanduk.id" class="font-semibold text-[var(--color-primary)] hover:underline">event@wadukmanduk.id</a>
-          untuk mendapatkan jadwal khusus, pemandu wisata, serta paket konsumsi.
-      </x-alert>
+      
   </x-section>
 
   <x-section

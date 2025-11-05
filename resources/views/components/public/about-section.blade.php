@@ -17,8 +17,8 @@
         <p class="text-[15px] leading-7 text-[var(--color-muted)]">{{ $paragraph }}</p>
       @empty
         <p class="text-[15px] leading-7 text-[var(--color-muted)]">
-          Waduk Manduk adalah ekowisata yang terletak di Dusun Manduk, Desa Jatirejo, Kec. Ngargoyoso, Kab Karanganyar yang sedang ditata ulang pengelolaannya dengan bantuan mahasiswa dan komunitas lokal
-. Upaya revitalisasi ini berfokus pada integrasi teknologi dan manajemen untuk memperkuat potensi wisata, seperti mempercantik area wisata, memperbaiki fasilitas, hingga membuat website profil digital untuk menjangkau publik lebih luas
+          Waduk Manduk adalah bagian dari rencana pengembangan
+Waduk Gondang di Kabupaten Karanganyar, Jawa Tengah, yang bertujuan memperluas genangan air waduk tersebut. Waduk ini dikelola sebagai objek wisata dengan pengembangan yang memanfaatkan teknologi digital, serta melibatkan Badan Usaha Milik Desa (BUMDes) dan Komunitas Peduli Waduk (KPW) untuk menata pengelolaan wisata dan memperkuat kapasitas masyarakat lokal
         </p>
       @endforelse
 

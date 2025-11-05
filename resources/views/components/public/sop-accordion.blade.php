@@ -38,9 +38,7 @@
       <p class="text-[15px] leading-7 text-[var(--color-muted)]">
         Dokumen lengkap dapat diunduh melalui desk informasi. Ringkasan di bawah membantu Anda memahami alur utama pelayanan ketika berkunjung.
       </p>
-      <x-alert variant="info" title="Catatan pembaruan">
-        SOP diperbarui secara berkala berdasarkan evaluasi kunjungan dan rekomendasi instansi pendukung.
-      </x-alert>
+      
     </div>
 
     {{-- Tujuan utama --}}
@@ -107,7 +105,7 @@
     @endforeach
   </div>
 
-  <x-alert variant="success" title="Hubungi kami" class="mt-6">
+  <x-alert variant="success" title="Hubungi kami" class="mt-6 text-black">
     Untuk klarifikasi lebih lanjut, gunakan halaman
     <a href="{{ route('kontak') }}" class="font-medium text-[var(--color-primary)] hover:underline">Kontak</a>
     atau koordinasikan langsung dengan instansi terkait sesuai kebutuhan Anda.

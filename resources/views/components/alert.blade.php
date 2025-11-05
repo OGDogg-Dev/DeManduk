@@ -5,10 +5,10 @@
 
 @php
     $styles = [
-        'info' => ['bg' => 'bg-white/5', 'border' => 'border-white/20', 'text' => 'text-slate-100', 'icon' => 'ℹ'],
-        'success' => ['bg' => 'bg-emerald-500/10', 'border' => 'border-emerald-300/40', 'text' => 'text-emerald-200', 'icon' => '✔'],
-        'warning' => ['bg' => 'bg-amber-500/10', 'border' => 'border-amber-300/50', 'text' => 'text-amber-200', 'icon' => '⚠'],
-        'danger' => ['bg' => 'bg-rose-500/10', 'border' => 'border-rose-300/40', 'text' => 'text-rose-200', 'icon' => '✕'],
+        'info' => ['bg' => 'bg-white/5', 'border' => 'border-white/20', 'text' => 'text-black', 'icon' => 'ℹ'],
+        'success' => ['bg' => 'bg-emerald-500/10', 'border' => 'border-emerald-300/40', 'text' => 'text-black', 'icon' => '✔'],
+        'warning' => ['bg' => 'bg-amber-500/10', 'border' => 'border-amber-300/50', 'text' => 'text-black', 'icon' => '⚠'],
+        'danger' => ['bg' => 'bg-rose-500/10', 'border' => 'border-rose-300/40', 'text' => 'text-black', 'icon' => '✕'],
     ];
 
     $selected = $styles[$variant] ?? $styles['info'];
