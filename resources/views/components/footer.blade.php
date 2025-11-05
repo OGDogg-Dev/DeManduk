@@ -135,7 +135,7 @@
 
     <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
       <p class="text-xs text-[var(--color-muted)]">
-        &copy; {{ now()->year }} Pemerintah Desa Manduk. Semua hak cipta dilindungi.
+        &copy; {{ now()->year }} PKM-PMM Polinus. Semua hak cipta dilindungi.
       </p>
       <div class="flex flex-wrap items-center gap-4 text-xs">
         <a href="{{ route('sop') }}" class="text-[var(--color-ink)] hover:text-[var(--color-primary)]">SOP</a>

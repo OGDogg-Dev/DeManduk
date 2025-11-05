@@ -17,14 +17,14 @@
         <p class="text-[15px] leading-7 text-[var(--color-muted)]">{{ $paragraph }}</p>
       @empty
         <p class="text-[15px] leading-7 text-[var(--color-muted)]">
-          Waduk Manduk dikenal sebagai destinasi wisata air yang bersih dan ramah keluarga. Pengunjung dapat menikmati
-          panorama senja, berperahu santai, hingga mengikuti agenda komunitas yang rutin digelar di amphitheater.
+          Waduk Manduk adalah ekowisata yang terletak di Dusun Manduk, Desa Jatirejo, Kec. Ngargoyoso, Kab Karanganyar yang sedang ditata ulang pengelolaannya dengan bantuan mahasiswa dan komunitas lokal
+. Upaya revitalisasi ini berfokus pada integrasi teknologi dan manajemen untuk memperkuat potensi wisata, seperti mempercantik area wisata, memperbaiki fasilitas, hingga membuat website profil digital untuk menjangkau publik lebih luas
         </p>
       @endforelse
 
-      <a href="{{ $ctaUrl }}" class="inline-flex items-center gap-2 text-[var(--color-primary)] font-medium hover:underline">
+      {{--  <a href="{{ $ctaUrl }}" class="inline-flex items-center gap-2 text-[var(--color-primary)] font-medium hover:underline">
         {{ $ctaLabel }}
-      </a>
+      </a> --}}
     </div>
 
     {{-- Gambar --}}
