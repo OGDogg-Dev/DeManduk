@@ -1,0 +1,363 @@
+{
+  "cache": {
+    "columns": [
+      "key",
+      "value",
+      "expiration"
+    ],
+    "count": 33
+  },
+  "cache_locks": {
+    "columns": [
+      "key",
+      "owner",
+      "expiration"
+    ],
+    "count": 0
+  },
+  "contact_alerts": {
+    "columns": [
+      "id",
+      "variant",
+      "title",
+      "body",
+      "sort_order",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 2
+  },
+  "contact_supports": {
+    "columns": [
+      "id",
+      "title",
+      "description",
+      "sort_order",
+      "created_at",
+      "updated_at",
+      "phone"
+    ],
+    "count": 5
+  },
+  "events": {
+    "columns": [
+      "id",
+      "title",
+      "slug",
+      "category",
+      "event_date",
+      "start_time",
+      "end_time",
+      "location",
+      "cover_image",
+      "excerpt",
+      "body",
+      "published_at",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 4
+  },
+  "failed_jobs": {
+    "columns": [
+      "id",
+      "uuid",
+      "connection",
+      "queue",
+      "payload",
+      "exception",
+      "failed_at"
+    ],
+    "count": 0
+  },
+  "gallery_items": {
+    "columns": [
+      "id",
+      "title",
+      "caption",
+      "image_path",
+      "status",
+      "sort_order",
+      "published_at",
+      "created_by",
+      "updated_by",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 6
+  },
+  "home_features": {
+    "columns": [
+      "id",
+      "title",
+      "description",
+      "sort_order",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 6
+  },
+  "home_guides": {
+    "columns": [
+      "id",
+      "title",
+      "items",
+      "sort_order",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 4
+  },
+  "home_opening_hours": {
+    "columns": [
+      "id",
+      "label",
+      "hours",
+      "note",
+      "sort_order",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 3
+  },
+  "home_pricing_rows": {
+    "columns": [
+      "id",
+      "category",
+      "label",
+      "price",
+      "description",
+      "sort_order",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 4
+  },
+  "home_procedures": {
+    "columns": [
+      "id",
+      "title",
+      "description",
+      "sort_order",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 3
+  },
+  "home_projects": {
+    "columns": [
+      "id",
+      "title",
+      "description",
+      "image_path",
+      "sort_order",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 2
+  },
+  "home_slides": {
+    "columns": [
+      "id",
+      "eyebrow",
+      "title",
+      "description",
+      "image_path",
+      "cta_label",
+      "cta_url",
+      "sort_order",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 3
+  },
+  "home_stats": {
+    "columns": [
+      "id",
+      "label",
+      "value",
+      "sort_order",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 2
+  },
+  "job_batches": {
+    "columns": [
+      "id",
+      "name",
+      "total_jobs",
+      "pending_jobs",
+      "failed_jobs",
+      "failed_job_ids",
+      "options",
+      "cancelled_at",
+      "created_at",
+      "finished_at"
+    ],
+    "count": 0
+  },
+  "jobs": {
+    "columns": [
+      "id",
+      "queue",
+      "payload",
+      "attempts",
+      "reserved_at",
+      "available_at",
+      "created_at"
+    ],
+    "count": 0
+  },
+  "migrations": {
+    "columns": [
+      "id",
+      "migration",
+      "batch"
+    ],
+    "count": 10
+  },
+  "news_posts": {
+    "columns": [
+      "id",
+      "title",
+      "slug",
+      "author",
+      "category",
+      "excerpt",
+      "body",
+      "cover_image",
+      "read_time_minutes",
+      "tags",
+      "published_at",
+      "created_by",
+      "updated_by",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 1
+  },
+  "password_reset_tokens": {
+    "columns": [
+      "email",
+      "token",
+      "created_at"
+    ],
+    "count": 0
+  },
+  "qris_faqs": {
+    "columns": [
+      "id",
+      "icon",
+      "title",
+      "body",
+      "sort_order",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 2
+  },
+  "qris_notes": {
+    "columns": [
+      "id",
+      "content",
+      "sort_order",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 3
+  },
+  "qris_steps": {
+    "columns": [
+      "id",
+      "title",
+      "description",
+      "sort_order",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 4
+  },
+  "sessions": {
+    "columns": [
+      "id",
+      "user_id",
+      "ip_address",
+      "user_agent",
+      "payload",
+      "last_activity"
+    ],
+    "count": 2
+  },
+  "site_settings": {
+    "columns": [
+      "id",
+      "key",
+      "value",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 16
+  },
+  "sop_documents": {
+    "columns": [
+      "id",
+      "title",
+      "file_path",
+      "original_name",
+      "mime_type",
+      "file_size",
+      "uploaded_at",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 5
+  },
+  "sop_objectives": {
+    "columns": [
+      "id",
+      "content",
+      "sort_order",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 4
+  },
+  "sop_partners": {
+    "columns": [
+      "id",
+      "title",
+      "description",
+      "sort_order",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 5
+  },
+  "sop_steps": {
+    "columns": [
+      "id",
+      "title",
+      "items",
+      "sort_order",
+      "created_at",
+      "updated_at"
+    ],
+    "count": 4
+  },
+  "users": {
+    "columns": [
+      "id",
+      "name",
+      "email",
+      "email_verified_at",
+      "password",
+      "remember_token",
+      "created_at",
+      "updated_at",
+      "role",
+      "requires_approval"
+    ],
+    "count": 3
+  }
+}

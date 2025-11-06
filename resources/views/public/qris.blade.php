@@ -35,7 +35,7 @@
             </p>
         </div>
 
-        <div class="grid gap-8 lg:grid-cols-1 lg:lg:grid-cols-[1.4fr_0.6fr]">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-1 lg:grid-cols-[1.4fr_0.6fr]">
             <div class="space-y-8">
                 {{-- Alert utama (opsional) --}}
                 @if (data_get($primaryAlert ?? [], 'title'))
@@ -79,7 +79,7 @@
                             </svg>
                             Cara Pembayaran dengan QRIS
                         </h2>
-                        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                        <div class="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
                             @foreach ($stepsArr as $index => $step)
                                 <div class="group bg-[var(--color-surface)] rounded-xl p-5 shadow-sm border border-[var(--color-border)] transition-all duration-300 hover:shadow-md hover:border-[var(--color-primary)]/30">
                                     <div class="flex flex-col h-full">
@@ -252,7 +252,7 @@
                     Temukan jawaban atas pertanyaan-pertanyaan umum seputar pembayaran QRIS di Waduk Manduk.
                 </p>
             </div>
-            <div class="grid gap-6 md:grid-cols-2">
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                 @foreach ($faqsCol as $faq)
                     <div class="bg-white rounded-xl border border-[var(--color-border)] p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
                         <div class="flex items-start gap-4">

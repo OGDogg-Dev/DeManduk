@@ -4,9 +4,9 @@
   aria-label="Navigasi bagian halaman"
   class="sticky top-[calc(var(--header-h,64px)+8px)] z-30 border-y border-[var(--color-border)] bg-[var(--color-bg)]/80 backdrop-blur supports-[backdrop-filter]:bg-[var(--color-bg)]/70"
 >
-  <div class="container-app">
+  <div class="container-responsive">
     <ul
-      class="-mx-2 flex gap-2 overflow-x-auto py-3 [scrollbar-width:none]"
+      class="-mx-1 sm:-mx-2 flex gap-1 sm:gap-2 overflow-x-auto py-2 sm:py-3 [scrollbar-width:none] min-h-[52px]"
       data-scrollspy
     >
       <style>
@@ -16,10 +16,10 @@
 
       @foreach ($sections as $section)
         @php([$href, $label] = $section)
-        <li class="px-2">
+        <li class="px-1 sm:px-2">
           <a
             href="{{ $href }}"
-            class="nav-pill text-xs uppercase tracking-[0.30em] data-[active=true]:nav-pill--active"
+            class="nav-pill py-2 px-3 sm:px-4 text-xs sm:text-sm uppercase tracking-[0.25em] data-[active=true]:nav-pill--active touch-target-sm min-w-max"
             data-spy-link="{{ $href }}"
           >
             {{ $label }}
@@ -34,81 +34,126 @@
 @push('scripts')
 <script>
 (() => {
-  const list = document.querySelector('[data-scrollspy]');
-  if (!list) return;
+  const ready = (fn) => {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn, { once: true });
+    } else {
+      fn();
+    }
+  };
 
-  const links = Array.from(list.querySelectorAll('[data-spy-link]'));
-  const ids   = links
-    .map(a => (a.getAttribute('data-spy-link') || '').trim())
-    .filter(h => h.startsWith('#'))
-    .map(h => h.slice(1));
+  const initScrollSpy = (list) => {
+    const nav = list.closest('nav');
+    const links = Array.from(list.querySelectorAll('[data-spy-link]'));
+    if (!links.length) return;
 
-  const targets = ids
-    .map(id => document.getElementById(id))
-    .filter(Boolean);
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  const headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 64;
-  const extraOffset = 8 + list.offsetHeight; // ruang di bawah header + tinggi quick-nav
+    const resolveTargets = () => links
+      .map((link) => link.getAttribute('data-spy-link') || link.getAttribute('href') || '')
+      .filter((hash) => hash.startsWith('#'))
+      .map((hash) => {
+        const target = document.querySelector(hash);
+        return target ? { hash, el: target } : null;
+      })
+      .filter(Boolean);
 
-  // Smooth scroll dengan offset header
-  links.forEach(a => {
-    a.addEventListener('click', (e) => {
-      const href = a.getAttribute('href') || '';
-      if (!href.startsWith('#')) return;
-      const el = document.querySelector(href);
-      if (!el) return;
+    let targets = resolveTargets();
 
-      e.preventDefault();
-      
-      // Calculate the correct scroll position with proper offset
-      const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - headerH - 12; // padding kecil
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: (matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth')
+    const computeHeaderHeight = () => {
+      const raw = getComputedStyle(document.documentElement).getPropertyValue('--header-h');
+      const parsed = parseInt(raw, 10);
+      if (Number.isFinite(parsed) && parsed > 0) {
+        return parsed;
+      }
+      const header = document.querySelector('[data-header]');
+      return header ? Math.round(header.getBoundingClientRect().height) : 64;
+    };
+
+    const computeOffset = () => {
+      const headerH = computeHeaderHeight();
+      const navH = nav ? Math.round(nav.getBoundingClientRect().height) : Math.round(list.getBoundingClientRect().height);
+      return headerH + navH + 12;
+    };
+
+    const setActive = (hash, center = false) => {
+      if (!hash) return;
+      links.forEach((link) => {
+        const isActive = link.getAttribute('data-spy-link') === hash;
+        link.setAttribute('data-active', String(isActive));
+        link.toggleAttribute('aria-current', isActive);
+        if (isActive && center) {
+          link.scrollIntoView({
+            inline: 'center',
+            block: 'nearest',
+            behavior: prefersReduced.matches ? 'auto' : 'smooth',
+          });
+        }
       });
+    };
 
-      // aktifkan state segera (UX responsif)
-      setActive(href);
+    const scrollToHash = (hash) => {
+      const target = targets.find((entry) => entry.hash === hash);
+      if (!target) return false;
+
+      const offset = computeOffset();
+      const destination = target.el.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({
+        top: destination,
+        behavior: prefersReduced.matches ? 'auto' : 'smooth',
+      });
+      return true;
+    };
+
+    links.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const hash = link.getAttribute('data-spy-link') || link.getAttribute('href') || '';
+        if (!hash.startsWith('#')) return;
+
+        targets = resolveTargets();
+        if (scrollToHash(hash)) {
+          event.preventDefault();
+          setActive(hash, true);
+        }
+      });
     });
-  });
 
-  // Scrollspy observer
-  const io = new IntersectionObserver((entries) => {
-    // Only activate the first intersecting element to avoid conflicts
-    let activeEntry = null;
-    for (const entry of entries) {
-      if (entry.isIntersecting) {
-        if (!activeEntry || entry.boundingClientRect.top < activeEntry.boundingClientRect.top) {
-          activeEntry = entry;
+    let ticking = false;
+
+    const updateActive = () => {
+      targets = resolveTargets();
+      const offset = computeOffset();
+      let currentHash = targets.length ? targets[0].hash : '';
+
+      for (const entry of targets) {
+        const distance = entry.el.getBoundingClientRect().top - offset;
+        if (distance <= 0) {
+          currentHash = entry.hash;
+        } else {
+          break;
         }
       }
-    }
-    
-    if (activeEntry) {
-      const id = '#' + (activeEntry.target.id || '');
-      setActive(id);
-    }
-  }, {
-    root: null,
-    rootMargin: `-${headerH + extraOffset}px 0px -40% 0px`,
-    threshold: [0.0, 0.2]
-  });
 
-  targets.forEach(t => io.observe(t));
+      setActive(currentHash);
+      ticking = false;
+    };
 
-  function setActive(hash){
-    links.forEach(a => {
-      const on = (a.getAttribute('data-spy-link') === hash);
-      a.setAttribute('data-active', String(on));
-      a.toggleAttribute('aria-current', on);
-      if (on) {
-        // pastikan item aktif tetap terlihat saat list di-scroll
-        a.scrollIntoView({ inline: 'center', behavior: 'smooth', block: 'nearest' });
+    const handleScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateActive);
       }
-    });
-  }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', updateActive, { passive: true });
+
+    updateActive();
+  };
+
+  ready(() => {
+    document.querySelectorAll('[data-scrollspy]').forEach(initScrollSpy);
+  });
 })();
 </script>
 @endpush

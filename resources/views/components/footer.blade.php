@@ -14,10 +14,28 @@
         ->get();
 
     // Get social media links from settings (default to placeholders if not set)
-    $socialFacebook = \App\Models\SiteSetting::getValue('social.facebook', '#');
-    $socialInstagram = \App\Models\SiteSetting::getValue('social.instagram', '#');
-    $socialTwitter = \App\Models\SiteSetting::getValue('social.twitter', '#');
-    $socialYoutube = \App\Models\SiteSetting::getValue('social.youtube', '#');
+    $socialLinks = [
+        [
+            'id'    => 'facebook',
+            'href'  => \App\Models\SiteSetting::getValue('social.facebook'),
+            'label' => 'Facebook',
+        ],
+        [
+            'id'    => 'instagram',
+            'href'  => \App\Models\SiteSetting::getValue('social.instagram'),
+            'label' => 'Instagram',
+        ],
+        [
+            'id'    => 'twitter',
+            'href'  => \App\Models\SiteSetting::getValue('social.twitter'),
+            'label' => 'X (Twitter)',
+        ],
+        [
+            'id'    => 'youtube',
+            'href'  => \App\Models\SiteSetting::getValue('social.youtube'),
+            'label' => 'YouTube',
+        ],
+    ];
 
     $footerSections = [
         ['#about',       'Tentang'],
@@ -26,8 +44,8 @@
         ['#pricing',     'Harga'],
         ['#hours',       'Jam'],
         ['#map',         'Peta'],
-        ['#sop-overview','SOP'],
-        ['#sop-detail',  'Panduan'],
+        ['#statistik',   'Statistik'],
+        ['#sop-detail',  'SOP'],
     ];
 
     $homeUrl = route('home');
@@ -52,27 +70,34 @@
             <p class="text-xl font-semibold text-[var(--color-ink)]">{{ $brandTitle }}</p>
             
             {{-- Social media links --}}
-            <div class="flex items-center gap-4 mt-3">
-              <a href="{{ $socialFacebook }}" 
-                 aria-label="Facebook"
-                 class="text-[var(--color-ink)] hover:text-[var(--color-primary)] transition-colors">
-                <i class="fa fa-facebook"></i>
-              </a>
-              <a href="{{ $socialInstagram }}" 
-                 aria-label="Instagram"
-                 class="text-[var(--color-ink)] hover:text-[var(--color-primary)] transition-colors">
-                <i class="fa fa-instagram"></i>
-              </a>
-              <a href="{{ $socialTwitter }}" 
-                 aria-label="Twitter"
-                 class="text-[var(--color-ink)] hover:text-[var(--color-primary)] transition-colors">
-                <i class="fa fa-twitter"></i>
-              </a>
-              <a href="{{ $socialYoutube }}" 
-                 aria-label="YouTube"
-                 class="text-[var(--color-ink)] hover:text-[var(--color-primary)] transition-colors">
-                <i class="fa fa-youtube"></i>
-              </a>
+            <div class="mt-3 flex items-center gap-3">
+              @foreach ($socialLinks as $social)
+                @php
+                  $href = $social['href'];
+                  $isAvailable = ! blank($href) && $href !== '#';
+                  $baseClass = 'inline-flex size-9 items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-ink)] transition-colors hover:text-white hover:bg-[var(--color-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]';
+                @endphp
+                @if ($isAvailable)
+                  <a
+                    href="{{ $href }}"
+                    aria-label="{{ $social['label'] }}"
+                    class="{{ $baseClass }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    @includeIf("partials.icons.{$social['id']}")
+                  </a>
+                @else
+                  <span
+                    class="{{ $baseClass }} opacity-40"
+                    role="link"
+                    aria-disabled="true"
+                    tabindex="-1"
+                  >
+                    @includeIf("partials.icons.{$social['id']}")
+                  </span>
+                @endif
+              @endforeach
             </div>
           </div>
         </div>
@@ -138,7 +163,7 @@
         &copy; {{ now()->year }} PKM-PMM Polinus. Semua hak cipta dilindungi.
       </p>
       <div class="flex flex-wrap items-center gap-4 text-xs">
-        <a href="{{ route('sop') }}" class="text-[var(--color-ink)] hover:text-[var(--color-primary)]">SOP</a>
+        <a href="{{ route('home') }}#sop-detail" class="text-[var(--color-ink)] hover:text-[var(--color-primary)]">SOP</a>
         <a href="{{ route('kontak') }}" class="text-[var(--color-ink)] hover:text-[var(--color-primary)]">Hubungi Kami</a>
         <a href="{{ route('qris') }}" class="text-[var(--color-ink)] hover:text-[var(--color-primary)]">Kebijakan Pembayaran</a>
       </div>

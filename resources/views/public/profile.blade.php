@@ -30,7 +30,7 @@
         title="Nilai inti pengelolaan"
         subtitle="Kami menerapkan prinsip berkelanjutan dan pelayanan prima untuk semua pengunjung."
     >
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             <x-card title="Keamanan dan ketertiban">
                 <x-slot:icon>KK</x-slot:icon>
                 <p class="text-sm leading-relaxed text-[var(--color-ink)]">
@@ -57,7 +57,7 @@
         title="Struktur pengelolaan"
         subtitle="Pengelolaan dilakukan secara kolaboratif oleh pemerintah desa dan badan usaha milik desa."
     >
-        <div class="grid gap-6 md:grid-cols-2">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2">
             <x-card title="Badan Pengelola Waduk Manduk">
                 <x-slot:icon>BP</x-slot:icon>
                 <ul class="list-disc space-y-2 pl-5 text-sm text-[var(--color-ink)]">

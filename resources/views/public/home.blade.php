@@ -39,5 +39,3 @@
     <x-public.cta-strip />
     <x-public.back-to-top />
 @endsection
-
-<x-public.home-scripts />

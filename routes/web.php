@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\Pages\QrisFaqController;
 use App\Http\Controllers\Admin\Pages\QrisNoteController;
 use App\Http\Controllers\Admin\Pages\QrisSettingsController;
 use App\Http\Controllers\Admin\Pages\QrisStepController;
+use App\Http\Controllers\Admin\Pages\SopDocumentController;
 use App\Http\Controllers\Admin\Pages\SopObjectiveController;
 use App\Http\Controllers\Admin\Pages\SopPartnerController;
 use App\Http\Controllers\Admin\Pages\SopSettingsController;
@@ -37,7 +38,6 @@ use App\Models\NewsPost;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
-Route::view('/profil', 'public.profile')->name('profile');
 Route::view('/fasilitas-harga', 'public.fasilitas-harga')->name('fasilitas.harga');
 Route::view('/jam-operasional', 'public.jam')->name('jam');
 Route::view('/peta', 'public.peta')->name('peta');
@@ -53,7 +53,12 @@ Route::get('/blog/{news:slug}', fn (NewsPost $news) => redirect()->route('news.s
 
 Route::get('/kontak', ContactController::class)->name('kontak');
 Route::get('/qris', QrisController::class)->name('qris');
-Route::get('/sop', SopController::class)->name('sop');
+Route::get('/sop/download/{sopDocument}', [SopController::class, 'download'])->name('sop.download');
+Route::get('/sop/viewer/{sopDocument}', [\App\Http\Controllers\Admin\Pages\SopDocumentController::class, 'viewer'])->name('sop.pdf.viewer');
+Route::get('/sop/viewer/inline/{sopDocument}', [\App\Http\Controllers\Admin\Pages\SopDocumentController::class, 'viewInline'])->name('sop.pdf.viewer.inline');
+
+Route::redirect('/profil', '/')->name('profile.redirect');
+Route::redirect('/sop', '/');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -110,6 +115,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
                 ->except('show');
             Route::resource('partners', SopPartnerController::class)
                 ->parameters(['partners' => 'partner'])
+                ->except('show');
+            Route::resource('documents', SopDocumentController::class)
+                ->parameters(['documents' => 'document'])
                 ->except('show');
         });
 

@@ -1,4 +1,4 @@
-@extends('layouts.app', [
+﻿@extends('layouts.app', [
     'title' => 'Galeri Waduk Manduk',
     'description' => 'Sekilas visual suasana waduk, event komunitas, dan fasilitas terbaru. Foto resolusi tinggi tersedia untuk media atas permintaan.',
 ])
@@ -8,7 +8,7 @@
       title="Galeri Waduk Manduk"
       subtitle="Sekilas visual suasana waduk, event komunitas, dan fasilitas terbaru. Foto resolusi tinggi tersedia untuk media atas permintaan."
   >
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       @forelse ($galleryItems as $image)
         @php
           $src     = $image['image'] ?? Vite::asset('resources/images/gallery/gallery-6.svg');
@@ -57,8 +57,18 @@
         <button type="button" data-close class="absolute right-3 top-3 z-10 rounded-lg bg-white/90 px-2 py-1 text-sm font-medium text-[var(--color-ink)] hover:bg-white">
           Tutup
         </button>
-        <button type="button" data-prev class="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/90 px-2 py-2 hover:bg-white" aria-label="Sebelumnya">‹</button>
-        <button type="button" data-next class="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/90 px-2 py-2 hover:bg-white" aria-label="Berikutnya">›</button>
+        <button type="button" data-prev class="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/90 p-2 hover:bg-white" aria-label="Sebelumnya">
+          <svg class="h-5 w-5 text-[var(--color-ink)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 18 9 12l6-6"/>
+          </svg>
+          <span class="sr-only">Sebelumnya</span>
+        </button>
+        <button type="button" data-next class="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/90 p-2 hover:bg-white" aria-label="Berikutnya">
+          <svg class="h-5 w-5 text-[var(--color-ink)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m9 18 6-6-6-6"/>
+          </svg>
+          <span class="sr-only">Berikutnya</span>
+        </button>
 
         <img data-view class="mx-auto block max-h-[70vh] w-full object-contain bg-black/5" alt="">
         <div class="border-t border-[var(--color-border)] p-4">
@@ -148,3 +158,4 @@
 </script>
 @endpush
 @endonce
+

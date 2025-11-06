@@ -187,8 +187,8 @@ class HomeController extends Controller
             ['#pricing', 'Harga'],
             ['#hours', 'Jam'],
             ['#map', 'Peta'],
-            ['#sop-overview', 'SOP'],
-            ['#sop-detail', 'Panduan'],
+            ['#statistik', 'Statistik'],
+            ['#sop-detail', 'SOP'],
         ];
 
         return view('public.home', [

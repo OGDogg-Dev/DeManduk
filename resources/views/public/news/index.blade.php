@@ -60,7 +60,7 @@
         title="Berita & Blog Waduk Manduk"
         subtitle="Ikuti kabar perkembangan terbaru, kisah komunitas, dan panduan wisata untuk menyiapkan perjalanan Anda."
     >
-        <div class="grid gap-10 lg:grid-cols-[2fr_1fr]">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-1 lg:grid-cols-[2fr_1fr]">
             <div class="space-y-6">
                 @forelse ($posts as $post)
                     @php

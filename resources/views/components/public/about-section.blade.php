@@ -3,8 +3,8 @@
     'subtitle'   => 'Wisata alam yang memadukan ketenangan waduk, kuliner lokal, serta ruang aktivitas komunal.',
     'paragraphs' => [],
     'image'      => null,
-    'ctaLabel'   => 'Baca sejarah lengkap →',
-    'ctaUrl'     => route('profile'),
+    'ctaLabel'   => 'Baca sejarah lengkap',
+    'ctaUrl'     => route('home') . '#about',
 ])
 
 @php($imageUrl = $image ?? Vite::asset('resources/images/gallery/gallery-6.svg'))
@@ -17,8 +17,10 @@
         <p class="text-[15px] leading-7 text-[var(--color-muted)]">{{ $paragraph }}</p>
       @empty
         <p class="text-[15px] leading-7 text-[var(--color-muted)]">
-          Waduk Manduk adalah bagian dari rencana pengembangan
-Waduk Gondang di Kabupaten Karanganyar, Jawa Tengah, yang bertujuan memperluas genangan air waduk tersebut. Waduk ini dikelola sebagai objek wisata dengan pengembangan yang memanfaatkan teknologi digital, serta melibatkan Badan Usaha Milik Desa (BUMDes) dan Komunitas Peduli Waduk (KPW) untuk menata pengelolaan wisata dan memperkuat kapasitas masyarakat lokal
+          Waduk Manduk adalah bagian dari rencana pengembangan Waduk Gondang di Kabupaten Karanganyar, Jawa Tengah,
+          yang bertujuan memperluas daya tampung air. Kawasan ini dikelola sebagai destinasi wisata dengan pemanfaatan
+          teknologi digital, serta melibatkan BUMDes dan Komunitas Peduli Waduk (KPW) dalam pengelolaan dan pemberdayaan
+          masyarakat lokal.
         </p>
       @endforelse
 

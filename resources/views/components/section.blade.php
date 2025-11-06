@@ -41,26 +41,26 @@
 <section
   @if ($id) id="{{ $id }}" @endif
   aria-labelledby="{{ $headingId }}"
-  {{ $attributes->class(["py-16 sm:py-20 $bg"]) }}
+  {{ $attributes->class(["py-8 sm:py-12 md:py-16 $bg"]) }}
 >
-  <div class="container-app flex flex-col gap-12">
+  <div class="container-app flex flex-col gap-6 sm:gap-8 md:gap-12">
     @if ($title || $subtitle)
-      <div class="{{ $textAlignment }} space-y-3">
+      <div class="{{ $textAlignment }} space-y-2 sm:space-y-3">
         @if ($title)
-          <h2 id="{{ $headingId }}" class="text-3xl sm:text-4xl font-semibold tracking-tight {{ $headingColor }}">
+          <h2 id="{{ $headingId }}" class="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight {{ $headingColor }}">
             {{ $title }}
           </h2>
         @endif
 
         @if ($subtitle)
-          <p class="text-base sm:text-[15px] leading-7 {{ $subtitleColor }}">
+          <p class="text-sm sm:text-base md:text-[15px] leading-6 sm:leading-7 {{ $subtitleColor }}">
             {{ $subtitle }}
           </p>
         @endif
       </div>
     @endif
 
-    <div class="space-y-8">
+    <div class="space-y-4 sm:space-y-6 md:space-y-8">
       {{ $slot }}
     </div>
   </div>

@@ -102,30 +102,6 @@
     </div>
 
     <x-admin.scripts />
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const sidebar = document.getElementById('admin-sidebar');
-            const toggleBtn = document.querySelector('[data-admin-toggle="sidebar"]');
-            if (!sidebar || !toggleBtn) return;
-
-            const toggleSidebar = () => {
-                const isOpen = sidebar.classList.contains('flex');
-                if (isOpen) {
-                    sidebar.classList.replace('flex', 'hidden');
-                } else {
-                    sidebar.classList.replace('hidden', 'flex');
-                }
-            };
-
-            toggleBtn.addEventListener('click', toggleSidebar);
-            document.addEventListener('click', (event) => {
-                if (window.innerWidth >= 1024) return;
-                if (!sidebar.contains(event.target) && !toggleBtn.contains(event.target)) {
-                    sidebar.classList.replace('flex', 'hidden');
-                }
-            });
-        });
-    </script>
     @stack('scripts')
 </body>
 </html>

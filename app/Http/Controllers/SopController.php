@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Admin\Pages\SopDocumentController;
+use App\Models\SopDocument;
 use App\Models\SopObjective;
 use App\Models\SopPartner;
 use App\Models\SopStep;
@@ -32,6 +34,13 @@ class SopController extends Controller
             $introParagraphs = [];
         }
 
+        // Get all SOP documents, ordered from oldest to newest for chronological display
+        $allDocuments = SopDocument::query()
+            ->orderBy('uploaded_at')
+            ->orderBy('id')
+            ->get();
+        $latestDocument = $allDocuments->last(); // Still reference the newest item for highlights
+
         return view('public.sop', [
             'subtitle' => SiteSetting::getValue('sop.subtitle'),
             'introParagraphs' => $introParagraphs,
@@ -48,7 +57,13 @@ class SopController extends Controller
                 'title' => SiteSetting::getValue('sop.bottom_alert_title'),
                 'body' => SiteSetting::getValue('sop.bottom_alert_body'),
             ],
+            'latestDocument' => $latestDocument,
+            'allDocuments' => $allDocuments,
         ]);
     }
-}
 
+    public function download(SopDocument $sopDocument)
+    {
+        return app(SopDocumentController::class)->download($sopDocument);
+    }
+}

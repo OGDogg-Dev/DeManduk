@@ -1,11 +1,11 @@
 @props([
     'stats'      => [],
     'procedures' => [],
-    'title'      => 'Ringkasan SOP Layanan',
+    'title'      => 'Statistik & Prosedur Operasional',
     'subtitle'   => 'Data kunjungan terbaru dan poin utama standar operasional Waduk Manduk.',
 ])
 
-<x-section id="sop-overview" variant="muted" :title="$title" :subtitle="$subtitle">
+<x-section id="statistik" variant="muted" :title="$title" :subtitle="$subtitle">
   <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
     {{-- Stats --}}
     <div class="grid gap-6 sm:grid-cols-2">

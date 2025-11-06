@@ -1,4 +1,4 @@
-@props([
+﻿@props([
     'title' => 'Bagikan artikel ini',
     'url'   => null,          // default: url()::current()
     'text'  => null,          // optional: kalimat singkat untuk ikut dibagikan
@@ -81,7 +81,7 @@
     </button>
 
     {{-- Feedback kecil saat tersalin --}}
-    <span data-copied-feedback class="hidden select-none text-sm text-[var(--color-muted)]">Tautan disalin ✔</span>
+    <span data-copied-feedback class="hidden select-none text-sm text-[var(--color-muted)]">Tautan disalin :)</span>
   </div>
 </div>
 
@@ -114,7 +114,7 @@
           showFeedback();
         }
       } catch (e) {
-        // user cancel → tidak perlu apa-apa
+        // user cancel atau browser menolak; tidak perlu aksi
       }
     });
 
@@ -135,3 +135,4 @@
 </script>
 @endpush
 @endonce
+

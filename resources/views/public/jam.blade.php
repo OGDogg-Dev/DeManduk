@@ -55,11 +55,13 @@
         title="Jam operasional Waduk Manduk"
         subtitle="Rencanakan kunjungan Anda sesuai jadwal terbaru. Informasi ini akan diperbarui secara berkala."
     >
-        <x-table
-            :headers="['Hari', 'Jam buka', 'Catatan']"
-            :rows="$openingRows"
-            :caption="'Ringkasan jam operasional — ' . $updatedCaption"
-        />
+        <div class="overflow-x-auto">
+            <x-table
+                :headers="['Hari', 'Jam buka', 'Catatan']"
+                :rows="$openingRows"
+                :caption="'Ringkasan jam operasional — ' . $updatedCaption"
+            />
+        </div>
 
         <x-alert variant="warning" title="Penyesuaian musiman">
             Saat debit air meningkat di musim hujan, jam operasional dapat dipersingkat. Pantau pengumuman melalui media sosial resmi kami.
@@ -79,17 +81,19 @@
                 ['Studio podcast & media center', '09.00 - 17.00 WIB', 'Reservasi online segera tersedia.'],
             ];
         @endphp
-        <x-table
-            :headers="['Fasilitas', 'Jam layanan', 'Keterangan']"
-            :rows="$serviceRows"
-        />
+        <div class="overflow-x-auto">
+            <x-table
+                :headers="['Fasilitas', 'Jam layanan', 'Keterangan']"
+                :rows="$serviceRows"
+            />
+        </div>
     </x-section>
 
     <x-section
         title="Rekomendasi waktu kunjungan"
         subtitle="Pilih waktu terbaik sesuai aktivitas favorit Anda."
     >
-        <div class="grid gap-6 md:grid-cols-3">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-3">
             <x-card title="Pagi (05.30 - 09.00)">
                 <x-slot:icon>PG</x-slot:icon>
                 <p class="text-sm text-[var(--color-muted)]">Nikmati sunrise, olahraga ringan, dan suasana sejuk dengan antrean minim.</p>

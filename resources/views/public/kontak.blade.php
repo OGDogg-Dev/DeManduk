@@ -43,7 +43,7 @@
                 @endif
             </div>
 
-            <div class="grid gap-4 lg:grid-cols-[2fr_1fr]">
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-1 lg:grid-cols-[2fr_1fr]">
                 {{-- FORM KONTAK --}}
                 <div class="space-y-4 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 shadow-sm">
                     <h2 class="text-lg font-semibold text-[var(--color-ink)] mb-4">Kirim Pesan</h2>

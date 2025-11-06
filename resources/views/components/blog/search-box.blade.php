@@ -60,29 +60,39 @@
 @once
 @push('scripts')
 <script>
-(() => {
-  const form = document.querySelector('[data-searchbox]');
-  if (!form) return;
+document.addEventListener('DOMContentLoaded', () => {
+  const forms = document.querySelectorAll('[data-searchbox]');
+  if (!forms.length) return;
 
-  const input = form.querySelector('input[type="search"]');
-  const clearBtn = form.querySelector('[data-clear]');
-  const autosubmit = form.getAttribute('data-autosubmit') === 'true';
+  forms.forEach((form) => {
+    const input = form.querySelector('input[type="search"]');
+    const clearBtn = form.querySelector('[data-clear]');
+    if (!input || !clearBtn) return;
 
-  const toggleClear = () => {
-    const hasVal = (input.value || '').trim().length > 0;
-    clearBtn.classList.toggle('hidden', !hasVal);
-  };
+    const autosubmit = form.getAttribute('data-autosubmit') === 'true';
 
-  input.addEventListener('input', toggleClear);
-  toggleClear();
+    const toggleClear = () => {
+      const hasVal = (input.value || '').trim().length > 0;
+      clearBtn.classList.toggle('hidden', !hasVal);
+    };
 
-  clearBtn.addEventListener('click', () => {
-    input.value = '';
+    input.addEventListener('input', toggleClear);
     toggleClear();
-    input.focus();
-    if (autosubmit) form.submit();
+
+    clearBtn.addEventListener('click', () => {
+      input.value = '';
+      toggleClear();
+      input.focus();
+      if (autosubmit) {
+        if (typeof form.requestSubmit === 'function') {
+          form.requestSubmit();
+        } else {
+          form.submit();
+        }
+      }
+    });
   });
-})();
+});
 </script>
 @endpush
 @endonce

@@ -12,7 +12,7 @@
         title="Event dan agenda Waduk Manduk"
         subtitle="Jadwal kegiatan tematik yang memperkaya pengalaman wisata Anda."
     >
-        <div class="grid gap-6 md:grid-cols-2">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2">
             @forelse ($events as $event)
                 @php
                     // Label tampilan

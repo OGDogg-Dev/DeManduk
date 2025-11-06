@@ -10,7 +10,7 @@
     $tag    = $as ?? ($href ? 'a' : 'div');
     $isLink = $href || $as === 'a';
 
-    $base   = 'card flex flex-col gap-4 p-6 transition -translate-y-0 hover:-translate-y-0.5
+    $base   = 'card flex flex-col gap-4 p-4 sm:p-5 md:p-6 transition -translate-y-0 hover:-translate-y-0.5
                hover:shadow-lg focus:outline-none focus-visible:ring-2
                focus-visible:ring-blue-300 focus-visible:ring-offset-2
                focus-visible:ring-offset-[var(--color-surface)]';

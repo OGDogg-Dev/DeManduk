@@ -21,6 +21,7 @@
                     ['title' => 'Statistik Pengunjung', 'description' => 'Kelola data statistik ringkas yang tampil di halaman beranda.', 'route' => route('admin.home.stats.index'), 'icon' => 'chart-pie'],
                     ['title' => 'Highlight SOP', 'description' => 'Atur ringkasan SOP singkat yang tampil pada section SOP.', 'route' => route('admin.home.procedures.index'), 'icon' => 'light-bulb'],
                     ['title' => 'Panduan SOP', 'description' => 'Perbarui langkah-langkah panduan kunjungan.', 'route' => route('admin.home.guides.index'), 'icon' => 'book-open'],
+                    ['title' => 'Dokumen SOP PDF', 'description' => 'Upload dan kelola dokumen PDF SOP.', 'route' => route('admin.pages.sop.documents.index'), 'icon' => 'document-text'],
                     ['title' => 'Galeri', 'description' => 'Kelola foto yang tampil di halaman galeri publik.', 'route' => route('admin.gallery.index'), 'icon' => 'photo'],
                     ['title' => 'Berita', 'description' => 'Tulis dan atur berita resmi Waduk Manduk.', 'route' => route('admin.news.index'), 'icon' => 'newspaper'],
                     ['title' => 'Event', 'description' => 'Atur kegiatan dan event komunitas.', 'route' => route('admin.events.index'), 'icon' => 'calendar-days'],
@@ -59,6 +60,7 @@
                     ['title' => 'Langkah Pelayanan', 'description' => 'Atur alur SOP dari pra-kunjungan hingga selesai.', 'route' => route('admin.pages.sop.steps.index'), 'icon' => 'list-bullet'],
                     ['title' => 'Tujuan SOP', 'description' => 'Atur tujuan utama dari SOP.', 'route' => route('admin.pages.sop.objectives.index'), 'icon' => 'flag'],
                     ['title' => 'Instansi SOP', 'description' => 'Atur daftar instansi pendukung SOP.', 'route' => route('admin.pages.sop.partners.index'), 'icon' => 'user-group'],
+                    ['title' => 'Dokumen SOP PDF', 'description' => 'Upload dan kelola dokumen PDF SOP.', 'route' => route('admin.pages.sop.documents.index'), 'icon' => 'document-text'],
                     ['title' => 'Media Sosial', 'description' => 'Atur tautan media sosial di footer.', 'route' => route('admin.pages.social-media.settings.edit'), 'icon' => 'share'],
                 ];
             @endphp

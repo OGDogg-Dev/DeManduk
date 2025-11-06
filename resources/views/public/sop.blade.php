@@ -63,7 +63,18 @@
 @endphp
 
 {{-- Quick nav ke bagian halaman --}}
-<x-public.quick-nav :sections="[['#intro','Pendahuluan'],['#flow','Alur Layanan'],['#partners','Instansi']]" />
+@php
+    $sections = [
+        ['#intro','Pendahuluan'],
+        ['#flow','Alur Layanan'], 
+        ['#partners','Instansi']
+    ];
+    // Add documents section to nav if documents exist
+    if($allDocuments->count() > 0) {
+        $sections[] = ['#documents', 'Dokumen'];
+    }
+@endphp
+<x-public.quick-nav :sections="$sections" />
 
 {{-- Bar aksi: Unduh & Cetak + info pembaruan --}}
 <x-section variant="accent" class="pt-8 pb-0">
@@ -72,16 +83,25 @@
             <p><span class="font-semibold text-[var(--color-ink)]">Dokumen SOP</span> — Diperbarui {{ $updatedAt->translatedFormat('j F Y') }}</p>
         </div>
         <div class="flex flex-wrap gap-3">
-            <a
-                href="{{ \Illuminate\Support\Facades\Route::has('sop.download') ? route('sop.download') : '#' }}"
-                @class([
-                    'inline-flex items-center justify-center rounded-full bg-amber-400 px-5 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-ink)] transition hover:bg-amber-300',
-                    !\Illuminate\Support\Facades\Route::has('sop.download') ? 'opacity-60 cursor-not-allowed' : '',
-                ])
-                {{ \Illuminate\Support\Facades\Route::has('sop.download') ? '' : 'aria-disabled=true' }}
-            >
-                Unduh PDF
-            </a>
+            @if($latestDocument)
+                <a
+                    href="{{ route('sop.pdf.viewer', $latestDocument) }}"
+                    target="_blank"
+                    class="inline-flex items-center justify-center rounded-full bg-amber-400 px-5 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-ink)] transition hover:bg-amber-300"
+                >
+                    Lihat PDF
+                </a>
+                <a
+                    href="{{ route('sop.download', $latestDocument) }}"
+                    class="inline-flex items-center justify-center rounded-full bg-sky-500 px-5 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-sky-600"
+                >
+                    Unduh PDF
+                </a>
+            @else
+                <span class="inline-flex items-center justify-center rounded-full bg-gray-300 px-5 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-gray-700">
+                    PDF Belum Tersedia
+                </span>
+            @endif
             <button
                 type="button"
                 onclick="window.print()"
@@ -161,6 +181,50 @@
         @endforelse
     </div>
 </x-section>
+
+{{-- DAFTAR DOKUMEN SOP --}}
+@if($allDocuments->count() > 0)
+    <x-section id="documents" title="Dokumen SOP Tersedia">
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            @forelse ($allDocuments as $document)
+                <div class="glass-card rounded-2xl p-5 shadow-2xl">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <h4 class="text-sm font-semibold text-[var(--color-ink)]">{{ $document->title }}</h4>
+                            <p class="mt-2 text-xs text-[var(--color-muted)]">{{ $document->original_name }}</p>
+                            <p class="text-xs text-[var(--color-muted)]">{{ number_format($document->file_size / 1024, 2) }} KB</p>
+                            <p class="text-xs text-[var(--color-muted)]">Diunggah: {{ $document->uploaded_at->format('d M Y') }}</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex gap-2">
+                        <a 
+                            href="{{ route('sop.pdf.viewer', $document) }}" 
+                            target="_blank"
+                            class="inline-flex items-center gap-1 rounded-full bg-indigo-100 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-200 transition"
+                        >
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            Lihat
+                        </a>
+                        <a 
+                            href="{{ route('sop.download', $document) }}"
+                            class="inline-flex items-center gap-1 rounded-full bg-amber-100 px-3 py-1.5 text-xs font-semibold text-amber-700 hover:bg-amber-200 transition"
+                        >
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            Unduh
+                        </a>
+                    </div>
+                </div>
+            @empty
+                <p class="text-sm text-[var(--color-muted)] col-span-3">Belum ada dokumen SOP yang tersedia.</p>
+            @endforelse
+        </div>
+    </x-section>
+@endif
 
 {{-- KOORDINASI INSTANSI --}}
 <x-section id="partners" title="Koordinasi instansi pendukung">

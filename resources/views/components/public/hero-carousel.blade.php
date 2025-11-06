@@ -101,84 +101,133 @@
 @once
 @push('scripts')
 <script>
-(() => {
-  const root = document.querySelector('[data-carousel]');
-  if (!root) return;
-
-  const viewport = root.querySelector('[data-viewport]');
-  const slidesEl = root.querySelector('[data-slides]');
-  const slides = Array.from(root.querySelectorAll('[data-slide]'));
-  const prevBtn = root.querySelector('[data-prev]');
-  const nextBtn = root.querySelector('[data-next]');
-  const dots = Array.from(root.querySelectorAll('[data-goto]'));
-  const autoplay = root.getAttribute('data-autoplay') === 'true';
-  const interval = Number(root.getAttribute('data-interval') || 4000);
-
-  let idx = 0, timer;
-
-  const goTo = (i) => {
-    idx = (i + slides.length) % slides.length;
-    const target = slides[idx];
-    // Scroll the viewport (not the page) to the target slide
-    if (target) {
-        viewport.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
+  (() => {
+    const carousels = Array.from(document.querySelectorAll('[data-carousel]'));
+    if (!carousels.length) {
+      return;
     }
-    updateAria();
-  };
 
-  const updateAria = () => {
-    slides.forEach((s, i) => s.setAttribute('aria-current', String(i === idx)));
-    dots.forEach((d, i) => d.setAttribute('data-active', String(i === idx)));
-  };
+    const supportsIO = 'IntersectionObserver' in window;
 
-  const next = () => goTo(idx + 1);
-  const prev = () => goTo(idx - 1);
+    carousels.forEach((root) => {
+      const viewport = root.querySelector('[data-viewport]');
+      const slides = Array.from(root.querySelectorAll('[data-slide]'));
+      if (!viewport || slides.length <= 1) {
+        // Nothing to animate, but still ensure ARIA state is correct
+        slides.forEach((slide, index) => slide.setAttribute('aria-current', String(index === 0)));
+        return;
+      }
 
-  // Observe active slide (robust saat user swipe manual)
-  // Only update index if the carousel is in view to prevent page scrolling interference
-  const io = new IntersectionObserver((entries) => {
-    // Check if carousel is in viewport before updating index
-    const carouselRect = root.getBoundingClientRect();
-    const inViewport = carouselRect.top < window.innerHeight && carouselRect.bottom >= 0;
-    
-    if (inViewport) {
-      entries.forEach((e) => {
-        if (e.isIntersecting && e.intersectionRatio > 0.6) {
-          const n = Number(e.target.getAttribute('data-index') || 0);
-          if (n !== idx) { 
-            idx = n; 
-            updateAria();
+      const dots = Array.from(root.querySelectorAll('[data-goto]'));
+      const prevBtn = root.querySelector('[data-prev]');
+      const nextBtn = root.querySelector('[data-next]');
+      const autoplay = root.getAttribute('data-autoplay') !== 'false';
+      const interval = Number(root.getAttribute('data-interval') || 4000);
+
+      let current = 0;
+      let timer = null;
+
+      const updateIndicators = () => {
+        slides.forEach((slide, index) => slide.setAttribute('aria-current', String(index === current)));
+        dots.forEach((dot, index) => dot.setAttribute('data-active', String(index === current)));
+      };
+
+      const goTo = (index, behaviour = 'smooth') => {
+        if (!slides.length) return;
+        current = (index + slides.length) % slides.length;
+        const target = slides[current];
+        if (target) {
+          viewport.scrollTo({
+            left: target.offsetLeft,
+            behavior: behaviour,
+          });
+        }
+        updateIndicators();
+      };
+
+      const next = () => goTo(current + 1);
+      const prev = () => goTo(current - 1);
+
+      let observer = null;
+      if (supportsIO) {
+        observer = new IntersectionObserver((entries) => {
+          const viewportRect = root.getBoundingClientRect();
+          const inViewport = viewportRect.top < window.innerHeight && viewportRect.bottom > 0;
+          if (!inViewport) {
+            return;
+          }
+
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+              const index = Number(entry.target.getAttribute('data-index') || 0);
+              if (!Number.isNaN(index) && index !== current) {
+                current = index;
+                updateIndicators();
+              }
+            }
+          });
+        }, { root: viewport, threshold: [0.6] });
+        slides.forEach((slide) => observer.observe(slide));
+      }
+
+      const stopAutoplay = () => {
+        if (timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+      };
+
+      const startAutoplay = () => {
+        if (!autoplay || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          return;
+        }
+        stopAutoplay();
+        timer = setInterval(next, Math.max(interval, 2500));
+      };
+
+      prevBtn?.addEventListener('click', prev);
+      nextBtn?.addEventListener('click', next);
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const targetIndex = Number(dot.getAttribute('data-goto'));
+          if (!Number.isNaN(targetIndex)) {
+            goTo(targetIndex);
+          }
+        });
+      });
+
+      root.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight') next();
+        if (event.key === 'ArrowLeft') prev();
+      });
+
+      root.addEventListener('mouseenter', stopAutoplay);
+      root.addEventListener('mouseleave', startAutoplay);
+      root.addEventListener('focusin', stopAutoplay);
+      root.addEventListener('focusout', startAutoplay);
+
+      viewport.addEventListener('scroll', () => {
+        if (!supportsIO) {
+          const midpoint = viewport.scrollLeft + viewport.clientWidth / 2;
+          const closest = slides.reduce((closest, slide, index) => {
+            const distance = Math.abs(slide.offsetLeft + slide.clientWidth / 2 - midpoint);
+            if (distance < closest.distance) {
+              return { distance, index };
+            }
+            return closest;
+          }, { distance: Number.POSITIVE_INFINITY, index: current });
+          if (closest.index !== current) {
+            current = closest.index;
+            updateIndicators();
           }
         }
-      });
-    }
-  }, { root: viewport, threshold: [0.6] });
-  slides.forEach(s => io.observe(s));
+      }, { passive: true });
 
-  // Controls
-  prevBtn?.addEventListener('click', prev);
-  nextBtn?.addEventListener('click', next);
-  dots.forEach(d => d.addEventListener('click', () => goTo(Number(d.getAttribute('data-goto')))));
-
-  // Keyboard
-  root.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') next();
-    if (e.key === 'ArrowLeft')  prev();
-  });
-
-  // Autoplay
-  const start = () => { if (!autoplay) return; stop(); timer = setInterval(next, interval); };
-  const stop  = () => { if (timer) clearInterval(timer); };
-  root.addEventListener('mouseenter', stop);
-  root.addEventListener('mouseleave', start);
-  root.addEventListener('focusin', stop);
-  root.addEventListener('focusout', start);
-
-  // Init
-  updateAria();
-  start();
-})();
-</script>
+      updateIndicators();
+      startAutoplay();
+    });
+  })();
+  </script>
 @endpush
 @endonce
 @endif
