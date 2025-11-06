@@ -1,59 +1,76 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><img src="public/assets/branding/logo.svg" alt="D'Manduk" width="200"></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# D'Manduk — Portal Informasi Wisata Waduk Manduk
 
-## About Laravel
+D'Manduk adalah aplikasi Laravel 12 yang menyajikan informasi operasional Waduk Manduk: ringkasan SOP, agenda acara, galeri, jadwal layanan, serta integrasi pembayaran QRIS. Antarmuka public memanfaatkan komponen Blade kustom, Tailwind CSS 4, dan counter interaktif, sedangkan panel admin menyediakan pengelolaan konten dokumen SOP, galeri, berita, dan halaman panduan.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Konten default yang dibutuhkan aplikasi (dokumen SOP, data jam operasional, dll) disimpan dalam `database/seeders/SqliteContentSeeder.php`, diambil dari snapshot `database.sqlite` dan siap ditanam ulang kapan saja.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Fitur Ringkas
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Landing page dinamis**: hero carousel, quick nav dengan scroll spy, statistik beranimasi, accordion SOP, dan galeri dengan lightbox.
+- **PDF viewer**: pratinjau dokumen SOP langsung melalui iframe streaming.
+- **Panel admin**: CRUD lengkap untuk event, berita, galeri, SOP (dokumen & panduan), serta pengaturan laman beranda/QRIS/kontak.
+- **Integrasi QRIS**: menampilkan langkah, catatan, dan FAQ penggunaan pembayaran digital.
+- **Seeder snapshot**: `SqliteContentSeeder` menyusun ulang isi database sesuai dataset produksi demo.
 
-## Learning Laravel
+## Persyaratan Sistem
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- PHP 8.2+ dengan ekstensi `pdo_sqlite`, `mbstring`, `openssl`, `intl`
+- Composer 2.6+
+- Node.js 20+ & npm 10+
+- SQLite (default) atau MySQL/PostgreSQL jika ingin menyesuaikan koneksi
+- Git (opsional, untuk klon repositori)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Instalasi
 
-## Laravel Sponsors
+```bash
+# 1. Klon repositori
+git clone https://github.com/<username>/DeManduk.git
+cd DeManduk
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+# 2. Pasang dependensi PHP dan Node
+composer install
+npm install
 
-### Premium Partners
+# 3. Salin env & set kunci aplikasi
+cp .env.example .env
+php artisan key:generate
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+# 4. Siapkan database SQLite (default)
+touch database/database.sqlite
 
-## Contributing
+# 5. Migrasi & seeding snapshot konten
+php artisan migrate --force
+php artisan db:seed --class=Database\\Seeders\\SqliteContentSeeder
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# 6. Build asset frontend
+npm run build    # atau `npm run dev` untuk mode pengembangan
 
-## Code of Conduct
+# 7. Jalankan server lokal
+php artisan serve
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Untuk workflow cepat, tersedia skrip gabungan:
 
-## Security Vulnerabilities
+```bash
+composer run setup    # install + migrate + npm build sekaligus
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Skrip Pengembangan
 
-## License
+- `composer run dev` — menyalakan PHP dev server, queue listener, dan Vite secara paralel
+- `npm run dev` — Vite development server (HMR)
+- `npm run build` — bundel produksi
+- `php artisan test` — menjalankan suite pengujian
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Struktur Penting
+
+- `app/Http/Controllers` — logic untuk halaman publik dan admin (mis. `SopDocumentController`, `HomeController`)
+- `resources/views/components/public/*` — komponen Blade untuk landing page (hero, quick-nav, accordion SOP, dll)
+- `database/seeders/SqliteContentSeeder.php` — dataset lengkap yang mereplikasi `database.sqlite`
+- `storage/app/public/documents` — berkas PDF SOP (sesuaikan saat deploy)
+
+## Lisensi
+
+Proyek ini dibangun di atas Laravel dan dirilis dengan lisensi MIT. Silakan gunakan, modifikasi, dan kembangkan sesuai kebutuhan destinasi wisata Anda. Walau demikian, mohon tetap menjaga atribusi pada karya asli D'Manduk bila dibutuhkan.။
