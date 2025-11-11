@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'title' => $post->title,
     'description' => ($post->excerpt ?? \Illuminate\Support\Str::limit(strip_tags($post->body ?? ''), 160)),
-    'image' => \App\Support\Media::url($post->cover_image) ?: Vite::asset('resources/images/blog-placeholder.svg'),
+    'image' => \App\Support\Media::url($post->cover_image) ?: asset('images/blog-placeholder.svg'),
 ])
 
 @section('content')
@@ -10,7 +10,7 @@
 
         $dateLabel      = optional($post->published_at)->translatedFormat('d F Y');
         $readTimeLabel  = $post->read_time_minutes ? $post->read_time_minutes . ' menit baca' : null;
-        $coverUrl       = \App\Support\Media::url($post->cover_image) ?: Vite::asset('resources/images/blog-placeholder.svg');
+        $coverUrl       = \App\Support\Media::url($post->cover_image) ?: asset('images/blog-placeholder.svg');
 
         // Normalisasi tags (string/array/collection → array of strings)
         $tags = collect($post->tags ?? [])

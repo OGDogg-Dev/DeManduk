@@ -177,6 +177,7 @@ class HomeController extends Controller
             return [
                 'title' => $support->title,
                 'description' => $support->description,
+                'phone' => $support->phone,
             ];
         })->values()->all();
 

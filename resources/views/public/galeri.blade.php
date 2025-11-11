@@ -11,7 +11,7 @@
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       @forelse ($galleryItems as $image)
         @php
-          $src     = $image['image'] ?? Vite::asset('resources/images/gallery/gallery-6.svg');
+          $src     = $image['image'] ?? asset('images/gallery/gallery-6.svg');
           $title   = $image['title'] ?? 'Waduk Manduk';
           $caption = $image['caption'] ?? null;
         @endphp

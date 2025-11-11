@@ -11,8 +11,26 @@
     $formAction = Route::has('contact.submit') ? route('contact.submit') : url()->current();
     $todayMin   = now('Asia/Jakarta')->toDateString();
 
+    $formatWaNumber = function (?string $raw) {
+        if (! $raw) {
+            return null;
+        }
+
+        $digits = preg_replace('/\D+/', '', $raw);
+
+        if ($digits === '') {
+            return null;
+        }
+
+        if (str_starts_with($digits, '0')) {
+            $digits = '62' . ltrim($digits, '0');
+        }
+
+        return $digits;
+    };
+
     // Link WhatsApp cepat (prefill)
-    $waNumber  = isset($phone) ? preg_replace('/\D+/', '', $phone) : null; // pastikan angka saja
+    $waNumber  = $formatWaNumber($phone ?? null); // pastikan format internasional tanpa +
 @endphp
 
     <x-section class="pb-16">
@@ -266,13 +284,18 @@
                                         <div class="text-sm text-[var(--color-muted)] mt-1">{{ $support->description }}</div>
                                         
                                         @if ($support->phone)
+                                            @php($supportWa = $formatWaNumber($support->phone))
                                             <div class="mt-2 flex items-center gap-2">
                                                 <svg class="w-4 h-4 text-[var(--color-primary)] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                                                 </svg>
-                                                <a href="tel:{{ $support->phone }}" class="text-[var(--color-primary)] hover:underline text-sm">
-                                                    {{ $support->phone }}
-                                                </a>
+                                                @if ($supportWa)
+                                                    <a href="https://wa.me/{{ $supportWa }}" class="text-[var(--color-primary)] hover:underline text-sm" target="_blank" rel="noopener noreferrer">
+                                                        {{ $support->phone }}
+                                                    </a>
+                                                @else
+                                                    <span class="text-sm text-[var(--color-muted)]">{{ $support->phone }}</span>
+                                                @endif
                                             </div>
                                         @endif
                                     </div>

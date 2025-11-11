@@ -12,7 +12,7 @@
   // Normalisasi recent posts: dukung {slug|href,title,image,date}
   $posts = collect($recentPosts)->map(function ($p) {
       $title = $p['title'] ?? 'Judul artikel';
-      $img   = $p['image'] ?? Vite::asset('resources/images/blog-placeholder.svg');
+      $img   = $p['image'] ?? asset('images/blog-placeholder.svg');
       $date  = $p['date'] ?? null;
       $href  = isset($p['slug']) ? route('news.show', $p['slug']) : ($p['href'] ?? '#');
       return compact('title','img','date','href');

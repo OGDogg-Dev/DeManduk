@@ -12,7 +12,7 @@
 
       <div class="flex gap-0" data-slides>
         @foreach ($slides as $i => $slide)
-          @php($image = $slide['image'] ?? Vite::asset('resources/images/gallery/1.JPG'))
+          @php($image = $slide['image'] ?? asset('images/gallery/1.JPG'))
           <article
             class="relative flex w-full min-w-full snap-center flex-col justify-end md:min-h-[28rem] lg:min-h-[34rem] xl:min-h-[40rem]"
             data-slide data-index="{{ $i }}" aria-roledescription="slide"

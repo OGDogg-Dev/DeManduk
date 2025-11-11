@@ -88,6 +88,10 @@
                         >
                             Masuk ke Dashboard
                         </button>
+
+                        <p class="text-center text-sm text-slate-500">
+                            Belum punya akun? <a href="{{ route('register') }}" class="font-semibold text-blue-600 hover:text-blue-700">Daftar kontributor</a>
+                        </p>
                     </form>
                 </div>
             </div>

@@ -7,6 +7,12 @@
             $aboutList = [];
         }
         $aboutText = old('about_paragraphs', collect($aboutList)->implode("\n"));
+        $seoPreviewTitle = old('seo_meta_title', $seoMetaTitle ?? 'Waduk - JDIH Kemenko Maritim & Investasi');
+        $seoPreviewDescription = old('seo_meta_description', $seoMetaDescription ?? 'Waduk adalah wadah buatan yang terbentuk sebagai akibat dibangunnya bendungan. Referensi resmi: Peraturan Presiden Nomor 64 Tahun 2022.');
+        $seoPreviewReferenceLabel = old('seo_reference_label', $seoReferenceLabel ?? 'Kemenko Bidang Kemaritiman dan Investasi');
+        $seoPreviewReferenceUrl = old('seo_reference_url', $seoReferenceUrl ?? 'https://jdih.maritim.go.id/waduk');
+        $seoPreviewReferenceSnippet = old('seo_reference_snippet', $seoReferenceSnippet ?? 'Waduk. Waduk adalah wadah buatan yang terbentuk sebagai akibat dibangunnya bendungan. Referensi. Peraturan Presiden Nomor 64 Tahun 2022 ...');
+        $seoPreviewHost = $seoPreviewReferenceUrl ? parse_url($seoPreviewReferenceUrl, PHP_URL_HOST) : null;
     @endphp
 
     <h1 class="text-2xl font-semibold text-slate-900">Pengaturan Konten Beranda</h1>
@@ -48,6 +54,22 @@
                             </div>
                         @endif
                     </div>
+                    <div class="space-y-2">
+                        <label class="mb-1 block text-sm font-semibold text-slate-700">Ikon Situs (Favicon)</label>
+                        <input type="file" name="site_favicon" accept="image/*" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200">
+                        @error('site_favicon')
+                            <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+                        @enderror
+                        <p class="text-xs text-slate-500">Gunakan gambar kotak (mis. 64×64 PNG) agar ikon tampil tajam.</p>
+                        @if ($faviconPath)
+                            <div class="flex items-center gap-3">
+                                <img src="{{ \App\Support\Media::url($faviconPath) }}" alt="Favicon" class="h-10 w-10 rounded border border-slate-200 object-cover">
+                                <label class="inline-flex items-center gap-2 text-xs text-rose-600">
+                                    <input type="checkbox" name="remove_favicon" value="1" {{ old('remove_favicon') ? 'checked' : '' }}> Hapus favicon
+                                </label>
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </section>
 
@@ -77,6 +99,97 @@
                                 </label>
                             </div>
                         @endif
+                    </div>
+                </div>
+            </section>
+
+            <section class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-lg font-semibold text-slate-900">Metadata SEO & Referensi</h2>
+                    <span class="text-xs font-medium uppercase tracking-[0.25em] text-slate-400">Google snippet preview</span>
+                </div>
+
+                <div class="grid gap-4 md:grid-cols-2">
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-slate-700">Judul SEO (Meta Title)</label>
+                        <input
+                            type="text"
+                            name="seo_meta_title"
+                            value="{{ $seoPreviewTitle }}"
+                            class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                            placeholder="Waduk - JDIH Kemenko Maritim & Investasi"
+                        >
+                        @error('seo_meta_title')
+                            <p class="text-xs text-rose-600">{{ $message }}</p>
+                        @enderror
+                        <p class="text-xs text-slate-500">Gunakan maksimal ±60 karakter agar tidak terpotong.</p>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-slate-700">Deskripsi SEO (Meta Description)</label>
+                        <textarea
+                            name="seo_meta_description"
+                            rows="3"
+                            class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                            placeholder="Waduk adalah wadah buatan..."
+                        >{{ $seoPreviewDescription }}</textarea>
+                        @error('seo_meta_description')
+                            <p class="text-xs text-rose-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="grid gap-4 md:grid-cols-2">
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-slate-700">Label Referensi</label>
+                        <input
+                            type="text"
+                            name="seo_reference_label"
+                            value="{{ $seoPreviewReferenceLabel }}"
+                            class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                            placeholder="Kemenko Bidang Kemaritiman dan Investasi"
+                        >
+                        @error('seo_reference_label')
+                            <p class="text-xs text-rose-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-slate-700">URL Referensi</label>
+                        <input
+                            type="url"
+                            name="seo_reference_url"
+                            value="{{ $seoPreviewReferenceUrl }}"
+                            class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                            placeholder="https://jdih.maritim.go.id/waduk"
+                        >
+                        @error('seo_reference_url')
+                            <p class="text-xs text-rose-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-semibold text-slate-700">Kutipan Referensi</label>
+                    <textarea
+                        name="seo_reference_snippet"
+                        rows="3"
+                        class="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                        placeholder="Waduk. Waduk adalah wadah buatan..."
+                    >{{ $seoPreviewReferenceSnippet }}</textarea>
+                    @error('seo_reference_snippet')
+                        <p class="text-xs text-rose-600">{{ $message }}</p>
+                    @enderror
+                    <p class="text-xs text-slate-500">Tampilkan dasar hukum atau ringkasan resmi yang ingin ditonjolkan.</p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4 shadow-inner">
+                    <p class="text-xs uppercase tracking-[0.3em] text-slate-400">Preview</p>
+                    <div class="mt-2 space-y-1">
+                        <div class="text-xs text-slate-500">{{ $seoPreviewHost ?? 'jdih.maritim.go.id' }}</div>
+                        <div class="text-lg font-semibold text-blue-700">{{ $seoPreviewTitle }}</div>
+                        <div class="text-sm text-slate-600">
+                            <span class="font-semibold">{{ $seoPreviewReferenceLabel }}</span> —
+                            {{ $seoPreviewReferenceSnippet }}
+                        </div>
                     </div>
                 </div>
             </section>

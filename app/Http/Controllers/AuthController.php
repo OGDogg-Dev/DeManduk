@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,15 @@ class AuthController extends Controller
         }
 
         return view('auth.login');
+    }
+
+    public function showRegisterForm(Request $request): View|RedirectResponse
+    {
+        if (Auth::check()) {
+            return redirect()->intended(route('admin.dashboard'));
+        }
+
+        return view('auth.register');
     }
 
     public function login(Request $request): RedirectResponse
@@ -48,5 +58,30 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('login');
+    }
+
+    public function register(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $user = new User();
+        $user->fill([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => $data['password'],
+            'role' => User::ROLE_CONTRIBUTOR,
+            'requires_approval' => false,
+        ]);
+        $user->email_verified_at = now();
+        $user->save();
+
+        Auth::login($user);
+
+        return redirect()->route('admin.dashboard')
+            ->with('status', 'Registrasi berhasil. Selamat bergabung sebagai kontributor!');
     }
 }

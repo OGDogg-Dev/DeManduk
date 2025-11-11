@@ -23,7 +23,7 @@ class QrisPageSeeder extends Seeder
             'qris.primary_alert_body',
             'Selalu pastikan logo Waduk Manduk dan tulisan "Badan Pengelola Waduk Manduk" tertera pada poster maupun stiker QRIS. Jika menemukan QR mencurigakan, laporkan ke petugas loket.'
         );
-        SiteSetting::setValue('qris.poster_path', 'resources/images/qris/waduk-manduk-qris.svg');
+        SiteSetting::setValue('qris.poster_path', 'images/qris/waduk-manduk-qris.svg');
         SiteSetting::setValue('qris.poster_formats', 'SVG (placeholder - PNG dan PDF segera tersedia)');
         SiteSetting::setValue('qris.bottom_alert_variant', 'warning');
         SiteSetting::setValue('qris.bottom_alert_title', 'Disclaimer penting');

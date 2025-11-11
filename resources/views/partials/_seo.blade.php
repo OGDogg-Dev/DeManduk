@@ -4,27 +4,33 @@
 
     // ====== Brand / situs (aman tanpa $post) ======
     $siteName   = isset($siteTitle) && is_string($siteTitle) && $siteTitle !== '' ? $siteTitle : "D'Manduk";
-    $baseTitle  = 'Portal Resmi ' . $siteName;
+    $defaultMetaTitle = isset($siteMetaTitle) && is_string($siteMetaTitle) && $siteMetaTitle !== ''
+        ? $siteMetaTitle
+        : 'Portal Resmi ' . $siteName;
 
     // ====== Judul ======
-    $titleValue = (isset($title) && is_string($title) && $title !== '') ? $title : $baseTitle;
+    $titleValue = (isset($title) && is_string($title) && $title !== '') ? $title : $defaultMetaTitle;
 
     // Stringable->append agar tidak error ketemu null, hindari $post sama sekali
     $seoTitle = (string) Str::of($titleValue)->when(
-        filled($titleValue) && ! Str::contains($titleValue, $siteName),
-        fn (Stringable $s) => $s->append(' | ' . $baseTitle)
+        filled($title) && ! Str::contains($titleValue, $siteName),
+        fn (Stringable $s) => $s->append(' | ' . $siteName)
     );
 
     // ====== Deskripsi ======
+    $defaultMetaDescription = isset($siteMetaDescription) && is_string($siteMetaDescription) && $siteMetaDescription !== ''
+        ? $siteMetaDescription
+        : "Temukan informasi lengkap D'Manduk: fasilitas, harga tiket, agenda event, berita terbaru, SOP, dan kontak resmi.";
+
     $seoDescription = (isset($description) && is_string($description) && $description !== '')
         ? $description
-        : "Temukan informasi lengkap D'Manduk: fasilitas, harga tiket, agenda event, berita terbaru, SOP, dan kontak resmi.";
+        : $defaultMetaDescription;
 
     // ====== Gambar (URL absolut) ======
     // Tidak menyentuh $post sama sekali
     $rawImage = (isset($image) && is_string($image) && $image !== '')
         ? $image
-        : 'resources/images/seo-cover.svg';
+        : 'images/seo-cover.svg';
 
     $seoImage = Str::startsWith($rawImage, ['http://', 'https://'])
         ? $rawImage

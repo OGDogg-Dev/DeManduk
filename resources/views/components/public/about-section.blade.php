@@ -7,7 +7,7 @@
     'ctaUrl'     => route('home') . '#about',
 ])
 
-@php($imageUrl = $image ?? Vite::asset('resources/images/gallery/gallery-6.svg'))
+@php($imageUrl = $image ?? asset('images/gallery/gallery-6.svg'))
 
 <x-section id="about" :title="$title" :subtitle="$subtitle">
   <div class="grid gap-10 lg:grid-cols-2 lg:items-center">

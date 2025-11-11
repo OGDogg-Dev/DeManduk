@@ -2,7 +2,7 @@
     'title',
     'excerpt'   => null,
     'href'      => '#',
-    'image'     => Vite::asset('resources/images/blog-placeholder.svg'),
+    'image'     => asset('images/blog-placeholder.svg'),
     'date'      => null,
     'readTime'  => null,
     'author'    => null,
@@ -11,7 +11,7 @@
 ])
 
 @php
-    $img = $image ?: Vite::asset('resources/images/blog-placeholder.svg');
+    $img = $image ?: asset('images/blog-placeholder.svg');
     $titleId = 'post-'.\Illuminate\Support\Str::slug($title ?? 'artikel').'-'.substr(md5(($href ?? '').($title ?? '')), 0, 6);
 @endphp
 

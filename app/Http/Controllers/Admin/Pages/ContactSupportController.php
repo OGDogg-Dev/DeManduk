@@ -64,8 +64,11 @@ class ContactSupportController extends Controller
         $data = $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
+            'phone' => ['nullable', 'string', 'max:100'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
         ]);
+
+        $data['phone'] = $this->normalizePhone($data['phone'] ?? null);
 
         if (! isset($data['sort_order']) || $data['sort_order'] === null) {
             $data['sort_order'] = 0;
@@ -73,5 +76,15 @@ class ContactSupportController extends Controller
 
         return $data;
     }
-}
 
+    private function normalizePhone(?string $phone): ?string
+    {
+        if ($phone === null) {
+            return null;
+        }
+
+        $clean = trim(preg_replace('/\s+/', ' ', $phone));
+
+        return $clean === '' ? null : $clean;
+    }
+}

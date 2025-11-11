@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\Home\StatController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\Pages\ContactAlertController;
 use App\Http\Controllers\Admin\Pages\ContactSettingsController;
 use App\Http\Controllers\Admin\Pages\ContactSupportController;
@@ -63,6 +64,8 @@ Route::redirect('/sop', '/');
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.perform');
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'register'])->name('register.perform');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
@@ -72,10 +75,13 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::view('/styleguide', 'admin.styleguide')->name('styleguide');
     Route::resource('gallery', AdminGalleryController::class)
         ->parameters(['gallery' => 'galleryItem'])
-        ->except('show');
-    Route::resource('news', AdminNewsController::class)->except('show');
+        ->except('show')
+        ->middleware('capability:gallery');
+    Route::resource('news', AdminNewsController::class)
+        ->except('show')
+        ->middleware('capability:news');
 
-    Route::prefix('pages')->name('pages.')->group(function () {
+    Route::prefix('pages')->name('pages.')->middleware('admin')->group(function () {
         Route::prefix('contact')->name('contact.')->group(function () {
             Route::get('/', [ContactSettingsController::class, 'edit'])->name('settings.edit');
             Route::put('/', [ContactSettingsController::class, 'update'])->name('settings.update');
@@ -129,6 +135,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('home')->name('home.')->group(function () {
         Route::get('/', [OverviewController::class, 'index'])->name('index');
+    });
+
+    Route::prefix('home')->name('home.')->middleware('admin')->group(function () {
         Route::get('/settings', [SettingController::class, 'edit'])->name('settings.edit');
         Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
 
@@ -142,5 +151,11 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::resource('guides', GuideController::class)->except('show');
     });
 
-    Route::resource('events', AdminEventController::class)->except('show');
+    Route::resource('events', AdminEventController::class)
+        ->except('show')
+        ->middleware('capability:events');
+
+    Route::middleware('admin')->group(function () {
+        Route::resource('users', AdminUserController::class)->except('show');
+    });
 });

@@ -37,6 +37,11 @@
         ],
     ];
 
+    $referenceLabel = $siteReferenceLabel ?? null;
+    $referenceUrl = $siteReferenceUrl ?? null;
+    $referenceSnippet = $siteReferenceSnippet ?? null;
+    $referenceHost = $referenceUrl ? parse_url($referenceUrl, PHP_URL_HOST) : null;
+
     $footerSections = [
         ['#about',       'Tentang'],
         ['#project',     'Agenda'],
@@ -117,7 +122,7 @@
           <li class="text-[var(--color-ink)]">
             <span class="font-semibold">Telepon:</span>
             @if ($contactPhone)
-              <a href="tel:{{ $contactPhone }}" class="text-[var(--color-primary)] hover:underline">{{ $contactPhone }}</a>
+              <a href="https://wa.me/{{ $contactPhone }}" class="text-[var(--color-primary)] hover:underline">{{ $contactPhone }}</a>
             @else
               <span class="text-[var(--color-muted)]">Nomor telepon belum tersedia.</span>
             @endif
@@ -142,7 +147,7 @@
               <div class="font-medium">{{ $support->title }}</div>
               @if ($support->phone)
                 <div class="text-[var(--color-primary)] text-xs mt-1">
-                  <a href="tel:{{ $support->phone }}" class="hover:underline">{{ $support->phone }}</a>
+                  <a href="https://wa.me/{{ $support->phone }}" class="hover:underline">{{ $support->phone }}</a>
                 </div>
               @endif
               @if ($support->description)

@@ -19,12 +19,17 @@ class SettingController extends Controller
         return view('admin.home.settings.edit', [
             'siteTitle' => SiteSetting::getValue('site.title', "D'Manduk"),
             'logoPath' => SiteSetting::getValue('site.logo_path'),
+            'faviconPath' => SiteSetting::getValue('site.favicon_path'),
             'aboutParagraphs' => SiteSetting::getValue('home.about_paragraphs', '[]'),
             'aboutImagePath' => SiteSetting::getValue('home.about_image'),
             'mapEmbedUrl' => SiteSetting::getValue('home.map_embed_url'),
             'mapLinkLabel' => SiteSetting::getValue('home.map_link_label'),
             'mapDirectionsUrl' => SiteSetting::getValue('home.map_directions_url'),
-
+            'seoMetaTitle' => SiteSetting::getValue('seo.meta_title', 'Waduk - JDIH Kemenko Maritim & Investasi'),
+            'seoMetaDescription' => SiteSetting::getValue('seo.meta_description', 'Waduk adalah wadah buatan yang terbentuk sebagai akibat dibangunnya bendungan. Referensi resmi: Peraturan Presiden Nomor 64 Tahun 2022.'),
+            'seoReferenceLabel' => SiteSetting::getValue('seo.reference_label', 'Kemenko Bidang Kemaritiman dan Investasi'),
+            'seoReferenceUrl' => SiteSetting::getValue('seo.reference_url', 'https://jdih.maritim.go.id/waduk'),
+            'seoReferenceSnippet' => SiteSetting::getValue('seo.reference_snippet', 'Waduk. Waduk adalah wadah buatan yang terbentuk sebagai akibat dibangunnya bendungan. Referensi. Peraturan Presiden Nomor 64 Tahun 2022 ...'),
         ]);
     }
 
@@ -34,13 +39,19 @@ class SettingController extends Controller
             'site_title' => ['required', 'string', 'max:255'],
             'site_logo' => ['nullable', 'image', 'max:4096'],
             'remove_logo' => ['nullable', 'boolean'],
+            'site_favicon' => ['nullable', 'image', 'max:2048'],
+            'remove_favicon' => ['nullable', 'boolean'],
             'about_paragraphs' => ['nullable', 'string'],
             'about_image' => ['nullable', 'image', 'max:4096'],
             'remove_about_image' => ['nullable', 'boolean'],
             'map_embed_url' => ['nullable', 'string', 'max:2048'],
             'map_link_label' => ['nullable', 'string', 'max:255'],
             'map_directions_url' => ['nullable', 'string', 'max:2048'],
-
+            'seo_meta_title' => ['nullable', 'string', 'max:255'],
+            'seo_meta_description' => ['nullable', 'string', 'max:500'],
+            'seo_reference_label' => ['nullable', 'string', 'max:255'],
+            'seo_reference_url' => ['nullable', 'string', 'max:2048'],
+            'seo_reference_snippet' => ['nullable', 'string', 'max:500'],
         ]);
 
         SiteSetting::setValue('site.title', $data['site_title']);
@@ -54,6 +65,18 @@ class SettingController extends Controller
         if ($request->hasFile('site_logo')) {
             $logoPath = $this->storeUploadedFile($request, 'site_logo', 'site', $currentLogo);
             SiteSetting::setValue('site.logo_path', $logoPath);
+        }
+
+        $currentFavicon = SiteSetting::getValue('site.favicon_path');
+        if (! empty($data['remove_favicon'])) {
+            $this->deleteStoredFile($currentFavicon);
+            SiteSetting::setValue('site.favicon_path', null);
+            $currentFavicon = null;
+        }
+
+        if ($request->hasFile('site_favicon')) {
+            $faviconPath = $this->storeUploadedFile($request, 'site_favicon', 'site', $currentFavicon);
+            SiteSetting::setValue('site.favicon_path', $faviconPath);
         }
 
         $paragraphs = Collection::make(preg_split("/\r?\n/", $data['about_paragraphs'] ?? ''))
@@ -81,8 +104,11 @@ class SettingController extends Controller
         SiteSetting::setValue('home.map_embed_url', $data['map_embed_url'] ?? null);
         SiteSetting::setValue('home.map_link_label', $data['map_link_label'] ?? null);
         SiteSetting::setValue('home.map_directions_url', $data['map_directions_url'] ?? null);
-
-
+        SiteSetting::setValue('seo.meta_title', $data['seo_meta_title'] ?? null);
+        SiteSetting::setValue('seo.meta_description', $data['seo_meta_description'] ?? null);
+        SiteSetting::setValue('seo.reference_label', $data['seo_reference_label'] ?? null);
+        SiteSetting::setValue('seo.reference_url', $data['seo_reference_url'] ?? null);
+        SiteSetting::setValue('seo.reference_snippet', $data['seo_reference_snippet'] ?? null);
 
         return redirect()->route('admin.home.settings.edit')
             ->with('status', 'Pengaturan beranda berhasil diperbarui.');

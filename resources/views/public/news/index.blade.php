@@ -37,7 +37,7 @@
                 $arr = [
                     'title' => data_get($p, 'title', 'Artikel'),
                     'image' => \App\Support\Media::url(data_get($p, 'cover_image'))
-                               ?: Vite::asset('resources/images/blog-placeholder.svg'),
+                               ?: asset('images/blog-placeholder.svg'),
                     'date'  => optional(data_get($p, 'published_at'))?->translatedFormat('d F Y')
                                ?: data_get($p, 'published_at'),
                     'href'  => $makeShowUrl($p),
@@ -67,7 +67,7 @@
                         $title         = data_get($post, 'title', 'Artikel');
                         $excerpt       = data_get($post, 'excerpt');
                         $cover         = \App\Support\Media::url(data_get($post, 'cover_image'))
-                                           ?: Vite::asset('resources/images/blog-placeholder.svg');
+                                           ?: asset('images/blog-placeholder.svg');
 
                         $published     = data_get($post, 'published_at');
                         $dateLabel     = $published instanceof \Carbon\Carbon

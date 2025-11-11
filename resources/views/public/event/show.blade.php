@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'title'       => $event->title,
     'description' => $event->excerpt ?? \Illuminate\Support\Str::limit(strip_tags($event->body ?? ''), 160),
-    'image'       => \App\Support\Media::url($event->cover_image) ?: Vite::asset('resources/images/blog-placeholder.svg'),
+    'image'       => \App\Support\Media::url($event->cover_image) ?: asset('images/blog-placeholder.svg'),
 ])
 
 @section('content')
@@ -15,7 +15,7 @@
     $timeLabel = $start && $end ? "{$start} - {$end} WIB" : ($start ? "{$start} WIB" : null);
 
     // Fallback cover
-    $coverUrl  = \App\Support\Media::url($event->cover_image) ?: Vite::asset('resources/images/blog-placeholder.svg');
+    $coverUrl  = \App\Support\Media::url($event->cover_image) ?: asset('images/blog-placeholder.svg');
 
     // ISO untuk SEO/kalender (+07:00 Asia/Jakarta)
     $dateISO   = optional($event->event_date)->toDateString();

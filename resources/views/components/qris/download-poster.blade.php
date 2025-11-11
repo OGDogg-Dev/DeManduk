@@ -1,5 +1,5 @@
 @props([
-    'image' => Vite::asset('resources/images/qris/waduk-manduk-qris.svg'),
+    'image' => asset('images/qris/waduk-manduk-qris.svg'),
     'download' => '#',
     'format' => 'PNG',
     'formats' => 'PNG & PDF',

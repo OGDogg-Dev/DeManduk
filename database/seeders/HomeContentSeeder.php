@@ -34,7 +34,7 @@ class HomeContentSeeder extends Seeder
             'Waduk Manduk dikenal sebagai destinasi wisata air yang bersih dan ramah keluarga. Pengunjung dapat menikmati panorama senja, berperahu santai, hingga mengikuti agenda komunitas yang rutin digelar di amphitheater.',
             'Berbagai wahana edukasi dan kuliner hadir menemani, mulai dari studio kreatif, area playground, hingga sentra UMKM dengan sertifikasi halal. Semua diatur rapi sehingga mudah diakses oleh semua kalangan.',
         ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
-        SiteSetting::setValue('home.about_image', 'resources/images/gallery/gallery-6.svg');
+        SiteSetting::setValue('home.about_image', 'images/gallery/gallery-6.svg');
         SiteSetting::setValue('home.map_embed_url', 'https://maps.google.com/maps?q=Waduk%20Manduk&t=&z=15&ie=UTF8&iwloc=&output=embed');
         SiteSetting::setValue('home.map_link_label', 'Buka di Google Maps');
         SiteSetting::setValue('home.map_directions_url', 'https://maps.app.goo.gl/ktGvAEF1vqdjDKXQ7');
@@ -57,7 +57,7 @@ class HomeContentSeeder extends Seeder
                 'eyebrow' => 'Discover the Colorful World',
                 'title' => 'New Adventure',
                 'description' => 'Expedisi seru mengelilingi waduk dengan perahu wisata, lengkap dengan panorama sunrise dan udara sejuk.',
-                'image_path' => 'resources/images/gallery/1.JPG',
+                'image_path' => 'images/gallery/1.JPG',
                 'cta_label' => 'Jelajahi Sekarang',
                 'cta_url' => 'https://maps.app.goo.gl/ktGvAEF1vqdjDKXQ7',
             ],
@@ -65,7 +65,7 @@ class HomeContentSeeder extends Seeder
                 'eyebrow' => 'Discover the Colorful World',
                 'title' => 'New Trip',
                 'description' => 'Rencanakan perjalanan keluarga dengan fasilitas lengkap: kuliner, wahana air, dan ruang bermain anak.',
-                'image_path' => 'resources/images/gallery/3.JPG',
+                'image_path' => 'images/gallery/3.JPG',
                 'cta_label' => 'Rencanakan Rute',
                 'cta_url' => '/peta',
             ],
@@ -73,7 +73,7 @@ class HomeContentSeeder extends Seeder
                 'eyebrow' => 'Discover the Colorful World',
                 'title' => 'New Experience',
                 'description' => 'Nikmati pengalaman malam dengan lampion night market, live music, dan kuliner khas Manduk.',
-                'image_path' => 'resources/images/gallery/6.JPG',
+                'image_path' => 'images/gallery/6.JPG',
                 'cta_label' => 'Lihat Agenda',
                 'cta_url' => '/event',
             ],
@@ -84,9 +84,9 @@ class HomeContentSeeder extends Seeder
         }
 
         $projects = [
-            ['title' => 'Festival Kuliner Manduk', 'description' => 'Eksplorasi rasa kuliner lokal di tepi waduk dengan live cooking.', 'image_path' => 'resources/images/gallery/gallery-2.svg'],
-            ['title' => 'Manduk Fun Paddle', 'description' => 'Komunitas olahraga air bersatu menjaga kebersihan waduk.', 'image_path' => 'resources/images/gallery/gallery-4.svg'],
-            ['title' => 'Lampion Night Market', 'description' => 'Suasana malam yang magis ditemani musik akustik dan bazar UMKM.', 'image_path' => 'resources/images/gallery/gallery-3.svg'],
+            ['title' => 'Festival Kuliner Manduk', 'description' => 'Eksplorasi rasa kuliner lokal di tepi waduk dengan live cooking.', 'image_path' => 'images/gallery/gallery-2.svg'],
+            ['title' => 'Manduk Fun Paddle', 'description' => 'Komunitas olahraga air bersatu menjaga kebersihan waduk.', 'image_path' => 'images/gallery/gallery-4.svg'],
+            ['title' => 'Lampion Night Market', 'description' => 'Suasana malam yang magis ditemani musik akustik dan bazar UMKM.', 'image_path' => 'images/gallery/gallery-3.svg'],
         ];
 
         foreach ($projects as $index => $project) {

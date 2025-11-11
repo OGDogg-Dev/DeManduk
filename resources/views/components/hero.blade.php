@@ -4,7 +4,7 @@
     'eyebrow'      => 'Destinasi Wisata Unggulan',
     'ctaPrimary'   => null,   // ['href' => '#', 'label' => 'Kunjungi Sekarang']
     'ctaSecondary' => null,   // ['href' => '#', 'label' => 'Pelajari Lebih Lanjut']
-    'image'        => Vite::asset('resources/images/hero-illustration.svg'),
+    'image'        => asset('images/hero-illustration.svg'),
     'stats'        => [],     // [['label'=>'Pengunjung/bln','value'=>'5.962'], ...]
 ])
 

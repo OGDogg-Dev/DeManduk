@@ -71,101 +71,143 @@ class SqliteContentSeeder extends Seeder
             ],
             [
                 'id' => 3,
+                'key' => 'site.favicon_path',
+                'value' => null,
+                'created_at' => '2025-11-04 16:29:24',
+                'updated_at' => '2025-11-04 16:29:24'
+            ],
+            [
+                'id' => 4,
                 'key' => 'home.about_paragraphs',
                 'value' => '["Waduk Manduk adalah bagian dari rencana pengembangan","Waduk Gondang di Kabupaten Karanganyar, Jawa Tengah, yang bertujuan memperluas genangan air waduk tersebut. Waduk ini dikelola sebagai objek wisata dengan pengembangan yang memanfaatkan teknologi digital, serta melibatkan Badan Usaha Milik Desa (BUMDes) dan Komunitas Peduli Waduk (KPW) untuk menata pengelolaan wisata dan memperkuat kapasitas masyarakat lokal"]',
                 'created_at' => '2025-11-04 16:29:24',
                 'updated_at' => '2025-11-05 10:41:47'
             ],
             [
-                'id' => 4,
+                'id' => 5,
                 'key' => 'home.about_image',
                 'value' => 'home/about/P3TcaJkTAKM73QQ5fNfomj2pNNfv1bEGv79K4gzK.jpg',
                 'created_at' => '2025-11-04 16:29:24',
                 'updated_at' => '2025-11-05 10:41:47'
             ],
             [
-                'id' => 5,
+                'id' => 6,
                 'key' => 'home.map_embed_url',
                 'value' => 'https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3064.1120274156183!2d111.07821437500283!3d-7.572589692441629!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwMzQnMjEuMyJTIDExMcKwMDQnNTAuOCJF!5e1!3m2!1sen!2sid!4v1762339264892!5m2!1sen!2sid',
                 'created_at' => '2025-11-04 16:29:24',
                 'updated_at' => '2025-11-05 10:41:47'
             ],
             [
-                'id' => 6,
+                'id' => 7,
                 'key' => 'home.map_link_label',
                 'value' => 'Buka di Google Maps',
                 'created_at' => '2025-11-04 16:29:24',
                 'updated_at' => '2025-11-04 16:29:24'
             ],
             [
-                'id' => 7,
+                'id' => 8,
                 'key' => 'home.map_directions_url',
                 'value' => 'https://maps.app.goo.gl/6ArzHxFbjvQGsNAX7',
                 'created_at' => '2025-11-04 16:29:24',
                 'updated_at' => '2025-11-05 10:41:47'
             ],
             [
-                'id' => 8,
+                'id' => 9,
                 'key' => 'home.supporting_institutions',
                 'value' => '[{"title":"Puskesmas","description":"Layanan kesehatan dasar dan penanganan medis cepat.","phone":"+62 812-3456-7890"},{"title":"Polsek","description":"Koordinasi keamanan dan penanganan laporan kehilangan.","phone":"+62 812-3456-7891"},{"title":"BUMDes","description":"Pengelolaan operasional wisata dan kemitraan UMKM.","phone":"+62 812-3456-7892"},{"title":"KPW (Komunitas Peduli Waduk)","description":"Relawan kebersihan dan edukasi lingkungan.","phone":"+62 812-3456-7893"},{"title":"Pos Keamanan Wisata","description":"Pusat informasi, patroli area, dan respon darurat.","phone":"+62 812-3456-7894"}]',
                 'created_at' => '2025-11-04 16:29:24',
                 'updated_at' => '2025-11-04 16:29:24'
             ],
             [
-                'id' => 9,
+                'id' => 10,
                 'key' => 'social.facebook',
                 'value' => 'https://facebook.com/wadukmanduk',
                 'created_at' => '2025-11-04 16:29:24',
                 'updated_at' => '2025-11-04 16:29:24'
             ],
             [
-                'id' => 10,
+                'id' => 11,
                 'key' => 'social.instagram',
                 'value' => 'https://instagram.com/wadukmanduk',
                 'created_at' => '2025-11-04 16:29:24',
                 'updated_at' => '2025-11-04 16:29:24'
             ],
             [
-                'id' => 11,
+                'id' => 12,
                 'key' => 'social.twitter',
                 'value' => 'https://twitter.com/wadukmanduk',
                 'created_at' => '2025-11-04 16:29:24',
                 'updated_at' => '2025-11-04 16:29:24'
             ],
             [
-                'id' => 12,
+                'id' => 13,
                 'key' => 'social.youtube',
                 'value' => 'https://youtube.com/wadukmanduk',
                 'created_at' => '2025-11-04 16:29:24',
                 'updated_at' => '2025-11-04 16:29:24'
             ],
             [
-                'id' => 13,
+                'id' => 14,
                 'key' => 'contact.subtitle',
                 'value' => 'Sampaikan pertanyaan, saran, atau kebutuhan kerja sama Anda. Tim kami akan merespons maksimal dalam dua hari kerja.',
                 'created_at' => '2025-11-04 16:34:27',
                 'updated_at' => '2025-11-04 16:34:27'
             ],
             [
-                'id' => 14,
+                'id' => 15,
                 'key' => 'contact.address',
                 'value' => 'Dusun Manduk RT. 4 / RW. 5, Desa Jatirejo, Ngargoyoso, Karanganyar.',
                 'created_at' => '2025-11-04 16:34:27',
                 'updated_at' => '2025-11-04 16:34:27'
             ],
             [
-                'id' => 15,
+                'id' => 16,
                 'key' => 'contact.phone',
                 'value' => '+62 312 999 999',
                 'created_at' => '2025-11-04 16:34:27',
                 'updated_at' => '2025-11-04 16:34:27'
             ],
             [
-                'id' => 16,
+                'id' => 17,
                 'key' => 'contact.email',
                 'value' => 'halo@dmanduk.id',
                 'created_at' => '2025-11-04 16:34:27',
                 'updated_at' => '2025-11-04 19:43:02'
+            ],
+            [
+                'id' => 18,
+                'key' => 'seo.meta_title',
+                'value' => 'Waduk - JDIH Kemenko Maritim & Investasi',
+                'created_at' => '2025-11-04 16:34:27',
+                'updated_at' => '2025-11-04 16:34:27'
+            ],
+            [
+                'id' => 19,
+                'key' => 'seo.meta_description',
+                'value' => 'Waduk adalah wadah buatan yang terbentuk sebagai akibat dibangunnya bendungan. Referensi resmi: Peraturan Presiden Nomor 64 Tahun 2022.',
+                'created_at' => '2025-11-04 16:34:27',
+                'updated_at' => '2025-11-04 16:34:27'
+            ],
+            [
+                'id' => 20,
+                'key' => 'seo.reference_label',
+                'value' => 'Kemenko Bidang Kemaritiman dan Investasi',
+                'created_at' => '2025-11-04 16:34:27',
+                'updated_at' => '2025-11-04 16:34:27'
+            ],
+            [
+                'id' => 21,
+                'key' => 'seo.reference_url',
+                'value' => 'https://jdih.maritim.go.id/waduk',
+                'created_at' => '2025-11-04 16:34:27',
+                'updated_at' => '2025-11-04 16:34:27'
+            ],
+            [
+                'id' => 22,
+                'key' => 'seo.reference_snippet',
+                'value' => 'Waduk. Waduk adalah wadah buatan yang terbentuk sebagai akibat dibangunnya bendungan. Referensi. Peraturan Presiden Nomor 64 Tahun 2022 ...',
+                'created_at' => '2025-11-04 16:34:27',
+                'updated_at' => '2025-11-04 16:34:27'
             ],
         ],
         'home_slides' => [
@@ -174,7 +216,7 @@ class SqliteContentSeeder extends Seeder
                 'eyebrow' => 'Discover the Colorful World',
                 'title' => 'New Adventure',
                 'description' => 'Expedisi seru mengelilingi waduk dengan perahu wisata, lengkap dengan panorama sunrise dan udara sejuk.',
-                'image_path' => 'resources/images/gallery/1.JPG',
+                'image_path' => 'images/gallery/1.JPG',
                 'cta_label' => 'Jelajahi Sekarang',
                 'cta_url' => 'https://maps.app.goo.gl/ktGvAEF1vqdjDKXQ7',
                 'sort_order' => 1,
@@ -186,7 +228,7 @@ class SqliteContentSeeder extends Seeder
                 'eyebrow' => 'Discover the Colorful World',
                 'title' => 'New Trip',
                 'description' => 'Rencanakan perjalanan keluarga dengan fasilitas lengkap: kuliner, wahana air, dan ruang bermain anak.',
-                'image_path' => 'resources/images/gallery/3.JPG',
+                'image_path' => 'images/gallery/3.JPG',
                 'cta_label' => 'Rencanakan Rute',
                 'cta_url' => '/peta',
                 'sort_order' => 2,
@@ -198,7 +240,7 @@ class SqliteContentSeeder extends Seeder
                 'eyebrow' => 'Discover the Colorful World',
                 'title' => 'New Experience',
                 'description' => 'Nikmati pengalaman malam dengan lampion night market, live music, dan kuliner khas Manduk.',
-                'image_path' => 'resources/images/gallery/6.JPG',
+                'image_path' => 'images/gallery/6.JPG',
                 'cta_label' => 'Lihat Agenda',
                 'cta_url' => '/event',
                 'sort_order' => 3,
@@ -211,7 +253,7 @@ class SqliteContentSeeder extends Seeder
                 'id' => 1,
                 'title' => 'Festival Durian Manduk',
                 'description' => 'Cara paling lezat untuk merayakan desa: bertemu, berbagi cerita, dan pulang membawa kenangan manis… juga sedikit “aroma rindu” di ujung duri.',
-                'image_path' => 'resources/images/gallery/gallery-2.svg',
+                'image_path' => 'images/gallery/gallery-2.svg',
                 'sort_order' => 1,
                 'created_at' => '2025-11-04 16:29:24',
                 'updated_at' => '2025-11-04 19:51:42'
@@ -220,7 +262,7 @@ class SqliteContentSeeder extends Seeder
                 'id' => 2,
                 'title' => 'Lomba Kreasi Anak',
                 'description' => 'Kreatifitas dan cinta alam di Waduk Manduk tempat bermain, belajar, dan berbangga pada desa sendiri.',
-                'image_path' => 'resources/images/gallery/gallery-4.svg',
+                'image_path' => 'images/gallery/gallery-4.svg',
                 'sort_order' => 2,
                 'created_at' => '2025-11-04 16:29:24',
                 'updated_at' => '2025-11-04 19:52:22'
@@ -497,7 +539,7 @@ class SqliteContentSeeder extends Seeder
                 'id' => 7,
                 'title' => 'Panorama Senja Waduk Manduk',
                 'caption' => 'Langit jingga memantul di permukaan waduk, favorit pengunjung untuk menikmati sore hari.',
-                'image_path' => 'resources/images/gallery/gallery-1.svg',
+                'image_path' => 'images/gallery/gallery-1.svg',
                 'status' => 'published',
                 'sort_order' => 1,
                 'published_at' => '2025-11-04 16:29:23',
@@ -510,7 +552,7 @@ class SqliteContentSeeder extends Seeder
                 'id' => 8,
                 'title' => 'Dermaga Perahu Wisata',
                 'caption' => 'Dermaga kayu dengan perahu wisata siap membawa rombongan berkeliling.',
-                'image_path' => 'resources/images/gallery/gallery-2.svg',
+                'image_path' => 'images/gallery/gallery-2.svg',
                 'status' => 'published',
                 'sort_order' => 2,
                 'published_at' => '2025-11-04 16:29:23',
@@ -523,7 +565,7 @@ class SqliteContentSeeder extends Seeder
                 'id' => 9,
                 'title' => 'Lampion Night Market',
                 'caption' => 'Suasana pasar malam tematik dengan dekorasi lampion mendampingi UMKM lokal.',
-                'image_path' => 'resources/images/gallery/gallery-3.svg',
+                'image_path' => 'images/gallery/gallery-3.svg',
                 'status' => 'published',
                 'sort_order' => 3,
                 'published_at' => '2025-11-04 16:29:23',
@@ -536,7 +578,7 @@ class SqliteContentSeeder extends Seeder
                 'id' => 10,
                 'title' => 'Fun Paddle Komunitas',
                 'caption' => 'Komunitas kano dan paddle board menjalani latihan rutin sekaligus pembersihan waduk.',
-                'image_path' => 'resources/images/gallery/gallery-4.svg',
+                'image_path' => 'images/gallery/gallery-4.svg',
                 'status' => 'published',
                 'sort_order' => 4,
                 'published_at' => '2025-11-04 16:29:23',
@@ -549,7 +591,7 @@ class SqliteContentSeeder extends Seeder
                 'id' => 11,
                 'title' => 'Sentra Kuliner Manduk',
                 'caption' => 'Deretan kios kuliner halal yang menyajikan menu khas desa Jatirejo.',
-                'image_path' => 'resources/images/gallery/gallery-5.svg',
+                'image_path' => 'images/gallery/gallery-5.svg',
                 'status' => 'published',
                 'sort_order' => 5,
                 'published_at' => '2025-11-04 16:29:23',
@@ -562,7 +604,7 @@ class SqliteContentSeeder extends Seeder
                 'id' => 12,
                 'title' => 'Sky Deck Manduk',
                 'caption' => 'Pengunjung menikmati panorama 360 derajat dari sky deck utama.',
-                'image_path' => 'resources/images/gallery/gallery-6.svg',
+                'image_path' => 'images/gallery/gallery-6.svg',
                 'status' => 'published',
                 'sort_order' => 6,
                 'published_at' => '2025-11-04 16:29:23',
@@ -618,9 +660,12 @@ Peserta akan mendapatkan briefing keselamatan, perlengkapan dasar, serta sertifi
                 'location' => 'Tepi Waduk Manduk',
                 'cover_image' => null,
                 'excerpt' => 'Perlombaan untuk anak anak',
-                'body' => 'Di tepian Waduk Manduk yang sejuk dan hijau, imajinasi anak-anak akan bermekaran! Kami mengundang adik-adik untuk ikut Lomba Kreasi Anak panggung berekspresi lewat gambar, mewarna, kolase bahan alam, hingga kreasi daur ulang bertema “Alamku, Wadukku”.
-Di sini, setiap coretan bercerita tentang air yang dijaga, pepohonan yang dirawat, dan kampung yang dibanggakan. Orang tua dapat mendampingi sambil menikmati panorama waduk, angin yang lembut, dan suasana keluarga yang hangat.
-
+                'body' => 'Di tepian Waduk Manduk yang sejuk dan hijau, imajinasi anak-anak akan bermekaran! Kami mengundang adik-adik untuk ikut Lomba Kreasi Anak panggung berekspresi lewat gambar, mewarna, kolase bahan alam, hingga kreasi daur ulang bertema “Alamku, Wadukku”.
+
+Di sini, setiap coretan bercerita tentang air yang dijaga, pepohonan yang dirawat, dan kampung yang dibanggakan. Orang tua dapat mendampingi sambil menikmati panorama waduk, angin yang lembut, dan suasana keluarga yang hangat.
+
+
+
 Acara dirancang ramah anak dan ramah lingkungan: peserta diajak membawa alat masing-masing, panitia menyiapkan kertas dan beberapa bahan alam yang aman. Penilaian menitikberatkan pada ide orisinal, pesan lingkungan, keterampilan/kerapian, serta keberanian bercerita singkat tentang karyanya. Pemenang akan mendapat trofi, paket edukasi seni & lingkungan, serta voucher wahana perahu untuk keluarga.',
                 'published_at' => '2025-11-04 16:29:24',
                 'created_at' => '2025-11-04 16:29:24',
@@ -637,10 +682,14 @@ Acara dirancang ramah anak dan ramah lingkungan: peserta diajak membawa alat mas
                 'location' => 'Waduk Manduk',
                 'cover_image' => null,
                 'excerpt' => 'Festival panen raya di dusun manduk tepatnya di waduk manduk',
-                'body' => 'Di lereng Ngargoyoso yang sejuk, Festival Durian Manduk hadir sebagai pesta rasa dan kebanggaan warga. Sejak pagi, jalan menuju Waduk Manduk riuh oleh tawa keluarga, pedagang UMKM, dan petani yang menenteng durian terbaik dari kebun. Begitu kulit berduri itu “dibuka”, aroma manis legit langsung menyapa mengundang siapa pun untuk mencicip dan merayakan musim panen.
-
-Festival ini bukan sekadar makan durian bersama. Ada Kontes Raja Durian (menilai rasa, ketebalan daging, aroma, kematangan), Lelang & Cicip Bareng durian juara, Kelas Budidaya bersama petani, Tur Kebun untuk mengenal varietas lokal, hingga Demo Kuliner Durian—dari lempok, pancake, es krim, sampai kopi durian. Di panggung, seniman lokal menyajikan karawitan, campursari, dan akustik sore; sementara Zona Keluarga menghadirkan permainan anak, photobooth, dan lomba makan durian seru namun aman.
-
+                'body' => 'Di lereng Ngargoyoso yang sejuk, Festival Durian Manduk hadir sebagai pesta rasa dan kebanggaan warga. Sejak pagi, jalan menuju Waduk Manduk riuh oleh tawa keluarga, pedagang UMKM, dan petani yang menenteng durian terbaik dari kebun. Begitu kulit berduri itu “dibuka”, aroma manis legit langsung menyapa mengundang siapa pun untuk mencicip dan merayakan musim panen.
+
+
+
+Festival ini bukan sekadar makan durian bersama. Ada Kontes Raja Durian (menilai rasa, ketebalan daging, aroma, kematangan), Lelang & Cicip Bareng durian juara, Kelas Budidaya bersama petani, Tur Kebun untuk mengenal varietas lokal, hingga Demo Kuliner Durian—dari lempok, pancake, es krim, sampai kopi durian. Di panggung, seniman lokal menyajikan karawitan, campursari, dan akustik sore; sementara Zona Keluarga menghadirkan permainan anak, photobooth, dan lomba makan durian seru namun aman.
+
+
+
 Semua dirancang ramah lingkungan: area makan terpisah, tempat cuci tangan, pemilahan sampah organik-anorganik, gelas pakai ulang, dan dukungan bank sampah setempat. Fasilitas umum parkir, mushola, toilet disiapkan di sekitar area waduk agar pengunjung nyaman berlama-lama menikmati panorama danau dan bukit.',
                 'published_at' => '2025-11-04 16:29:24',
                 'created_at' => '2025-11-04 16:29:24',
@@ -655,27 +704,48 @@ Semua dirancang ramah lingkungan: area makan terpisah, tempat cuci tangan, pemil
                 'author' => 'Team PKM PMM',
                 'category' => 'Pengembangan',
                 'excerpt' => 'Program Pengabdian kepada Masyarakat skema Pemberdayaan Masyarakat oleh Mahasiswa (PKM–PMM) 2025 dilaksanakan oleh Politeknik Indonusa Surakarta di Waduk Manduk, Desa Jatirejo, Kecamatan Ngargoyoso, Kabupaten Karanganyar.',
-                'body' => 'Kegiatan ini didukung oleh Direktorat Penelitian dan Pengabdian kepada Masyarakat, Direktorat Jenderal Riset dan Pengembangan, Kementerian Pendidikan Tinggi, Sains, dan Teknologi, dengan total dana sebesar Rp63.401.000.
-
-Program berlangsung selama dua bulan, 1 Oktober hingga 30 November 2025, dengan ketua pelaksana Edy Susena, M.Kom., serta anggota Markus Utomo Sukendar, M.I.Kom. dan Tominanto, S.Kom., M.Sc. Kegiatan ini melibatkan mahasiswa gabungan dari dua program studi, yaitu Teknologi Rekayasa Perangkat Lunak (TRPL) dan Produksi Media (PM).
-
-Kegiatan ini mengusung tema “Optimalisasi Pengelolaan dan Digitalisasi Obyek Wisata Waduk Manduk Jatirejo sebagai Destinasi Ekowisata Berkelanjutan Berbasis Pemberdayaan Masyarakat.”
-
-Fokus utama kegiatan adalah memberdayakan BUMDes Jatirejo dan Komunitas Peduli Waduk (KPW) melalui penataan dan peningkatan kapasitas pengelolaan wisata dan penerapan teknologi digital. Kegiatan mencakup pelatihan manajemen destinasi wisata, workshop manajemen keuangan digital, FGD perencanaan infrastruktur wisata, serta pelatihan branding dan pemasaran digital wisata.
-
-Dalam implementasinya, mahasiswa bersama dosen pendamping dan masyarakat melakukan berbagai kegiatan fisik dan pengembangan teknologi. Beberapa inovasi yang diterapkan antara lain: 
-- Digitalisasi profil waduk Obyek Wisata Waduk Manduk Jatirejo Berbasis Website, 
-- Branding Image Obyek Wisata Waduk Manduk Jatirejo, Rambu wisata Obyek Wisata Waduk Manduk Jatirejo, 
-- Tempat sampah modern Obyek Wisata Waduk Manduk Jatirejo, 
-- Pembuatan viewpoint bench multi fungsi di Obyek Wisata Waduk Manduk Jatirejo, 
-- Fasilitas umum Obyek Wisata Waduk Manduk Jatirejo (Meja kursi taman dari Teraso), 
-- Pembuatan pagar pengaman waduk dengan kanal C, 
-- Peningkatan wahana bermain anak dengan menambahkan ayunan besi, 
-- Peningkatan area loket dengan paving, Peningkatan dermaga (Wahana Bebek Gowes), 
-- Peningkatan area parkir.
-
-Melalui kegiatan ini, tim PKM–PMM berhasil menggabungkan aspek teknologi, manajemen, produksi, dan pemasaran digital dalam satu rangkaian pemberdayaan masyarakat. Seluruh kegiatan dilaksanakan secara partisipatif dengan melibatkan BUMDes, KPW, dan warga desa, sehingga hasilnya dapat langsung dirasakan oleh masyarakat.
-
+                'body' => 'Kegiatan ini didukung oleh Direktorat Penelitian dan Pengabdian kepada Masyarakat, Direktorat Jenderal Riset dan Pengembangan, Kementerian Pendidikan Tinggi, Sains, dan Teknologi, dengan total dana sebesar Rp63.401.000.
+
+
+
+Program berlangsung selama dua bulan, 1 Oktober hingga 30 November 2025, dengan ketua pelaksana Edy Susena, M.Kom., serta anggota Markus Utomo Sukendar, M.I.Kom. dan Tominanto, S.Kom., M.Sc. Kegiatan ini melibatkan mahasiswa gabungan dari dua program studi, yaitu Teknologi Rekayasa Perangkat Lunak (TRPL) dan Produksi Media (PM).
+
+
+
+Kegiatan ini mengusung tema “Optimalisasi Pengelolaan dan Digitalisasi Obyek Wisata Waduk Manduk Jatirejo sebagai Destinasi Ekowisata Berkelanjutan Berbasis Pemberdayaan Masyarakat.”
+
+
+
+Fokus utama kegiatan adalah memberdayakan BUMDes Jatirejo dan Komunitas Peduli Waduk (KPW) melalui penataan dan peningkatan kapasitas pengelolaan wisata dan penerapan teknologi digital. Kegiatan mencakup pelatihan manajemen destinasi wisata, workshop manajemen keuangan digital, FGD perencanaan infrastruktur wisata, serta pelatihan branding dan pemasaran digital wisata.
+
+
+
+Dalam implementasinya, mahasiswa bersama dosen pendamping dan masyarakat melakukan berbagai kegiatan fisik dan pengembangan teknologi. Beberapa inovasi yang diterapkan antara lain: 
+
+- Digitalisasi profil waduk Obyek Wisata Waduk Manduk Jatirejo Berbasis Website, 
+
+- Branding Image Obyek Wisata Waduk Manduk Jatirejo, Rambu wisata Obyek Wisata Waduk Manduk Jatirejo, 
+
+- Tempat sampah modern Obyek Wisata Waduk Manduk Jatirejo, 
+
+- Pembuatan viewpoint bench multi fungsi di Obyek Wisata Waduk Manduk Jatirejo, 
+
+- Fasilitas umum Obyek Wisata Waduk Manduk Jatirejo (Meja kursi taman dari Teraso), 
+
+- Pembuatan pagar pengaman waduk dengan kanal C, 
+
+- Peningkatan wahana bermain anak dengan menambahkan ayunan besi, 
+
+- Peningkatan area loket dengan paving, Peningkatan dermaga (Wahana Bebek Gowes), 
+
+- Peningkatan area parkir.
+
+
+
+Melalui kegiatan ini, tim PKM–PMM berhasil menggabungkan aspek teknologi, manajemen, produksi, dan pemasaran digital dalam satu rangkaian pemberdayaan masyarakat. Seluruh kegiatan dilaksanakan secara partisipatif dengan melibatkan BUMDes, KPW, dan warga desa, sehingga hasilnya dapat langsung dirasakan oleh masyarakat.
+
+
+
 Program ini menjadi bukti nyata kontribusi Politeknik Indonusa Surakarta dalam mendukung pembangunan desa berbasis potensi lokal dan teknologi tepat guna menuju ekowisata berkelanjutan dan mandiri.',
                 'cover_image' => 'news/dQ5YAwswL5OXz5V3VdoFrnQKDgbxJbmmQLg2pVeR.jpg',
                 'read_time_minutes' => 1,

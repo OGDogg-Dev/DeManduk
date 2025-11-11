@@ -72,4 +72,45 @@ class User extends Authenticatable
     {
         return (bool) $this->requires_approval;
     }
+
+    public function hasCapability(string $capability): bool
+    {
+        if ($this->isAdmin() || $capability === '*') {
+            return true;
+        }
+
+        if ($capability === 'admin') {
+            return false;
+        }
+
+        $capabilities = $this->capabilityMap()[$this->role] ?? [];
+
+        return in_array($capability, $capabilities, true);
+    }
+
+    /**
+     * @param  list<string>  $capabilities
+     */
+    public function hasAnyCapability(array $capabilities): bool
+    {
+        foreach ($capabilities as $capability) {
+            if ($this->hasCapability($capability)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @return array<string, list<string>>
+     */
+    private function capabilityMap(): array
+    {
+        return [
+            self::ROLE_ADMIN => ['*'],
+            self::ROLE_CONTRIBUTOR => ['news'],
+            self::ROLE_KPW => ['news', 'events', 'gallery'],
+        ];
+    }
 }

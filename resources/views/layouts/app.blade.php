@@ -10,6 +10,13 @@
         'image'       => $image ?? null,
     ])
 
+    @php
+        $faviconUrl = \App\Support\Media::url($siteFaviconPath ?? null) ?: \App\Support\Media::url($siteLogoPath ?? null);
+    @endphp
+    @if ($faviconUrl)
+        <link rel="icon" type="image/png" href="{{ $faviconUrl }}">
+    @endif
+
     {{-- Fonts (preconnect) --}}
     <link rel="preconnect" href="https://fonts.bunny.net" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -18,14 +18,30 @@ class Media
             return $path;
         }
 
-        if (Str::startsWith($path, 'storage/')) {
-            return asset($path);
+        $normalizedPath = ltrim($path, '/');
+
+        if (Str::startsWith($normalizedPath, 'storage/')) {
+            return asset($normalizedPath);
         }
 
-        if (Storage::disk('public')->exists($path)) {
-            return Storage::url($path);
+        $lookupCandidates = collect([$normalizedPath])
+            ->when(Str::startsWith($normalizedPath, 'resources/'), function ($paths) use ($normalizedPath) {
+                return $paths->push(Str::after($normalizedPath, 'resources/'));
+            })
+            ->unique();
+
+        foreach ($lookupCandidates as $candidate) {
+            if (Storage::disk('public')->exists($candidate)) {
+                return Storage::url($candidate);
+            }
+
+            $publicPath = public_path($candidate);
+
+            if ($publicPath && file_exists($publicPath)) {
+                return asset($candidate);
+            }
         }
 
-        return Vite::asset($path);
+        return Vite::asset($normalizedPath);
     }
 }

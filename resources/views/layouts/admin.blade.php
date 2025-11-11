@@ -4,6 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title ?? 'Admin Dashboard' }} &middot; {{ $siteTitle ?? "D'Manduk" }}</title>
+    @php
+        $faviconUrl = \App\Support\Media::url($siteFaviconPath ?? null) ?: \App\Support\Media::url($siteLogoPath ?? null);
+    @endphp
+    @if ($faviconUrl)
+        <link rel="icon" type="image/png" href="{{ $faviconUrl }}">
+    @endif
     <link rel="preconnect" href="https://fonts.bunny.net" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,6 +25,10 @@
         ['route' => 'admin.dashboard', 'label' => 'Dasbor', 'icon' => 'chart-bar', 'active' => ['admin.dashboard']],
         ['route' => 'admin.home.index', 'label' => 'Kelola Halaman', 'icon' => 'cog-6-tooth', 'active' => ['admin.home.*', 'admin.gallery.*', 'admin.news.*', 'admin.events.*', 'admin.pages.*']],
     ];
+
+    if (auth()->user()?->isAdmin()) {
+        $menu[] = ['route' => 'admin.users.index', 'label' => 'Pengguna', 'icon' => 'users', 'active' => ['admin.users.*']];
+    }
 @endphp
 
     <div class="flex h-screen overflow-hidden">
